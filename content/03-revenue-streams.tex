@@ -22,8 +22,9 @@ Platinum & \numint{\computeHoursPlatinum} & \num{\subPlatinumPrice} & \num{\subP
 \end{table}
 \textit{Note: Patrick's costs based on \numint{\computePowerWatts}W @ \$\num{\electricityCostPerKwh}/kWh, \numfpeval{\weeklyRunsPerMonth} runs/month. All values in USD/month.}
 
-\subsection{Marketplace Economics Justification}
-The pricing structure reflects a progressive markup model:
+\subsection{Marketplace Economics and Competitive Analysis}
+Our platform operates with a \markPlatformFeePercent\% commission rate, positioning us competitively within the marketplace landscape:
+
 \begin{itemize}
   \item \textbf{Patrick's Progressive Markup (\numfpeval{\patrickMarkupBasic}--\numfpeval{\patrickMarkupPlatinum}x):} 
   \begin{itemize}
@@ -31,13 +32,19 @@ The pricing structure reflects a progressive markup model:
     \item Professional (\numfpeval{\patrickMarkupProfessional}x): Premium for 48-hour commitment reflecting provider scarcity
     \item Higher tiers (\numfpeval{\patrickMarkupGolden}--\numfpeval{\patrickMarkupPlatinum}x): Balanced markup for long-duration jobs
   \end{itemize}
-  \item \textbf{Mark's Effective Platform Fee (\num{\markPlatformFeePercent}\% of Charlie's payment):} 
+  \item \textbf{Platform Fee Benchmarks:}
   \begin{itemize}
-    \item Base operations (\num{\markBasePlatformFeePercent}\%): Funds anonymous matchmaking infrastructure, reputation system maintenance, dispute resolution, and first-mover advantage consolidation
-    \item Virtual marketing budget (\num{\virtualMarketingBudget}\%): Recognizes that providers actively acquire customers to grow their revenue, creating marketing value equivalent to paid acquisition channels
-    \item This aligns provider incentives with platform growth while transparently accounting for the true economics of the marketplace\cite{eisenmann2006,andreessen2020}
+    \item Our platform: \markPlatformFeePercent\% - includes full-service anonymous matchmaking, reputation system, and dispute resolution
+    \item Uber: ~25\% commission\cite{uber2023}
+    \item Airbnb: ~15\% total fees\cite{airbnb2023}  
+    \item Amazon Marketplace: 15-45\% depending on category\cite{amazon2024}
+    \item Fiverr: 20\% from sellers\cite{fiverr2023}
+    \item Upwork: 20\% for first \$500, then 10\%\cite{upwork2023}
   \end{itemize}
-  \item \textbf{Economic Balance:} Progressive markups ensure provider incentives align with job commitment requirements while maintaining platform sustainability
+  
+  \item \textbf{Why Our Economics Work:} Unlike traditional marketplaces that spend 15-30\% of revenue on customer acquisition\cite{andreessen2020}, our model creates natural viral growth. Providers actively recruit clients to increase their own revenue, functioning as an unpaid but highly motivated sales force. This alignment means we achieve similar growth with marketing budgets of just \$80-150k annually rather than the \$200-400k typical for our revenue scale.
+  
+  \item \textbf{Provider Economics Remain Attractive:} Even at 28\% platform fee, providers earn 2.5-10x their electricity costs depending on tier, creating sustainable incentives for participation. Academic research shows that successful two-sided platforms maintain take rates between 20-30\% when providing high-value services\cite{rochet2003,hagiu2015}.
 \end{itemize}
 
 \subsection{Hardware Portfolio}

@@ -41,6 +41,13 @@
 % Monthly gross profit (for payback calculation - Mark's business)
 \newcommand{\subMonthlyGrossProfit}{\fpeval{\markWeightedAvgMonthly * \subGrossMargin / 100}}
 
+%% ================= Payback Period Calculations =================
+% Subscription payback period in months
+\newcommand{\subPaybackMonths}{\fpeval{round((\cacDigital - \merchOffsetSubsCalc) / \subMonthlyGrossProfit, 1)}}
+
+% Hardware payback period (immediate due to one-time purchase)
+\newcommand{\hwPaybackMonths}{0}
+
 %% ================= Revenue Calculations =================
 % Subscription annual revenue based on subscriber counts
 % This is MARK's revenue (platform fees only), not total Charlie payments
