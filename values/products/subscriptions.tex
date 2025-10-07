@@ -42,9 +42,9 @@
 
 %% ================= Operational Metrics =================
 % CAC reduction percentage from merchandise
-% Formula: (merchAttachRate * merchAvgPrice * merchAvgMargin / 100) / cacDigital * 100
-% Using values from merchandise.tex and acquisition.tex
-\newcommand{\cacReductionPercent}{\fpeval{round(\merchAttachRate * \merchAvgPrice * \merchAvgMargin / 100 / \cacDigital * 100, 1)}}
+% Formula: (merchOffsetSubsCalc / cacDigital) * 100
+% Using pre-calculated offset value to avoid percentage multiplication errors
+\newcommand{\cacReductionPercent}{\fpeval{round(\merchOffsetSubsCalc / \cacDigital * 100, 1)}}
 
 % Combined TAM in thousands (subscriptions + hardware)
 \newcommand{\combinedTAMk}{\fpeval{round((\tamSubsGlobal + \tamHwGlobal) / 1000, 0)}}
