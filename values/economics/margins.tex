@@ -52,13 +52,6 @@
 \newcommand{\markRevenueGolden}{\fpeval{\subGoldenPrice * \markPlatformFeePercent / 100}}
 \newcommand{\markRevenuePlatinum}{\fpeval{\subPlatinumPrice * \markPlatformFeePercent / 100}}
 
-% Total markup per tier (Charlie price / Patrick cost)
-\newcommand{\totalMarkupBasic}{\fpeval{\subBasicPrice / \patrickCostBasic}}
-\newcommand{\totalMarkupMedium}{\fpeval{\subMediumPrice / \patrickCostMedium}}
-\newcommand{\totalMarkupProfessional}{\fpeval{\subProfessionalPrice / \patrickCostProfessional}}
-\newcommand{\totalMarkupGolden}{\fpeval{\subGoldenPrice / \patrickCostGolden}}
-\newcommand{\totalMarkupPlatinum}{\fpeval{\subPlatinumPrice / \patrickCostPlatinum}}
-
 % Mark's weighted average monthly revenue per user
 \newcommand{\markWeightedAvgMonthly}{\fpeval{\markRevenueBasic * \subBasicMix / 100 + \markRevenueMedium * \subMediumMix / 100 + \markRevenueProfessional * \subProfessionalMix / 100 + \markRevenueGolden * \subGoldenMix / 100 + \markRevenuePlatinum * \subPlatinumMix / 100}}
 
