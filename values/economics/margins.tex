@@ -28,8 +28,7 @@
 \newcommand{\subBasicMix}{35}
 \newcommand{\subMediumMix}{40}
 \newcommand{\subProfessionalMix}{15}
-\newcommand{\subGoldenMix}{9}
-\newcommand{\subPlatinumMix}{1}
+\newcommand{\subGoldenMix}{10}
 
 %% ================= Hardware Customer Mix =================
 % Distribution of hardware buyers across SKUs (%)
@@ -43,17 +42,15 @@
 \newcommand{\patrickProfitMedium}{\fpeval{\patrickGrossMedium - \patrickCostMedium}}
 \newcommand{\patrickProfitProfessional}{\fpeval{\patrickGrossProfessional - \patrickCostProfessional}}
 \newcommand{\patrickProfitGolden}{\fpeval{\patrickGrossGolden - \patrickCostGolden}}
-\newcommand{\patrickProfitPlatinum}{\fpeval{\patrickGrossPlatinum - \patrickCostPlatinum}}
 
 % Mark's revenue per tier (platform fee, USD/month)
 \newcommand{\markRevenueBasic}{\fpeval{\subBasicPrice * \markPlatformFeePercent / 100}}
 \newcommand{\markRevenueMedium}{\fpeval{\subMediumPrice * \markPlatformFeePercent / 100}}
 \newcommand{\markRevenueProfessional}{\fpeval{\subProfessionalPrice * \markPlatformFeePercent / 100}}
 \newcommand{\markRevenueGolden}{\fpeval{\subGoldenPrice * \markPlatformFeePercent / 100}}
-\newcommand{\markRevenuePlatinum}{\fpeval{\subPlatinumPrice * \markPlatformFeePercent / 100}}
 
 % Mark's weighted average monthly revenue per user
-\newcommand{\markWeightedAvgMonthly}{\fpeval{\markRevenueBasic * \subBasicMix / 100 + \markRevenueMedium * \subMediumMix / 100 + \markRevenueProfessional * \subProfessionalMix / 100 + \markRevenueGolden * \subGoldenMix / 100 + \markRevenuePlatinum * \subPlatinumMix / 100}}
+\newcommand{\markWeightedAvgMonthly}{\fpeval{\markRevenueBasic * \subBasicMix / 100 + \markRevenueMedium * \subMediumMix / 100 + \markRevenueProfessional * \subProfessionalMix / 100 + \markRevenueGolden * \subGoldenMix / 100 }}
 
 % Mark's weighted average annual revenue per user
 \newcommand{\markWeightedAvgAnnual}{\fpeval{\markWeightedAvgMonthly * 12}}

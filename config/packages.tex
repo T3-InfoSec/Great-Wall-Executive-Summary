@@ -5,6 +5,10 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{xcolor}
+\usepackage{iftex}
+\ifLuaTeX
+    \usepackage{fontspec}
+\fi
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{xfp}
@@ -17,6 +21,7 @@
 \usepackage{fancyhdr} % For custom headers and footers
 \usepackage{lastpage} % For total page count
 \usepackage{totcount}
+\usepackage{emoji}
 
 % Configure siunitx for number formatting
 \sisetup{

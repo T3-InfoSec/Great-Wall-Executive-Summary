@@ -10,15 +10,31 @@ Great Wall makes it impossible for a user to be forced, under duress, to give up
 We envision a future where customers can stop hiding behind (actual) masks and proudly declare ownership of their cryptocurrency without fear.
 
 \textbf{The solution:} \par
-Our solution is a novel ``proof-of-delay'' security model. We've created a digital \textbf{``tacit puzzle''} that must be solved to access a wallet. This puzzle has two unique properties:
+Our solution is a novel protocol we call \textbf{Tacit Knowledge-Based Authentication (TKBA)}. It is the first and only system designed to simultaneously satisfy four crucial security properties that, until now, have been mutually exclusive:
 
 \begin{itemize}
-    \item \textbf{It requires time-intensive computation to ``load''}—a process that is impossible to accelerate.
-    \item \textbf{It requires the user's tacit knowledge}—a piece of information that is ``impossible to be spoken'' or written down, existing only in the user's mind.
+    \item \textbf{Knowledge-Based (Deviceless):} Access is tied only to the user's mind (their tacit knowledge), not a physical device, seed phrase, or object that can be stolen or seized.
+    \item \textbf{Individual Custody:} Upholds the core crypto promise: 'Not your keys, not your coins.' The user remains their own bank, with no reliance on third-party custodians.
+    \item \textbf{Non-Obscurity:} The system's security does not rely on secret tricks. It remains 100\% secure even if the attacker knows exactly how it works (Kerckhoffs's Principle).
+    \item \textbf{Coercion Resistance:} The protocol's architecture (requiring both time and tacit knowledge) makes it impossible for an attacker to gain access by force, neutralizing the \$5 wrench attack.
 \end{itemize}
 
-This built-in delay (from hours to days, set by the user) means that even under threat, a victim \textit{cannot} cooperate with an attacker in real-time. 
-This simple, elegant solution neutralizes the wrench attack entirely, and critically, it works even if the attacker knows the full security scheme (no need for obscurity).
+\textbf{Differentials:} \par
+This unique combination of four properties sets Great Wall apart from all existing solutions, each of which suffers from a critical, and often dangerous, flaw.
+
+\par\medskip\noindent
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|p{4cm}|p{4.5cm}|}
+\hline
+\textbf{Security Method} & \textbf{Deviceless} & \textbf{Ind. Custody} & \textbf{Non-Obscure} & \textbf{Coercion Res.} & \textbf{Existing Implementations} & \textbf{Primary Down-side} \\ \hline
+\textbf{TKBA} & \textbf{\emoji{check-mark-button}} & \textbf{\emoji{check-mark-button}} & \textbf{\emoji{check-mark-button}} & \textbf{\emoji{check-mark-button}} & Great Wall. & Relies on user not forgetting their tacit knowledge (which we solve via an integrated memory coach). \\ \hline
+Physical / Sharding & \emoji{cross-mark} & \emoji{check-mark-button} & \emoji{check-mark-button} & \emoji{check-mark-button} & Bank vaults, Shamir's Secret Sharing (SSS). & Astronomically high cost and operational complexity. "Glorified gold." \\ \hline
+Shared / Delegated & \emoji{check-mark-button} & \emoji{cross-mark} & \emoji{check-mark-button} & \emoji{check-mark-button} & Centralized exchanges (Coinbase, Binance). & Negates the core premise of self-custody. "Not your keys..." \\ \hline
+Obscurity-Based & \emoji{check-mark-button} & \emoji{check-mark-button} & \emoji{cross-mark} & \emoji{check-mark-button}* & Decoy wallets, plausible denial passphrases. & *Backfires dangerously; incentivizes more violence (torture/assassination) from an educated attacker. \\ \hline
+Vanilla Self-Custody & \emoji{check-mark-button} & \emoji{check-mark-button} & \emoji{check-mark-button} & \emoji{cross-mark} & Hardware/paper wallets (Ledger, Trezor, BIP39). & Completely vulnerable to a wrench attack. \\ \hline
+\end{tabular}%
+}
+\par\medskip
 
 \textbf{Monetization:} \par
 We are capturing this market with two distinct, high-margin revenue streams:
@@ -28,10 +44,10 @@ We are capturing this market with two distinct, high-margin revenue streams:
     \item \textbf{The Hardware (One-Time Sale):} A self-sovereign device for technical users who prefer to run the computation locally.
 \end{itemize}
 
-Our marketplace is built on a capital-efficient viral loop. Providers incentivized for affiliate commission and growth of client base naturally recruit Users, creating a powerful growth engine that dramatically lowers our Customer Acquisition Cost (CAC) compared to any competitor.
+Our marketplace's growth is fueled by a provider-driven referral program. Providers are incentivized via affiliate commission to act as a highly-motivated, zero-base-cost sales force. They naturally recruit Users, creating a powerful and scalable growth engine that dramatically lowers our Customer Acquisition Cost (CAC).
 
-\textbf{Bonus:} \par
-Swagger merchandise: Branded apparel and accessories that build community, enhance brand loyalty, and offset CAC.
+\textbf{Swagger merchandise (Bonus):} \par
+Branded apparel and accessories that build community, enhance brand loyalty, and offset CAC.
 More importantly, it signals to the potential attackers that the owner is security-conscious and not an easy target.
 This discourages attacks from ever starting in the first place.
 

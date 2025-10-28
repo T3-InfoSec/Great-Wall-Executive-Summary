@@ -13,8 +13,7 @@ Tier & Delay (Hours) & Price & Mix & Provider Cost & Provider GP & Marketplace R
 Basic  & \numint{\computeHoursBasic} & \num{\subBasicPrice}  & \numint{\subBasicMix}\% & \numfpeval{\patrickCostBasic} & \numfpeval{\patrickProfitBasic} & \numfpeval{\markRevenueBasic} \\
 Medium  & \numint{\computeHoursMedium} & \num{\subMediumPrice} & \numint{\subMediumMix}\% & \numfpeval{\patrickCostMedium} & \numfpeval{\patrickProfitMedium} & \numfpeval{\markRevenueMedium} \\
 Professional & \numint{\computeHoursProfessional} & \num{\subProfessionalPrice} & \numint{\subProfessionalMix}\% & \numfpeval{\patrickCostProfessional} & \numfpeval{\patrickProfitProfessional} & \numfpeval{\markRevenueProfessional} \\
-Golden  & \numint{\computeHoursGolden} & \num{\subGoldenPrice} & \numint{\subGoldenMix}\% & \numfpeval{\patrickCostGolden} & \numfpeval{\patrickProfitGolden} & \numfpeval{\markRevenueGolden} \\
-Platinum & \numint{\computeHoursPlatinum} & \num{\subPlatinumPrice} & \numint{\subPlatinumMix}\% & \numfpeval{\patrickCostPlatinum} & \numfpeval{\patrickProfitPlatinum} & \numfpeval{\markRevenuePlatinum} \\\midrule
+Golden  & \numint{\computeHoursGolden} & \num{\subGoldenPrice} & \numint{\subGoldenMix}\% & \numfpeval{\patrickCostGolden} & \numfpeval{\patrickProfitGolden} & \numfpeval{\markRevenueGolden} \\\midrule
 \textbf{Weighted Avg} &  & \textbf{\numfpeval{\subWeightedAvgPrice}} & \textbf{\num{100}}\% &  &  & \textbf{\numfpeval{\markWeightedAvgMonthly}} \\
 \bottomrule
 \end{tabularx}
@@ -26,11 +25,11 @@ Platinum & \numint{\computeHoursPlatinum} & \num{\subPlatinumPrice} & \numint{\s
 Our platform operates with a \markPlatformFeePercent\% commission rate, positioning us competitively within the marketplace landscape:
 
 \begin{itemize}
-  \item \textbf{Patrick's Progressive Markup (\numfpeval{\patrickMarkupBasic}--\numfpeval{\patrickMarkupPlatinum}x):} 
+  \item \textbf{Patrick's Progressive Markup (\numfpeval{\patrickMarkupBasic}--\numfpeval{\patrickMarkupGolden}x):} 
   \begin{itemize}
     \item Basic (\numfpeval{\patrickMarkupBasic}x): Lower margin for short jobs to encourage provider participation
     \item Professional (\numfpeval{\patrickMarkupProfessional}x): Premium for 48-hour commitment reflecting provider scarcity
-    \item Higher tiers (\numfpeval{\patrickMarkupGolden}--\numfpeval{\patrickMarkupPlatinum}x): Balanced markup for long-duration jobs
+    \item Higher tier (\numfpeval{\patrickMarkupGolden}x): Balanced markup for long-duration jobs
   \end{itemize}
   \item \textbf{Platform Fee Benchmarks:}
   \begin{itemize}

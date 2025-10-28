@@ -1,9 +1,14 @@
+% !TEX program = lualatex
 \documentclass[11pt]{article}
 
 % Configuration
 \input{config/packages}
 \input{config/formatting}
 \input{config/metadata}
+
+\ifLuaTeX
+\setemojifont{Segoe UI Emoji}
+\fi
 
 % Load all values - Economics first
 \input{values/economics/computation}
@@ -30,7 +35,6 @@
 \begin{document}
 
 \maketitle
-
 % Content sections
 \input{content/01-executive-overview}
 \input{content/09-investment-highlights}

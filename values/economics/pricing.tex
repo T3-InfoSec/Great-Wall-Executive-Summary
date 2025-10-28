@@ -17,9 +17,6 @@
 % Golden: 168-hour (1 week) computation jobs @ 4.28/month
 \newcommand{\subGoldenPrice}{\fpeval{round(\patrickGrossGolden / (1 - \markPlatformFeePercent/100), 0)}}
 
-% Platinum: 336-hour (2 week) computation jobs @ 4.28/month
-\newcommand{\subPlatinumPrice}{\fpeval{round(\patrickGrossPlatinum / (1 - \markPlatformFeePercent/100), 0)}}
-
 %% ================= Hardware Pricing =================
 % Hardware SKU prices (USD)
 \newcommand{\hwEntryPrice}{500}
@@ -28,7 +25,7 @@
 
 %% ================= Weighted Average Calculations =================
 % Subscription weighted average monthly revenue per user (Charlie's payment)
-\newcommand{\subWeightedAvgPrice}{\fpeval{\subBasicPrice * \subBasicMix / 100 + \subMediumPrice * \subMediumMix / 100 + \subProfessionalPrice * \subProfessionalMix / 100 + \subGoldenPrice * \subGoldenMix / 100 + \subPlatinumPrice * \subPlatinumMix / 100}}
+\newcommand{\subWeightedAvgPrice}{\fpeval{\subBasicPrice * \subBasicMix / 100 + \subMediumPrice * \subMediumMix / 100 + \subProfessionalPrice * \subProfessionalMix / 100 + \subGoldenPrice * \subGoldenMix / 100 }}
 
 % Hardware weighted average price per unit
 \newcommand{\hwWeightedAvgPrice}{\fpeval{\hwEntryPrice * \hwEntryMix / 100 + \hwProfPrice * \hwProfMix / 100 + \hwPremiumPrice * \hwPremiumMix / 100}}
