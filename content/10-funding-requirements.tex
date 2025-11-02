@@ -17,17 +17,13 @@ Operations & \numint{\seedUseOperations} & Team (\num{\seedTeamSize} devs), infr
 \end{tabularx}
 \end{table}
 
-\subsection{Series A Requirements (Year 1)}
+\subsection{Series A Focus (Year 1)}
 \begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{l Y Y}
 \toprule
 Category & Amount (USD) & Purpose \\\midrule
-Hardware Development\cite{ycombinator2022} & \numint{\seriesAUseHwDev} & Design, prototype, certifications \\
-Manufacturing Setup & \numint{\seriesAUseMfg} & Initial production run, QA \\
-Marketing Expansion & \numint{\seriesAUseMarketing} & Hardware launch campaign \\
-Team Growth & \numint{\seriesAUseTeam} & Engineers, support, sales \\
-\textbf{Total Series A} & \textbf{\numint{\seriesAAmount}} & \textbf{Hardware launch} \\
+Platform Scaling & \numint{\seriesAAmount} & Team growth, ecosystem integrations, market expansion \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -45,31 +41,25 @@ Team Growth & \numint{\seriesAUseTeam} & Engineers, support, sales \\
   \item Exit valuation: \$\num{\targetValLow}--\num{\optimisticValHigh}M depending on growth rate and market conditions
 \end{itemize}
 
-\textbf{Year 1 (Months 13-24): Hardware Development}
+\textbf{Year 1 (Months 13-24): Platform Scale}
 \begin{itemize}
   \item Month 13: Series A \$\numint{\seriesAAmount/1000}K (\num{\seriesAEquity}\% equity), \$\numint{\seriesAValuation/1000000}M post-money valuation
-  \item Months \num{\hwDesignStartMonth}--\num{\hwDesignEndMonth}: Hardware design and prototyping
-  \item Months \num{\hwCertStartMonth}--\num{\hwCertEndMonth}: Security certifications and testing
-  \item Month 20: Manufacturing setup, initial production
-  \item Month 21: Hardware launch, begin sales
-  \item Months 21-24: Scale hardware sales to \numint{\hwCustomersYearTwo} units, \numint{\totalSubsYearTwo} total subscribers
+  \item Months \num{\marketplaceScaleStartMonth}--\num{\marketplaceScaleEndMonth}: Scale marketplace, deepen provider network, and expand integrations
   \item Exit ARR: \$\numfpeval{round(\subARRYearTwo/1000000,1)}M
 \end{itemize}
 
-\textbf{Year 2 (Months 25-36): Dual Revenue Growth}
+\textbf{Year 2 (Months 25-36): Marketplace Growth}
 \begin{itemize}
-  \item Revenue: \$\numfpeval{round((\subRevenueYearTwo + \hwWeightedAvgGP * \hwCustomersYearTwo)/1000000,1)}M (subs + hardware)
+  \item Revenue: \$\numfpeval{round(\subRevenueYearTwo/1000000,1)}M
   \item Exit ARR: \$\numfpeval{round(\subARRYearTwo/1000000,1)}M
-  \item \numint{\hwCustomersYearTwo} hardware units sold
   \item \numint{\totalSubsYearTwo} total subscribers
   \item Valuation: \$30--35M (conservative \num{2.5}x ARR)
 \end{itemize}
 
 \textbf{Year 3+: Scale and Potential Exit}
 \begin{itemize}
-  \item Revenue: \$\numfpeval{round((\subRevenueYearThree + \hwWeightedAvgGP * \hwCustomersYearThree)/1000000,1)}M+ across all channels
+  \item Revenue: \$\numfpeval{round(\subRevenueYearThree/1000000,1)}M+
   \item Exit ARR: \$\numfpeval{round(\subARRYearThree/1000000,1)}M
-  \item \numint{\hwCustomersYearThree}+ hardware units annually
   \item \numint{\totalSubsYearThree}+ subscribers
   \item Exit valuation: \$35--60M depending on growth rate and market conditions
 \end{itemize}

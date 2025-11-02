@@ -4,17 +4,17 @@
 
 \begin{table}[H]
 \centering
-\begin{tabularx}{\linewidth}{l Y Y}
+\begin{tabularx}{\linewidth}{l Y}
 \toprule
-Metric & Subscriptions & Hardware \\\midrule
-Average Revenue (Mark) & \$\numint{\markWeightedAvgAnnual}/year & \$\numint{\hwWeightedAvgPrice}/unit \\
-Gross Margin\cite{openview2023} & \num{\subGrossMargin}\% & \num{\hwWeightedAvgMargin}\% \\
-Gross CAC & \$\num{\cacDigital} & \$\num{\cacEvents} \\
-Merchandise Offset & \$\numfpeval{\merchOffsetSubsCalc} & \$\numfpeval{\merchOffsetHwCalc} \\
-Net CAC & \$\numint{\cacDigital - \merchOffsetSubsCalc} & \$\numint{\cacEvents - \merchOffsetHwCalc} \\
-LTV or Profit/Unit & \$\numint{\subLTV} & \$\numint{\hwWeightedAvgGP} \\
-LTV:CAC Ratio & \numint{\subLTV/(\cacDigital - \merchOffsetSubsCalc)}:\numint{1} & \numint{\hwWeightedAvgGP/(\cacEvents - \merchOffsetHwCalc)}:\numint{1} \\
-Payback Period & \num{\subPaybackMonths} months & Immediate \\
+Metric & Subscriptions \\\midrule
+Average Revenue (Mark) & \$\numint{\markWeightedAvgAnnual}/year \\
+Gross Margin\cite{openview2023} & \num{\subGrossMargin}\% \\
+Gross CAC & \$\num{\cacDigital} \\
+Merchandise Offset & \$\numfpeval{\merchOffsetSubsCalc} \\
+Net CAC & \$\numint{\cacDigital - \merchOffsetSubsCalc} \\
+LTV & \$\numint{\subLTV} \\
+LTV:CAC Ratio & \numint{\subLTV/(\cacDigital - \merchOffsetSubsCalc)}:\numint{1} \\
+Payback Period & \num{\subPaybackMonths} months \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -24,7 +24,6 @@ Payback Period & \num{\subPaybackMonths} months & Immediate \\
     \item \textbf{Subscription Economics:} High gross margins (95\%) due to minimal direct costs for matchmaking platform
     \item \textbf{Competitive Platform Fee:} \markPlatformFeePercent\% take rate aligns with industry leaders (Uber 25\%, Fiverr 20\%, Amazon 15-45\%)\cite{uber2023,fiverr2023,amazon2024}
     \item \textbf{Customer Acquisition Efficiency:} Our platform design creates natural viral growth through provider incentives. Industry benchmarks show marketplaces typically spend \$35-50 per customer acquired\cite{andreessen2020}, while our blended CAC is just \$\cacDigital. This efficiency stems from providers actively recruiting clients to increase their own revenue - a dynamic documented in successful platforms like Uber (drivers recruiting riders) and Airbnb (hosts encouraging bookings \cite{kumar2018,nfx2018}.
-    \item \textbf{Hardware Economics:} Weighted average margin of \num{\hwWeightedAvgMargin}\% across three SKUs provides healthy unit economics
     \item \textbf{Merchandise Impact:} Reduces effective CAC by \num{\cacReductionPercent}\%, dramatically improving unit economics
 \end{itemize}
 

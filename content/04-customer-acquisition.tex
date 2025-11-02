@@ -22,13 +22,12 @@ Year 3 & \$\numint{\marketingBudgetYearThree} & \$\num{\cacDigital} & \numint{\b
 \toprule
 Channel & Budget (USD) & Gross CAC\cite{authoranalysis2024} & Merch Offset* & Net CAC \\\midrule
 Digital (Subs) & \numint{\budgetDigital} & \num{\cacDigital} & \numfpeval{\merchOffsetSubsCalc} & \numfpeval{\cacDigital - \merchOffsetSubsCalc} \\
-Content/SEO (Subs) & \numint{\budgetContent} & \num{\cacContent} & \numfpeval{\merchOffsetSubsCalc} & \numfpeval{\cacContent - \merchOffsetSubsCalc} \\
-Events (Hardware Y2+) & \numint{\budgetEvents} & \num{\cacEvents} & \numfpeval{\merchOffsetHwCalc} & \numfpeval{\cacEvents - \merchOffsetHwCalc} \\\midrule
-\textbf{Total} & \textbf{\numint{100000}} &  &  &  \\
+Content/SEO (Subs) & \numint{\budgetContent} & \num{\cacContent} & \numfpeval{\merchOffsetSubsCalc} & \numfpeval{\cacContent - \merchOffsetSubsCalc} \\\midrule
+\textbf{Total} & \textbf{\numint{\budgetDigital + \budgetContent}} &  &  &  \\
 \bottomrule
 \end{tabularx}
 \end{table}
-\textit{*Merchandise offset: Subs @ \num{\merchAttachRate}\% × \$\numfpeval{\merchAvgProfit} = \$\numfpeval{\merchOffsetSubsCalc}, Hardware @ \num{\hwMerchAttachRate}\% × \$\numfpeval{\merchAvgProfit} = \$\numfpeval{\merchOffsetHwCalc}}
+\textit{*Merchandise offset: Subs @ \num{\merchAttachRate}\% × $\numfpeval{\merchAvgProfit} = $\numfpeval{\merchOffsetSubsCalc}}
 
 \subsection{Customer Acquisition Economics}
 \begin{table}[H]

@@ -24,14 +24,10 @@
 \newcommand{\retainedSubsYearThree}{\fpeval{round(\totalSubsYearTwo * (1 - \churnYearTwo/100), 0)}}
 \newcommand{\actualSubRevenueYearThree}{\fpeval{round(\retainedSubsYearThree * \markWeightedAvgAnnual + \newSubsYearThree * \markWeightedAvgAnnual * \avgRevenueMonthsYearOne / 12, 0)}}
 
-%% ================= Hardware Revenue (unchanged - one-time sales) =================
-\newcommand{\actualHwRevenueYearTwo}{\fpeval{round(\hwWeightedAvgGP * \hwCustomersYearTwo, 0)}}
-\newcommand{\actualHwRevenueYearThree}{\fpeval{round(\hwWeightedAvgGP * \hwCustomersYearThree, 0)}}
-
 %% ================= Total Actual Revenue =================
 \newcommand{\totalActualRevenueYearOne}{\actualSubRevenueYearOne}
-\newcommand{\totalActualRevenueYearTwo}{\fpeval{\actualSubRevenueYearTwo + \actualHwRevenueYearTwo}}
-\newcommand{\totalActualRevenueYearThree}{\fpeval{\actualSubRevenueYearThree + \actualHwRevenueYearThree}}
+\newcommand{\totalActualRevenueYearTwo}{\actualSubRevenueYearTwo}
+\newcommand{\totalActualRevenueYearThree}{\actualSubRevenueYearThree}
 
 %% ================= Actual Net Income/Loss =================
 \newcommand{\actualNetIncomeYearOne}{\fpeval{round(\totalActualRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne, 0)}}

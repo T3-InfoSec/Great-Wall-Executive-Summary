@@ -3,7 +3,6 @@
 %% ================= Valuation Multiples =================
 % Base valuation multiples by asset type
 \newcommand{\arrMultiple}{3}
-\newcommand{\hwMultiple}{1.5}
 
 % Conservative revenue multiple for Year 2 valuation
 \newcommand{\yearTwoRevMultiple}{2.5}
@@ -38,7 +37,4 @@
 % Year 3 optimistic valuation high - High premium multiple on Year 3 ARR
 \newcommand{\optimisticValHigh}{\fpeval{round(\subARRYearThree * \optimisticARRMultiple / 1000000, 0)}}
 
-%% ================= Hardware Business Valuation =================
-% Hardware business valuation calculations
-\newcommand{\hwValuationYearTwo}{\fpeval{\hwWeightedAvgGP * \hwCustomersYearTwo * \hwMultiple}}
-\newcommand{\hwValuationYearThree}{\fpeval{\hwWeightedAvgGP * \hwCustomersYearThree * \hwMultiple}}
+% (Hardware valuation removed in protocol-first plan)

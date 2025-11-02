@@ -46,19 +46,6 @@ Our platform operates with a \markPlatformFeePercent\% commission rate, position
   \item \textbf{Provider Economics Remain Attractive:} Even at 28\% platform fee, providers earn 2.5-10x their electricity costs depending on tier, creating sustainable incentives for participation. Academic research shows that successful two-sided platforms maintain take rates between 20-30\% when providing high-value services\cite{rochet2003,hagiu2015}.
 \end{itemize}
 
-\subsection{Hardware Portfolio}
-\begin{table}[H]
-\centering
-\begin{tabularx}{\linewidth}{l Y Y Y Y}
-\toprule
-Device & Retail (USD) & Margin (\%)\cite{industrybenchmark2024} & Mix (\%) & GP/unit \\\midrule
-Entry        & \numint{\hwEntryPrice}  & \num{\hwEntryMargin} & \num{\hwEntryMix} & \numint{\hwEntryPrice * \hwEntryMargin / 100} \\
-Professional & \numint{\hwProfPrice} & \num{\hwProfMargin} & \num{\hwProfMix} & \numint{\hwProfPrice * \hwProfMargin / 100} \\
-Premium      & \numint{\hwPremiumPrice} & \num{\hwPremiumMargin} & \num{\hwPremiumMix} & \numint{\hwPremiumPrice * \hwPremiumMargin / 100} \\\midrule
-\textbf{Weighted Avg GP} &  &  &  & \textbf{\numint{\hwWeightedAvgGP}} \\
-\bottomrule
-\end{tabularx}
-\end{table}
 
 \subsection{Merchandise Economics (CAC Offset Strategy)}
 \begin{table}[H]

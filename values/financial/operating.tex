@@ -27,8 +27,8 @@
 
 % Payment processing costs (USD)
 \newcommand{\paymentCostsYearOne}{\fpeval{\grossVolumeYearOne * \paymentProcessingFee / 100}}
-\newcommand{\paymentCostsYearTwo}{\fpeval{(\grossVolumeYearTwo + \hwWeightedAvgPrice * \hwCustomersYearTwo) * \paymentProcessingFee / 100}}
-\newcommand{\paymentCostsYearThree}{\fpeval{(\grossVolumeYearThree + \hwWeightedAvgPrice * \hwCustomersYearThree) * \paymentProcessingFee / 100}}
+\newcommand{\paymentCostsYearTwo}{\fpeval{\grossVolumeYearTwo * \paymentProcessingFee / 100}}
+\newcommand{\paymentCostsYearThree}{\fpeval{\grossVolumeYearThree * \paymentProcessingFee / 100}}
 
 %% ================= Other Operating Expenses =================
 % Legal, compliance, insurance (USD/year)

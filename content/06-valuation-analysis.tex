@@ -8,9 +8,8 @@
 \begin{tabularx}{\linewidth}{l Y Y Y Y}
 \toprule
 Component & Multiple\cite{highalpha2024,openview2023} & Y1 Value & Y2 Value & Y3 Value \\\midrule
-Subscription Exit ARR & \num{\arrMultiple}x & \numint{\subARRYearOne * \arrMultiple} & \numint{\subARRYearTwo * \arrMultiple} & \numint{\subARRYearThree * \arrMultiple} \\
-Hardware Gross Profit & \num{\hwMultiple}x & \num{0} & \numint{\hwWeightedAvgGP * \hwCustomersYearTwo * \hwMultiple} & \numint{\hwWeightedAvgGP * \hwCustomersYearThree * \hwMultiple} \\\midrule
-\textbf{Total Valuation} &  & \textbf{\numint{\subARRYearOne * \arrMultiple}} & \textbf{\numint{\subARRYearTwo * \arrMultiple + \hwWeightedAvgGP * \hwCustomersYearTwo * \hwMultiple}} & \textbf{\numint{\subARRYearThree * \arrMultiple + \hwWeightedAvgGP * \hwCustomersYearThree * \hwMultiple}} \\
+Subscription Exit ARR & \num{\arrMultiple}x & \numint{\subARRYearOne * \arrMultiple} & \numint{\subARRYearTwo * \arrMultiple} & \numint{\subARRYearThree * \arrMultiple} \\\midrule
+\textbf{Total Valuation} &  & \textbf{\numint{\subARRYearOne * \arrMultiple}} & \textbf{\numint{\subARRYearTwo * \arrMultiple}} & \textbf{\numint{\subARRYearThree * \arrMultiple}} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -39,5 +38,5 @@ Stage & Timing & Funding & Valuation & Basis \\\midrule
     \item \textbf{Customer Acquisition Efficiency:} Marketing spend of just \$\numint{\marketingBudgetYearOne}--\numint{\marketingBudgetYearThree} annually achieves growth comparable to marketplaces spending 15-30\% of revenue on acquisition\cite{andreessen2020}
     \item \textbf{Platform Fee:} Competitive \markPlatformFeePercent\% take rate aligns with successful marketplaces while maintaining provider profitability
     \item \textbf{Provider-Driven Growth:} Natural incentive alignment reduces CAC without requiring rev-share or referral programs
-    \item \textbf{Strategic Partnership Impact:} Market share targets of \num{\targetShareSubs}\% (subscriptions) and \num{\targetShareHw}\% (hardware) based on comparable first-mover successes
+    \item \textbf{Strategic Partnership Impact:} Market share target of \num{\targetShareSubs}\% based on comparable first-mover successes
 \end{itemize}
