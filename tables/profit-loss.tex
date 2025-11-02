@@ -8,8 +8,7 @@
 \toprule
 \textbf{(USD)} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
 \multicolumn{4}{l}{\textbf{Revenue}} \\
-Subscription Revenue & \numint{\actualSubRevenueYearOne} & \numint{\actualSubRevenueYearTwo} & \numint{\actualSubRevenueYearThree} \\
-\textbf{Total Revenue} & \textbf{\numint{\totalActualRevenueYearOne}} & \textbf{\numint{\totalActualRevenueYearTwo}} & \textbf{\numint{\totalActualRevenueYearThree}} \\\midrule
+\textbf{Total Revenue (actual)} & \textbf{\numint{\actualSubRevenueYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree}} \\\midrule
 \multicolumn{4}{l}{\textbf{Operating Expenses}} \\
 Team Salaries & \numint{\teamSalariesYearOne} & \numint{\teamSalariesYearTwo} & \numint{\teamSalariesYearThree} \\
 Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} & \numint{\marketingBudgetYearThree} \\
@@ -17,7 +16,7 @@ Infrastructure & \numint{\infrastructureYearOne} & \numint{\infrastructureYearTw
 Payment Processing & \numint{\paymentCostsYearOne} & \numint{\paymentCostsYearTwo} & \numint{\paymentCostsYearThree} \\
 Legal/Compliance & \numint{\legalComplianceYearOne} & \numint{\legalComplianceYearTwo} & \numint{\legalComplianceYearThree} \\
 \textbf{Total OpEx} & \textbf{\numint{\totalOpexYearOne + \marketingBudgetYearOne}} & \textbf{\numint{\totalOpexYearTwo + \marketingBudgetYearTwo}} & \textbf{\numint{\totalOpexYearThree + \marketingBudgetYearThree}} \\\midrule
-\textbf{Net Income (Loss)} & \textbf{\numint{\totalActualRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne}} & \textbf{\numint{\totalActualRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}} & \textbf{\numint{\totalActualRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree}} \\
+\textbf{Net Income (Loss)} & \textbf{\numint{\actualSubRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree}} \\
 \bottomrule
 \end{tabularx}
 \end{table}

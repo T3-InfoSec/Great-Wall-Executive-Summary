@@ -25,14 +25,12 @@
 \newcommand{\actualSubRevenueYearThree}{\fpeval{round(\retainedSubsYearThree * \markWeightedAvgAnnual + \newSubsYearThree * \markWeightedAvgAnnual * \avgRevenueMonthsYearOne / 12, 0)}}
 
 %% ================= Total Actual Revenue =================
-\newcommand{\totalActualRevenueYearOne}{\actualSubRevenueYearOne}
-\newcommand{\totalActualRevenueYearTwo}{\actualSubRevenueYearTwo}
-\newcommand{\totalActualRevenueYearThree}{\actualSubRevenueYearThree}
+% (Totals equal subscription revenue in protocol-first scope; use actualSubRevenueYearX directly)
 
 %% ================= Actual Net Income/Loss =================
-\newcommand{\actualNetIncomeYearOne}{\fpeval{round(\totalActualRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne, 0)}}
-\newcommand{\actualNetIncomeYearTwo}{\fpeval{round(\totalActualRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo, 0)}}
-\newcommand{\actualNetIncomeYearThree}{\fpeval{round(\totalActualRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree, 0)}}
+\newcommand{\actualNetIncomeYearOne}{\fpeval{round(\actualSubRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne, 0)}}
+\newcommand{\actualNetIncomeYearTwo}{\fpeval{round(\actualSubRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo, 0)}}
+\newcommand{\actualNetIncomeYearThree}{\fpeval{round(\actualSubRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree, 0)}}
 
 %% ================= Recalculated Breakeven =================
 % Monthly revenue per subscriber

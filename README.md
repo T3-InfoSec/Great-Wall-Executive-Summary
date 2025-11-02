@@ -27,7 +27,7 @@ This document is being developed with assistance of generative AI tools and is c
 
 ### Market Analysis Revision
 - **Segment TAM properly** - Currently conflates password managers, private security, and physical vaults
-- **Justify market share targets** (15% subscriptions, 10% hardware) with clearer comparables
+- **Justify market share targets** (15% subscriptions) with clearer comparables
 - **Remove or substantiate** adjacent market inclusions
 
 ### Next Development Steps

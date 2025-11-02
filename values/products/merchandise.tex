@@ -5,7 +5,7 @@
 % 1. Brand loyalty and community building
 % 2. CAC offset through profitable sales
 % Industry benchmark: 15-25% attach rate typical (Shopify 2024)
-% Our projections: 60% (subscriptions), 65% (hardware)
+% Our projection: 60% (subscriptions)
 
 %% ================= Merchandise Attach Rates =================
 % Merchandise attach rate for subscription customers (%)
@@ -17,12 +17,7 @@
 % 5. Anonymous marketplace users value privacy-respecting branded gear
 \newcommand{\merchAttachRate}{60}
 
-% Merchandise attach rate for hardware customers (%)
-% Higher than subscription due to:
-% 1. Hardware buyers already demonstrated willingness to purchase physical goods
-% 2. Natural bundling opportunity at point of hardware purchase
-% 3. Security-conscious users value branded accessories for their devices
-\newcommand{\hwMerchAttachRate}{65}
+% (Hardware attach rate removed)
 
 %% ================= Merchandise Portfolio & Pricing =================
 % Average basket contains 1.2 items @ $23 each = $28 total
@@ -66,5 +61,4 @@
 % Merchandise offset for subscription customers (USD)
 \newcommand{\merchOffsetSubsCalc}{\fpeval{\merchAttachRate / 100 * \merchAvgProfit}}
 
-% Merchandise offset for hardware customers (USD)
-\newcommand{\merchOffsetHwCalc}{\fpeval{\hwMerchAttachRate / 100 * \merchAvgProfit}}
+% (Hardware merchandise offset removed)

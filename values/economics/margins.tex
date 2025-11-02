@@ -14,14 +14,7 @@
 % Mark keeps 95% of the platform fee as gross margin since Mark has minimal direct costs
 \newcommand{\subGrossMargin}{95}
 
-%% ================= Hardware Margins =================
-% Hardware gross margin by SKU (%).
-\newcommand{\hwEntryMargin}{40}
-\newcommand{\hwProfMargin}{45}
-\newcommand{\hwPremiumMargin}{50}
-
-% Hardware weighted average margin (%)
-\newcommand{\hwWeightedAvgMargin}{\fpeval{\hwWeightedAvgGP / \hwWeightedAvgPrice * 100}}
+% (Hardware margin definitions removed)
 
 %% ================= Subscription Tier Mix =================
 % Distribution of subscribers across tiers (%)
@@ -30,11 +23,7 @@
 \newcommand{\subProfessionalMix}{15}
 \newcommand{\subGoldenMix}{10}
 
-%% ================= Hardware Customer Mix =================
-% Distribution of hardware buyers across SKUs (%)
-\newcommand{\hwEntryMix}{60}
-\newcommand{\hwProfMix}{30}
-\newcommand{\hwPremiumMix}{10}
+% (Hardware customer mix removed)
 
 %% ================= Derived Profitability Metrics =================
 % Patrick's profit margin per tier (USD/month)
@@ -55,5 +44,4 @@
 % Mark's weighted average annual revenue per user
 \newcommand{\markWeightedAvgAnnual}{\fpeval{\markWeightedAvgMonthly * 12}}
 
-% Hardware weighted average gross profit per unit
-\newcommand{\hwWeightedAvgGP}{\fpeval{(\hwEntryPrice * \hwEntryMargin / 100) * \hwEntryMix / 100 + (\hwProfPrice * \hwProfMargin / 100) * \hwProfMix / 100 + (\hwPremiumPrice * \hwPremiumMargin / 100) * \hwPremiumMix / 100}}
+% (Hardware weighted average gross profit removed)

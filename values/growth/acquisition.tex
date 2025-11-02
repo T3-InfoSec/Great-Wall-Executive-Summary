@@ -14,13 +14,11 @@
 % Base CAC by acquisition channel (USD per acquired customer)
 \newcommand{\cacContent}{18}
 \newcommand{\cacDigital}{20}
-\newcommand{\cacEvents}{60}
 
 %% ================= Channel Budget Allocation =================
 % Annual budget allocation by channel (USD)
 \newcommand{\budgetContent}{25000}
 \newcommand{\budgetDigital}{60000}
-\newcommand{\budgetEvents}{15000}
 
 %% ================= LTV Calculation Parameters =================
 % Theoretical customer lifetime in years (1/churn_rate)
@@ -45,8 +43,7 @@
 % Subscription payback period in months
 \newcommand{\subPaybackMonths}{\fpeval{round((\cacDigital - \merchOffsetSubsCalc) / \subMonthlyGrossProfit, 1)}}
 
-% Hardware payback period (immediate due to one-time purchase)
-\newcommand{\hwPaybackMonths}{0}
+% (Hardware payback period removed)
 
 %% ================= Revenue Calculations =================
 % Subscription annual revenue based on subscriber counts
