@@ -27,9 +27,10 @@ Our platform operates with a \markPlatformFeePercent\% commission rate, position
 \begin{itemize}
   \item \textbf{Patrick's Progressive Markup (\numfpeval{\patrickMarkupBasic}--\numfpeval{\patrickMarkupGolden}x):} 
   \begin{itemize}
-    \item Basic (\numfpeval{\patrickMarkupBasic}x): Lower margin for short jobs to encourage provider participation
-    \item Professional (\numfpeval{\patrickMarkupProfessional}x): Premium for 48-hour commitment reflecting provider scarcity
-    \item Higher tier (\numfpeval{\patrickMarkupGolden}x): Balanced markup for long-duration jobs
+    \item Basic (\numfpeval{\patrickMarkupBasic}x): Entry-level commitments with quick turnarounds; lower markup to seed supply and onboard providers
+    \item Medium (\numfpeval{\patrickMarkupMedium}x): Day-scale jobs add coordination and opportunity costs; moderate markup reflects added diligence
+    \item Professional (\numfpeval{\patrickMarkupProfessional}x): Multi-day (48h) runs lock capacity and raise reliability risk; premium markup prices scarcity
+    \item Golden (\numfpeval{\patrickMarkupGolden}x): Week-long workloads require sustained resource dedication and scheduling discipline; highest balanced markup secures dependable supply
   \end{itemize}
   \item \textbf{Platform Fee Benchmarks:}
   \begin{itemize}
@@ -43,7 +44,7 @@ Our platform operates with a \markPlatformFeePercent\% commission rate, position
   
   \item \textbf{Why Our Economics Work:} Unlike traditional marketplaces that spend 15-30\% of revenue on customer acquisition\cite{andreessen2020}, our model creates natural viral growth. Providers actively recruit clients to increase their own revenue, functioning as an unpaid but highly motivated sales force. This alignment means we achieve similar growth with marketing budgets of just \$80-150k annually rather than the \$200-400k typical for our revenue scale.
   
-  \item \textbf{Provider Economics Remain Attractive:} Even at 28\% platform fee, providers earn 2.5-10x their electricity costs depending on tier, creating sustainable incentives for participation. Academic research shows that successful two-sided platforms maintain take rates between 20-30\% when providing high-value services\cite{rochet2003,hagiu2015}.
+  \item \textbf{Provider Economics Remain Attractive:} Even at 28\% platform fee, providers earn \patrickMarkupBasic-\patrickMarkupGolden their electricity costs depending on tier, creating sustainable incentives for participation. Academic research shows that successful two-sided platforms maintain take rates between 20-30\% when providing high-value services\cite{rochet2003,hagiu2015}.
 \end{itemize}
 
 
@@ -52,15 +53,19 @@ Our platform operates with a \markPlatformFeePercent\% commission rate, position
 \centering
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
-Product Category & Price (USD) & Margin (\%)\cite{printful2023} & Profit/Unit \\\midrule
-T-shirts & \num{\merchTshirtPrice} & \num{\merchTshirtMargin} & \numfpeval{\merchTshirtPrice * \merchTshirtMargin / 100} \\
-Caps/Hats & \num{\merchCapPrice} & \num{\merchCapMargin} & \numfpeval{\merchCapPrice * \merchCapMargin / 100} \\
-Mugs & \num{\merchMugPrice} & \num{\merchMugMargin} & \numfpeval{\merchMugPrice * \merchMugMargin / 100} \\
-Stickers/Decals & \num{\merchStickerPrice} & \num{\merchStickerMargin} & \numfpeval{\merchStickerPrice * \merchStickerMargin / 100} \\
-Hoodies/Coats & \num{\merchHoodiePrice} & \num{\merchHoodieMargin} & \numfpeval{\merchHoodiePrice * \merchHoodieMargin / 100} \\
-Backpacks & \num{\merchBackpackPrice} & \num{\merchBackpackMargin} & \numfpeval{\merchBackpackPrice * \merchBackpackMargin / 100} \\\midrule
-\textbf{Average basket} & \textbf{\num{\merchAvgPrice}} & \textbf{\num{\merchAvgMargin}} & \textbf{\numfpeval{\merchAvgProfit}} \\
+Product Category & Price (USD) & Margin \cite{printful2023} & Profit/Unit \\\midrule
+T-shirts & \num{\merchTshirtPrice} & \numint{\merchTshirtMargin}\% & \numfpeval{\merchTshirtPrice * \merchTshirtMargin / 100} \\
+Caps/Hats & \num{\merchCapPrice} & \numint{\merchCapMargin}\% & \numfpeval{\merchCapPrice * \merchCapMargin / 100} \\
+Mugs & \num{\merchMugPrice} & \numint{\merchMugMargin}\% & \numfpeval{\merchMugPrice * \merchMugMargin / 100} \\
+Stickers/Decals & \num{\merchStickerPrice} & \numint{\merchStickerMargin}\% & \numfpeval{\merchStickerPrice * \merchStickerMargin / 100} \\
+Hoodies/Coats & \num{\merchHoodiePrice} & \numint{\merchHoodieMargin}\% & \numfpeval{\merchHoodiePrice * \merchHoodieMargin / 100} \\
+Backpacks & \num{\merchBackpackPrice} & \numint{\merchBackpackMargin}\% & \numfpeval{\merchBackpackPrice * \merchBackpackMargin / 100} \\\midrule
+\textbf{Average basket} & \textbf{\num{\merchAvgPrice}} & \textbf{\numint{\merchAvgMargin}} & \textbf{\numfpeval{\merchAvgProfit}} \\
 \bottomrule
 \end{tabularx}
 \end{table}
 \textit{\num{\merchAttachRate}\% of subscription customers purchase merchandise, reducing effective CAC by \$\numfpeval{\merchOffsetSubsCalc}}\cite{shopify2024}
+
+\noindent The high attachment rate reflects deterrent nature of the security-branded merchandise. By communicating preparedness and coercion resistance ("not an easy target"), it provides utility beyond brand affinity, increasing purchase propensity among security-conscious users and reinforcing a community norm around visible commitment to safety.
+
+\textit{Note: Merchandise purchased by Free (self-hosted) users is not included in revenue/CAC projections for simplicity.}

@@ -49,8 +49,8 @@ Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} 
 \multicolumn{2}{l}{Marketing} & \$\numint{\marketingBudgetYearOne/12} & \$\numint{\marketingBudgetYearTwo/12} & \$\numint{\marketingBudgetYearThree/12} \\\midrule
 \multicolumn{2}{l}{\textbf{Total Monthly Burn}} & \textbf{\$\numint{\monthlyBurnYearOne}} & \textbf{\$\numint{\monthlyBurnYearTwo}} & \textbf{\$\numint{\monthlyBurnYearThree}} \\\midrule
 \multicolumn{2}{l}{\textbf{Runway Analysis}} &  &  &  \\
-\multicolumn{2}{l}{After Seed (\$200k)} & \numint{\seedRunwayMonths} months &  &  \\
-\multicolumn{2}{l}{After Series A (\$600k)} &  & \numint{\seriesARunwayMonths} months &  \\
+\multicolumn{2}{l}{After Seed (\$\numint{\seedAmount/1000}k)} & \numint{\seedRunwayMonths} months &  &  \\
+\multicolumn{2}{l}{After Series A (\$\numint{\seriesAAmount/1000000}M)} &  & \numint{\seriesARunwayMonths} months &  \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -90,7 +90,7 @@ Metric & Year 1 & Year 2 & Year 3 \\\midrule
 Subscription Revenue (actual) & \numint{\subRevenueYearOne} & \numint{\subRevenueYearTwo} & \numint{\subRevenueYearThree} \\
 Exit ARR (MRR $\times$ 12) & \numint{\subARRYearOne} & \numint{\subARRYearTwo} & \numint{\subARRYearThree} \\
 Active Subscribers (year-end) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
-Mark's Monthly Rev/User & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} \\
+Marketplace's Monthly Rev/User & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} \\
 \bottomrule
 \end{tabularx}
 \end{table}

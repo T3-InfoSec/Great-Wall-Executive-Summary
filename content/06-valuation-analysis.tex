@@ -21,7 +21,7 @@ Subscription Exit ARR & \num{\arrMultiple}x & \numint{\subARRYearOne * \arrMulti
 \toprule
 Stage & Timing & Funding & Valuation & Basis \\\midrule
 \textbf{Seed} & Month 0 & \$\numint{round(\seedAmount/1000,0)}K & \$\numfpeval{round(\seedValuation/1000000,1)}M & Market comparables* \\
-\textbf{Series A} & Month 12 & \$\numint{\seriesAAmount/1000}K & \$\numfpeval{\seriesAValuation/1000000}M & \$\numfpeval{round(\subARRYearOne/1000000,1)}M ARR × \num{\seriesAARRMultiple}x \\
+\textbf{Series A} & Month 18 & \$\numint{\seriesAAmount/1000000}M & \$\numfpeval{\seriesAValuation/1000000}M & \$\numfpeval{round((\subARRYearOne+\subARRYearTwo)/2/1000000,1)}M ARR × \num{\seriesAARRMultiple}x \\
 \textbf{Target} & Year 3 & -- & \$\num{\targetValLow}--\num{\targetValHigh}M & \$\numfpeval{round(\subARRYearThree/1000000,1)}M ARR × \numfpeval{\targetARRMultiple}--\num{\arrMultiple}x \\
 \textbf{Optimistic} & Year 3 & -- & \$\num{\optimisticValLow}--\num{\optimisticValHigh}M & Premium multiples \\
 \bottomrule

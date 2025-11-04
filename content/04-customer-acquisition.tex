@@ -5,12 +5,12 @@
 \subsection{Annual Marketing Budget Allocation}
 \begin{table}[H]
 \centering
-\begin{tabularx}{\linewidth}{l Y Y Y Y}
+\begin{tabularx}{\linewidth}{l Y Y Y Y Y}
 \toprule
-Year & Budget & Base CAC & Paid Customers & Cost per Customer \\\midrule
-Year 1 & \$\numint{\marketingBudgetYearOne} & \$\num{\cacDigital} & \numint{\baseNewSubsYearOne} & \$\numint{\cacDigital} \\
-Year 2 & \$\numint{\marketingBudgetYearTwo} & \$\num{\cacDigital} & \numint{\baseNewSubsYearTwo} & \$\numint{\cacDigital} \\
-Year 3 & \$\numint{\marketingBudgetYearThree} & \$\num{\cacDigital} & \numint{\baseNewSubsYearThree} & \$\numint{\cacDigital} \\
+Year & Budget & Base CAC & New Customers & Total Customers & Cost per Customer \\\midrule
+Year 1 & \$\numint{\marketingBudgetYearOne} & \$\num{\cacDigital} & \numint{\baseNewSubsYearOne} & \numint{\baseNewSubsYearOne} & \$\numint{\cacDigital} \\
+Year 2 & \$\numint{\marketingBudgetYearTwo} & \$\num{\cacDigital} & \numint{\baseNewSubsYearTwo} & \numint{\baseNewSubsYearTwo + \baseNewSubsYearOne} & \$\numint{\cacDigital} \\
+Year 3 & \$\numint{\marketingBudgetYearThree} & \$\num{\cacDigital} & \numint{\baseNewSubsYearThree} & \numint{\baseNewSubsYearThree + \baseNewSubsYearTwo + \baseNewSubsYearOne} & \$\numint{\cacDigital} \\
 \bottomrule
 \end{tabularx}
 \end{table}

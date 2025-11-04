@@ -11,15 +11,15 @@
 \subsection{Subscription Service: Anonymous Computation Marketplace}
 The subscription service operates as a computation matchmaking marketplace connecting:
 \begin{itemize}
-  \item \textbf{Charlie (Clients):} Users needing recurring memory-intensive computation without owning adequate hardware - anonymity critical for privacy
-  \item \textbf{Patrick (Providers):} PC owners monetizing idle computational capacity - can operate publicly to attract clients
-  \item \textbf{Mark (Marketplace):} Platform providing anonymous client matching, reputation system, and dispute arbitration
+  \item \textbf{Clients:} Users needing recurring memory-intensive computation without owning adequate hardware - anonymity critical for privacy
+  \item \textbf{Providers:} PC owners monetizing idle computational capacity - can operate publicly to attract clients
+  \item \textbf{Marketplace:} Platform providing anonymous client matching, reputation system, and dispute arbitration
 \end{itemize}
 
 Key marketplace dynamics:
 \begin{itemize}
   \item Computation jobs are simple but memory-intensive, recurring weekly
-  \item Anonymity is critical for Charlie, while Patrick can promote services openly
+  \item Anonymity is critical for Clients, while Providers can promote services openly
   \item We align provider success with platform growth. An aggressive referral commission incentivizes providers to recruit clients, transforming them into a highly-motivated, capital-efficient sales force \cite{parker2016}.
   \item First-mover advantage critical to build reputable user base before competitors
   \item Tiers differentiate by computation duration: \numint{\computeHoursBasic}, \numint{\computeHoursMedium}, \numint{\computeHoursProfessional} and \numint{\computeHoursGolden} hours
@@ -28,14 +28,16 @@ Key marketplace dynamics:
 \begin{table}[H]
 \centering
 \caption{Customer Segment Characteristics}
-\begin{tabularx}{\linewidth}{l X}
+\begin{tabularx}{\linewidth}{l X X}
 \toprule
-Attribute & Subscription Users \\\midrule
-Technical Level & Low-Medium \\
-Purchase Preference & Recurring \\
-Price Sensitivity & Medium \\
-SAM Size & \numint{\samSubs}\cite{chainalysis2024,triple2023} \\
-Merchandise Attach Rate & \num{\merchAttachRate}\%\cite{shopify2024} \\
+Attribute & Subscription Users & Free Users \\\midrule
+Technical Level & Low-Medium & High \\
+Purchase Preference & Recurring & Self-hosted (no subscription) \\
+Price Sensitivity & Medium & High \\
+SAM Size & \numint{\samSubs}\cite{chainalysis2024,triple2023} & \textemdash \\
+Merchandise Attach Rate & \num{\merchAttachRate}\%\cite{shopify2024} & \num{\freeMerchAttachRate}\% \\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\noindent\textit{SAM refers to the Serviceable Available Market for subscription users. Free (self-hosted) users are excluded from SAM and related financial projections for simplicity.}

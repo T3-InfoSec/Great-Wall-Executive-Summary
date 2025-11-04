@@ -2,19 +2,19 @@
 
 %% ================= Seed Round =================
 % Seed round target raise (USD)
-\newcommand{\seedAmount}{200000}
+\newcommand{\seedAmount}{600000}
 
 % Seed investor equity offered (%)
-\newcommand{\seedEquity}{3.5}
+\newcommand{\seedEquity}{15}
 
 % Seed pre-money valuation (USD) - PRE-REVENUE: Cannot use ARR multiple
 \newcommand{\seedValuation}{\seedPreMoneyNegotiated}
 
 % Runway in months for seed round
-\newcommand{\seedRunway}{12}
+\newcommand{\seedRunway}{24}
 
 % Initial team size for seed round
-\newcommand{\seedTeamSize}{2}
+\newcommand{\seedTeamSize}{3}
 
 %% ================= Seed Use of Proceeds =================
 % Subscription platform development (USD)
@@ -31,12 +31,13 @@
 
 %% ================= Series A Round =================
 % Series A target raise (USD)
-\newcommand{\seriesAAmount}{600000}
+\newcommand{\seriesAAmount}{2000000}
 
 % Series A investor equity offered (%)
-\newcommand{\seriesAEquity}{4}
+\newcommand{\seriesAEquity}{5}
 
 % Series A pre-money valuation (USD) - NOW we can use ARR multiple
-\newcommand{\seriesAValuation}{\fpeval{round(\subARRYearOne * \seriesAARRMultiple, -5)}}
+% \newcommand{\seriesAValuation}{\fpeval{round((\subARRYearOne + \subARRYearTwo)/2 *  \seriesAARRMultiple, -5)}}
+\newcommand{\seriesAValuation}{12000000}
 
 % (Series A use-of-proceeds breakdown for hardware removed)
