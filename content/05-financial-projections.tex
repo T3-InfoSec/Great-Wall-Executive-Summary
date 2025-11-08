@@ -69,17 +69,6 @@ Monthly Burn at Breakeven & \$\numint{\monthlyBurnYearThree} \\
 \end{tabularx}
 \end{table}
 
-\subsection{True Gross Margins}
-\begin{table}[H]
-\centering
-\begin{tabularx}{\linewidth}{l Y Y}
-\toprule
-Business Line & Stated Margin & True Margin (after payment processing) \\\midrule
-Subscriptions & \num{\subGrossMargin}\% & \num{\subTrueGrossMargin}\% \\
-\bottomrule
-\end{tabularx}
-\end{table}
-\textit{Note: Subscription margin reflects platform model. Payment processing reduces effective margin by \numfpeval{round(\paymentProcessingFee / \markPlatformFeePercent * 100, 1)}\% of revenue.}
 
 \subsection{ARR vs Revenue Clarification}
 \begin{table}[H]
@@ -88,7 +77,7 @@ Subscriptions & \num{\subGrossMargin}\% & \num{\subTrueGrossMargin}\% \\
 \toprule
 Metric & Year 1 & Year 2 & Year 3 \\\midrule
 Subscription Revenue (actual) & \numint{\subRevenueYearOne} & \numint{\subRevenueYearTwo} & \numint{\subRevenueYearThree} \\
-Exit ARR (MRR $\times$ 12) & \numint{\subARRYearOne} & \numint{\subARRYearTwo} & \numint{\subARRYearThree} \\
+Gross Profit & \numint{\subRevenueYearOne * \markPlatformFeePercent / 100} & \numint{\subRevenueYearTwo * \markPlatformFeePercent / 100} & \numint{\subRevenueYearThree * \markPlatformFeePercent / 100} \\
 Active Subscribers (year-end) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
 Marketplace's Monthly Rev/User & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} \\
 \bottomrule

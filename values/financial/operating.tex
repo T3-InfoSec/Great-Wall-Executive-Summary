@@ -56,9 +56,3 @@
 % Runway in months
 \newcommand{\seedRunwayMonths}{\fpeval{round(\cashAfterSeed / \monthlyBurnYearOne, 0)}}
 \newcommand{\seriesARunwayMonths}{\fpeval{round(\cashAfterSeriesA / \monthlyBurnYearTwo, 0)}}
-
-%% ================= True Gross Margins =================
-% Subscription gross margin after payment processing
-\newcommand{\subTrueGrossMargin}{\fpeval{round(\subGrossMargin - \paymentProcessingFee / \markPlatformFeePercent * 100, 1)}}
-
-% (Hardware true gross margin removed)
