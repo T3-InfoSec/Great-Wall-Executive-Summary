@@ -21,12 +21,21 @@ Year 3 & \$\numint{\marketingBudgetYearThree} & \$\num{\cacDigital} & \numint{\b
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 Channel & Budget (USD) & Gross CAC\cite{authoranalysis2024} & CAC \\\midrule
-Digital (Subs) & \numint{\budgetDigital} & \num{\cacDigital} & \num{\cacDigital} \\
-Content/SEO (Subs) & \numint{\budgetContent} & \num{\cacContent} & \num{\cacContent} \\\midrule
+Digital (Subs) & \numint{\budgetDigital} & \num{\cacDigitalWithoutFreeMerchan} & \num{\cacDigital} \\
+Content/SEO (Subs) & \numint{\budgetContent} & \num{\cacContentWithoutFreeMerchan} & \num{\cacContent} \\\midrule
 \textbf{Total} & \textbf{\numint{\budgetDigital + \budgetContent}} &  &  \\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\noindent\textit{CAC values reflect an embedded \num{\freeMerchanCacReductionPercent}\% reduction from free gift campaigns (keychain + laptop adhesive + shipping), with average cost per user of \$\num{\freeMerchanCost}; conservative with external benchmarks of 47\% \cite{snappy2024}.}
+
+\noindent Free gift components:
+\begin{itemize}
+  \item Keychain
+  \item Laptop adhesive
+  \item Shipping (avg cost per user \$\num{\freeMerchanCost})
+\end{itemize}
 
 \subsection{Customer Acquisition Economics}
 \begin{table}[H]

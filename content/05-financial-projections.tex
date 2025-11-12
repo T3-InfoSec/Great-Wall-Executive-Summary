@@ -99,4 +99,20 @@ LTV:CAC Ratio & \numint{\subLTV/(\cacDigital)}:\numint{1} & \numint{\subLTV/(\ca
 \end{tabularx}
 \end{table}
 
+\noindent\textit{Shown CAC (\$\numint{\cacDigital}) already embeds the \num{\freeMerchanCacReductionPercent}\% free gift effect and includes gift cost\cite{snappy2024}.}
+
+\begin{table}[H]
+\centering
+\caption{CAC Inputs (Digital)}
+\begin{tabularx}{\linewidth}{l Y}
+\toprule
+Input & Value \\\midrule
+Baseline CAC (no gift) & \$\numint{\cacDigitalWithoutFreeMerchan} \\
+Free gift reduction & \num{\freeMerchanCacReductionPercent}\% \\
+Resulting CAC & \$\numint{\cacDigital} \\
+Avg gift cost per user & \$\num{\freeMerchanCost} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \input{tables/profit-loss.tex}
