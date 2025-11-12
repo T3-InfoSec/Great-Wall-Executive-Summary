@@ -48,24 +48,4 @@ Our platform operates with a \markPlatformFeePercent\% commission rate, position
 \end{itemize}
 
 
-\subsection{Merchandise Economics (CAC Offset Strategy)}
-\begin{table}[H]
-\centering
-\begin{tabularx}{\linewidth}{l Y Y Y}
-\toprule
-Product Category & Price (USD) & Margin \cite{printful2023} & Profit/Unit \\\midrule
-T-shirts & \num{\merchTshirtPrice} & \numint{\merchTshirtMargin}\% & \numfpeval{\merchTshirtPrice * \merchTshirtMargin / 100} \\
-Caps/Hats & \num{\merchCapPrice} & \numint{\merchCapMargin}\% & \numfpeval{\merchCapPrice * \merchCapMargin / 100} \\
-Mugs & \num{\merchMugPrice} & \numint{\merchMugMargin}\% & \numfpeval{\merchMugPrice * \merchMugMargin / 100} \\
-Stickers/Decals & \num{\merchStickerPrice} & \numint{\merchStickerMargin}\% & \numfpeval{\merchStickerPrice * \merchStickerMargin / 100} \\
-Hoodies/Coats & \num{\merchHoodiePrice} & \numint{\merchHoodieMargin}\% & \numfpeval{\merchHoodiePrice * \merchHoodieMargin / 100} \\
-Backpacks & \num{\merchBackpackPrice} & \numint{\merchBackpackMargin}\% & \numfpeval{\merchBackpackPrice * \merchBackpackMargin / 100} \\\midrule
-\textbf{Average basket} & \textbf{\num{\merchAvgPrice}} & \textbf{\numint{\merchAvgMargin}\%} & \textbf{\numfpeval{\merchAvgProfit}} \\
-\bottomrule
-\end{tabularx}
-\end{table}
-\textit{\num{\merchAttachRate}\% of subscription customers purchase merchandise, reducing effective CAC by \$\numfpeval{\merchOffsetSubsCalc}}
 
-\noindent The high attachment rate reflects the empowerment nature of loud security apparel. By communicating confident security preparedness and coercion resistance, it provides utility beyond brand affinity, increasing purchase propensity among security-conscious users and reinforcing a community norm around loud, proud confidence in their security posture.
-
-\textit{Note: Merchandise purchased by Free (self-hosted) users is not included in revenue/CAC projections for simplicity.}

@@ -9,11 +9,9 @@
 Metric & Subscriptions \\\midrule
 Average Revenue (Marketplace) & \$\numint{\markWeightedAvgAnnual}/year \\
 Gross Margin\cite{openview2023} & \num{\subGrossMargin}\% \\
-Gross CAC & \$\num{\cacDigital} \\
-Merchandise Offset & \$\numfpeval{\merchOffsetSubsCalc} \\
-Net CAC & \$\numint{\cacDigital - \merchOffsetSubsCalc} \\
+CAC & \$\num{\cacDigital} \\
 LTV & \$\numint{\subLTV} \\
-LTV:CAC Ratio & \numint{\subLTV/(\cacDigital - \merchOffsetSubsCalc)}:\numint{1} \\
+LTV:CAC Ratio & \numint{\subLTV/(\cacDigital)}:\numint{1} \\
 Payback Period & \num{\subPaybackMonths} months \\
 \bottomrule
 \end{tabularx}
@@ -24,7 +22,7 @@ Payback Period & \num{\subPaybackMonths} months \\
     \item \textbf{Subscription Economics:} High gross margins (95\%) due to minimal direct costs for matchmaking platform
     \item \textbf{Competitive Platform Fee:} \markPlatformFeePercent\% take rate aligns with industry leaders (Uber 25\%, Fiverr 20\%, Amazon 15-45\%)\cite{uber2023,fiverr2023,amazon2024}
     \item \textbf{Customer Acquisition Efficiency:} Our platform design creates natural viral growth through provider incentives. Industry benchmarks show marketplaces typically spend \$35-50 per customer acquired\cite{andreessen2020}, while our blended CAC is just \$\cacDigital. This efficiency stems from providers actively recruiting clients to increase their own revenue - a dynamic documented in successful platforms like Uber (drivers recruiting riders) and Airbnb (hosts encouraging bookings \cite{kumar2018,nfx2018}.
-    \item \textbf{Merchandise Impact:} Reduces effective CAC by \num{\cacReductionPercent}\%, dramatically improving unit economics
+    
 \end{itemize}
 
 \subsubsection{Provider-Driven Growth Economics}
