@@ -8,16 +8,16 @@
 \begin{tabularx}{\linewidth}{l Y Y}
 \toprule
 Category & Amount (USD) & Purpose \\\midrule
-Subscription Platform & \numint{\seedUseSubPlatform} & Anonymous matchmaking, reputation system \\
-Marketing \& Sales & \numint{\seedUseMarketing} & Customer acquisition for subscriptions \\
-Working Capital & \numint{\seedUseWorkingCap} & Superfan Store inventory and deterrent promo materials \\
-Operations & \numint{\seedUseOperations} & Team (\num{\seedTeamSize} devs), infrastructure, compliance \\
-\textbf{Total Seed Round} & \textbf{\numint{\seedAmount}} & \textbf{\num{\seedRunway}-month runway} \\
+Team (lean, 19-month plan) & \numint{round(\seedAmount * \teamSalariesYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Phased hiring to sustain a lean 19-month runway \\
+Infrastructure (lean, 19-month plan) & \numint{round(\seedAmount * \infrastructureYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Hosting, tooling, and security scaled to match usage growth \\
+Legal / Compliance (19-month coverage) & \numint{round(\seedAmount * \legalComplianceYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Legal, compliance, and insurance for regulated operations \\
+Marketing (phased over 19 months) & \numint{round(\seedAmount * \marketingBudgetYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Customer acquisition paced to demand and liquidity \\
+\textbf{Total Seed Round} & \textbf{\numint{\seedAmount}} & \textbf{\num{\seedRunwayMonths}-month runway} \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\subsection{Series A Focus (Year 1)}
+\subsection{Series A Focus (Year 2)}
 \begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{l Y Y}
