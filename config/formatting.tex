@@ -19,5 +19,10 @@
 % Example: \newcommand{\tablehead}[1]{\textbf{#1}}
 
 
-\newcommand{\emojicheck}{\includegraphics[height=1em]{./config/emojis/green-check-emoji.png}}
-\newcommand{\emojicross}{\includegraphics[height=1em]{./config/emojis/red-x-no-emoji.png}}
+\newcommand{\emojicell}[1]{{\begin{minipage}{0.8cm}\includegraphics[height=0.8cm]{#1}\end{minipage}}}
+
+\newcommand{\emojicheck}{\emojicell{./config/emojis/green-check-emoji.png}}
+\newcommand{\emojicross}{\emojicell{./config/emojis/red-x-no-emoji.png}}
+\newcommand{\emojiwarning}{\emojicell{./config/emojis/warning-sign-emoji.png}}
+\newcommand{\emojiskull}{\emojicell{./config/emojis/skull-danger-emoji-png}}
+\newcommand{\emojiredskull}{\emojicell{./config/emojis/red-skull-danger-emoji.png}}
