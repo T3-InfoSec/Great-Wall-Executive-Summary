@@ -45,36 +45,31 @@ Scale Marketing / Hire CMO & \scaleMktDate & Launch paid + referral programs; le
 
 \subsection{Detailed Timeline}
 
-\textbf{Year 1 (Months 0-12): Subscription Focus}
+\textbf{Year 1 (Months 0--12): Build + Validate Marketplace}
 \begin{itemize}
-  \item Month 0: Raise \$\numint{round(\seedAmount/1000,0)}K seed (\num{\seedEquity}\% equity), \$\numfpeval{round(\seedValuation/1000000,1)}M post-money valuation
+  \item Month 0: Raise \$\numint{round(\seedAmount/1000,0)}K Seed (\num{\seedEquity}\% equity), \$\numfpeval{round(\seedValuation/1000000,1)}M post-money valuation (\num{\seedRunwayMonths}-month runway)
   \item Months \num{\marketplaceBuildStartMonth}--\num{\marketplaceBuildEndMonth}: Build anonymous matchmaking infrastructure and reputation system
   \item Months \num{\betaLaunchStartMonth}--\num{\betaLaunchEndMonth}: Launch beta, acquire first \numint{\betaUsers} users
-  \item Months \num{\marketplaceScaleStartMonth}--\num{\marketplaceScaleEndMonth}: Scale marketplace, prove unit economics
-  \item Month 13: Series A \$\numint{round(\seriesAAmount/1000,0)}K (\num{\seriesAEquity}\% equity), \$\numfpeval{\seriesAValuation/1000000}M post-money valuation
-  \item Valuation: \$\num{\targetValLow}--\num{\targetValHigh}M (conservative \num{\yearTwoRevMultiple}x ARR)
-  \item Exit valuation: \$\num{\targetValLow}--\num{\optimisticValHigh}M depending on growth rate and market conditions
+  \item Months \num{\marketplaceScaleStartMonth}--\num{\marketplaceScaleEndMonth}: Scale marketplace and validate unit economics
+  \item End of Year 1: \numint{\totalSubsYearOne} subscribers; Exit ARR \$\numfpeval{round(\subARRYearOne/1000000,1)}M
 \end{itemize}
 
-\textbf{Year 2 (Months 13-24): Platform Scale}
+\textbf{Year 2 (Months 13--24): Scale + Series A}
 \begin{itemize}
-  \item Month 13: Series A \$\numint{\seriesAAmount/1000}K (\num{\seriesAEquity}\% equity), \$\numint{\seriesAValuation/1000000}M post-money valuation
-  \item Months \num{\marketplaceScaleStartMonth}--\num{\marketplaceScaleEndMonth}: Scale marketplace, deepen provider network, and expand integrations
-  \item Exit ARR: \$\numfpeval{round(\subARRYearTwo/1000000,1)}M
+  \item Months 13--18: Continue scaling supply/demand, deepen provider network, and expand integrations
+  \item Month 18: Series A \$\numint{\seriesAAmount/1000000}M (\num{\seriesAEquity}\% equity), \$\numfpeval{round(\seriesAValuation/1000000,1)}M post-money valuation
+  \item End of Year 2: \numint{\totalSubsYearTwo} subscribers; Exit ARR \$\numfpeval{round(\subARRYearTwo/1000000,1)}M
 \end{itemize}
 
-\textbf{Year 3 (Months 25-36): Marketplace Growth}
+\textbf{Year 3 (Months 25--36): Accelerated Growth to Target Valuation}
 \begin{itemize}
-  \item Revenue: \$\numfpeval{round(\subRevenueYearTwo/1000000,1)}M
-  \item Exit ARR: \$\numfpeval{round(\subARRYearTwo/1000000,1)}M
-  \item \numint{\totalSubsYearTwo} total subscribers
-  \item Valuation: \$30--35M (conservative \num{2.5}x ARR)
+  \item End of Year 3: \numint{\totalSubsYearThree} subscribers; Exit ARR \$\numfpeval{round(\subARRYearThree/1000000,1)}M
+  \item Valuation (Target): \$\num{\targetValLow}--\num{\targetValHigh}M
+  \item Valuation (Optimistic): \$\num{\optimisticValLow}--\num{\optimisticValHigh}M
 \end{itemize}
 
-\textbf{Year 4+: Scale and Potential Exit}
+\textbf{Beyond Year 3: Scale and Potential Exit}
 \begin{itemize}
-  \item Revenue: \$\numfpeval{round(\subRevenueYearThree/1000000,1)}M+
-  \item Exit ARR: \$\numfpeval{round(\subARRYearThree/1000000,1)}M
-  \item \numint{\totalSubsYearThree}+ subscribers
-  \item Exit valuation: \$35--60M depending on growth rate and market conditions
+  \item Continue scaling beyond Year 3 results via partnerships, integrations, and geographic expansion
+  \item Optional outcomes: strategic exit, Series B, or continued profitable growth depending on market conditions
 \end{itemize}
