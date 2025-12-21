@@ -17,17 +17,27 @@ Subscription Exit ARR & \num{\arrMultiple}x & \numint{\subARRYearOne * \arrMulti
 \subsection{Investment Timeline and Valuation Progression}
 \begin{table}[H]
 \centering
-\begin{tabularx}{\linewidth}{l Y Y Y Y}
+\begin{tabularx}{\linewidth}{l l r r L}
 \toprule
 Stage & Timing & Funding & Valuation & Basis \\\midrule
 \textbf{Seed} & Month 0 & \$\numint{round(\seedAmount/1000,0)}K & \$\numfpeval{round(\seedValuation/1000000,1)}M & Market comparables* \\
-\textbf{Series A} & Month 18 & \$\numint{\seriesAAmount/1000000}M & \$\numfpeval{\seriesAValuation/1000000}M & \$\numfpeval{round((\subARRYearOne+\subARRYearTwo)/2/1000000,1)}M ARR × \num{\seriesAARRMultiple}x \\
+\textbf{Series A} & Month 18 & \$\numint{\seriesAAmount/1000000}M & \$\numfpeval{\seriesAValuation/1000000}M & Financing-driven; supported by forward net ARR trajectory, CAC efficiency, and movement-led GTM \\
 \textbf{Target} & Year 3 & -- & \$\num{\targetValLow}--\num{\targetValHigh}M & \$\numfpeval{round(\subARRYearThree/1000000,1)}M ARR × \numfpeval{\targetARRMultiple}--\num{\arrMultiple}x \\
 \textbf{Optimistic} & Year 3 & -- & \$\num{\optimisticValLow}--\num{\optimisticValHigh}M & Premium multiples \\
 \bottomrule
 \end{tabularx}
 \end{table}
 \textit{*Pre-revenue valuation based on team, TAM, and marketplace model - not formulaic}
+
+\par\noindent\textit{ARR figures refer to net platform revenue (take rate), not GMV.}
+
+\paragraph{Series A valuation rationale}
+The Series A valuation is supported by a combination of capital efficiency, de-risked execution, and a defensible go-to-market engine:
+\begin{itemize}
+    \item \textbf{Protocol innovation + movement as GTM:} Brand-led acquisition (organic inbound, press, community), conversion uplift (deterrence narrative), and retention uplift (identity/community). We track this via CAC, conversion, churn, and referral rate.
+    \item \textbf{Capital efficiency:} CAC of \$\numint{\cacDigital} with \num{\subPaybackMonths}-month payback supports scalable growth with modest marketing spend.
+    \item \textbf{De-risking milestones:} MVP/beta traction and a clear path to breakeven by Month \numint{\breakevenMonth} reduce downside risk ahead of scale.
+\end{itemize}
 
 \subsection{Growth \& Unit Economics Supporting Valuation}
 \begin{itemize}
@@ -36,8 +46,6 @@ Stage & Timing & Funding & Valuation & Basis \\\midrule
     \item \textbf{Exceptional Unit Economics:} A powerful \numint{\subLTV/(\cacDigital)}:1 LTV:CAC ratio enables our aggressive growth strategy.
     
     \item \textbf{Aggressive, Data-Driven Acquisition:} Scaling marketing from \$\numint{\marketingBudgetYearOne} (Y1) to \$\numint{\marketingBudgetYearThree} (Y3). This investment is fueled by our proven \numint{\subLTV/(\cacDigital)}:1 LTV:CAC.
-    
-    \item \textbf{Elite Growth + Margin Profile:} ``Rule of 40'' score of \numfpeval{round(\ruleOfFortyScore, 1)} (\numfpeval{round(\growthRateYearTwoThree, 1)}\% Growth + 95\% Gross Margin).
     
     \item \textbf{Provider Growth Flywheel:} Organic alignment, amplified by targeted referral and rev-share programs, to rapidly scale network density.
     
