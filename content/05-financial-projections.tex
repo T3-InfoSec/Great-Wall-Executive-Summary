@@ -64,7 +64,7 @@ Metric & Value \\\midrule
 Target Breakeven & Month \numint{\breakevenMonth} \\
 Required Subscribers & \numint{\breakevenSubscribers} \\
 Monthly Revenue at Breakeven & \$\numint{\breakevenSubscribers * \markWeightedAvgMonthly} \\
-Monthly Burn at Breakeven & \$\numint{\monthlyBurnYearThree} \\
+Monthly Burn at Breakeven & \$\numint{\monthlyBurnYearTwo} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -108,11 +108,12 @@ LTV:CAC Ratio & \numint{\subLTV/(\cacDigital)}:\numint{1} & \numint{\subLTV/(\ca
 \toprule
 Input & Value \\\midrule
 Baseline CAC (no gift) & \$\numint{\cacDigitalWithoutFreeMerchan} \\
-Free gift reduction & \num{\freeMerchanCacReductionPercent}\% \\
+Free gift reduction* & \num{\freeMerchanCacReductionPercent}\% \\
 Resulting CAC & \$\numint{\cacDigital} \\
 Avg gift cost per user & \$\num{\freeMerchanCost} \\
 \bottomrule
 \end{tabularx}
 \end{table}
+\textit{*The reduction reflects lower cost-per-lead due to higher conversion rates; the final CAC then re-incorporates the \$\num{\freeMerchanCost} cost of the gift and shipping.}
 
 \input{tables/profit-loss.tex}
