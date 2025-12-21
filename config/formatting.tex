@@ -6,8 +6,9 @@
 % Helper for integer formatting (no decimals)
 \newcommand{\numint}[1]{\num[round-precision=0]{\fpeval{#1}}}
 
-% Custom column type for right-aligned flexible width columns
+% Custom column types for flexible width columns (tabularx)
 \newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 
 % Page style configuration
 \pagestyle{fancy}
