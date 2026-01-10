@@ -116,4 +116,23 @@ Avg gift cost per user & \$\num{\freeMerchanCost} \\
 \end{table}
 \textit{*The reduction reflects lower cost-per-lead due to higher conversion rates; the final CAC then re-incorporates the \$\num{\freeMerchanCost} cost of the gift and shipping.}
 
-\input{tables/profit-loss.tex}
+\begin{table}[H]
+\centering
+\caption{Three-Year Profit \& Loss Summary}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{(USD)} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+\multicolumn{4}{l}{\textbf{Revenue}} \\
+\textbf{Total Revenue (actual)} & \textbf{\numint{\actualSubRevenueYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree}} \\\midrule
+\multicolumn{4}{l}{\textbf{Operating Expenses}} \\
+Team Salaries & \numint{\teamSalariesYearOne} & \numint{\teamSalariesYearTwo} & \numint{\teamSalariesYearThree} \\
+Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} & \numint{\marketingBudgetYearThree} \\
+Infrastructure & \numint{\infrastructureYearOne} & \numint{\infrastructureYearTwo} & \numint{\infrastructureYearThree} \\
+Payment Processing & \numint{\paymentCostsYearOne} & \numint{\paymentCostsYearTwo} & \numint{\paymentCostsYearThree} \\
+Legal/Compliance & \numint{\legalComplianceYearOne} & \numint{\legalComplianceYearTwo} & \numint{\legalComplianceYearThree} \\
+\textbf{Total OpEx} & \textbf{\numint{\totalOpexYearOne + \marketingBudgetYearOne}} & \textbf{\numint{\totalOpexYearTwo + \marketingBudgetYearTwo}} & \textbf{\numint{\totalOpexYearThree + \marketingBudgetYearThree}} \\\midrule
+\textbf{Net Income (Loss)} & \textbf{\numint{\actualSubRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\textit{Path to profitability: Cash flow positive in Month \numint{\breakevenMonth} at \numint{\breakevenSubscribers} active subscribers}
