@@ -1,190 +1,421 @@
+% values/variables.tex - Fully Softcoded Financial Model
+% All derived values computed from base inputs for internal consistency
+% ============================================================================
 
+% ============================================================================
+% SECTION 1: TIMELINE DATES (Hardcoded milestones)
+% ============================================================================
 \newcommand{\mvpDate}{Feb 28, 2026}
 \newcommand{\betaTenDate}{Mar 10, 2026}
 \newcommand{\betaEndDate}{May 2026}
 \newcommand{\scaleMktDate}{Jun 2026}
 \newcommand{\kCustomersDate}{Sep 2026}
 
-\newcommand{\actualNetIncomeYearOne}{-132831}
-\newcommand{\actualNetIncomeYearThree}{1372283}
-\newcommand{\actualNetIncomeYearTwo}{-63372}
-\newcommand{\actualSubRevenueYearOne}{242260}
-\newcommand{\actualSubRevenueYearThree}{4074260}
-\newcommand{\actualSubRevenueYearTwo}{788270}
-\newcommand{\arrMultiple}{3}
-\newcommand{\avgAnnualChurn}{0.045}
-\newcommand{\avgRevenueMonthsYearOne}{6.5}
-\newcommand{\baseNewSubsYearOne}{3810}
-\newcommand{\baseNewSubsYearThree}{47619}
-\newcommand{\baseNewSubsYearTwo}{5714}
-\newcommand{\betaLaunchEndMonth}{6}
+% Timeline months for detailed schedule
+\newcommand{\marketplaceBuildStartMonth}{1}
+\newcommand{\marketplaceBuildEndMonth}{3}
 \newcommand{\betaLaunchStartMonth}{4}
+\newcommand{\betaLaunchEndMonth}{6}
+\newcommand{\marketplaceScaleStartMonth}{7}
+\newcommand{\marketplaceScaleEndMonth}{12}
 \newcommand{\betaUsers}{1000}
-\newcommand{\breakevenMonthRaw}{19.12793895005979}
-\newcommand{\breakevenMonth}{19}
-\newcommand{\breakevenSubscribersRaw}{6032.5}
-\newcommand{\breakevenSubscribers}{6030}
-\newcommand{\budgetContent}{25000}
-\newcommand{\budgetDigital}{60000}
-\newcommand{\cacContentWithoutFreeMerchan}{18}
-\newcommand{\cacContent}{21}
-\newcommand{\cacDigitalWithoutFreeMerchan}{20}
-\newcommand{\cacDigital}{21}
-\newcommand{\cacReductionPercent}{0}
-\newcommand{\cashAfterSeed}{600000}
-\newcommand{\cashAfterSeriesA}{2000000}
-\newcommand{\churnYearOne}{5}
-\newcommand{\churnYearThree}{4}
-\newcommand{\churnYearTwo}{4.5}
+
+% ============================================================================
+% SECTION 2: CORE BUSINESS PARAMETERS (Base inputs)
+% ============================================================================
+
+% --- Computation Economics ---
+\newcommand{\computePowerWatts}{350}
+\newcommand{\electricityCostPerKwh}{0.12}
+\newcommand{\weeklyRunsPerMonth}{\fpeval{30/7}} % average weeks in a month
+
+% --- Tier Configuration (hours per job) ---
 \newcommand{\computeHoursBasic}{2}
-\newcommand{\computeHoursGolden}{168}
 \newcommand{\computeHoursMedium}{24}
 \newcommand{\computeHoursProfessional}{48}
-\newcommand{\computePowerWatts}{350}
-\newcommand{\custPerThousandYearOne}{50}
-\newcommand{\custPerThousandYearThree}{50}
-\newcommand{\custPerThousandYearTwo}{50}
-\newcommand{\electricityCostPerKwh}{0.12}
-\newcommand{\freeMerchAttachRate}{75}
-\newcommand{\freeMerchanCacReductionPercent}{20}
-\newcommand{\freeMerchanCost}{5}
-\newcommand{\grossVolumeYearOne}{865214.2857142857}
-\newcommand{\grossVolumeYearThree}{14550928.57142857}
-\newcommand{\grossVolumeYearTwo}{2815250}
-\newcommand{\growthRateYearOneTwo}{144.98687664041995}
-\newcommand{\growthRateYearTwoThree}{505.6674523248341}
-\newcommand{\infrastructureYearOne}{10000}
-\newcommand{\infrastructureYearThree}{40000}
-\newcommand{\infrastructureYearTwo}{20000}
-\newcommand{\legalComplianceYearOne}{20000}
-\newcommand{\legalComplianceYearThree}{40000}
-\newcommand{\legalComplianceYearTwo}{30000}
-\newcommand{\ltvCapYears}{7}
-\newcommand{\ltvYearsUsed}{7}
-\newcommand{\markPlatformFeePercent}{28}
-\newcommand{\markRevenueBasic}{0.3495333333333334}
-\newcommand{\markRevenueGolden}{58.8}
-\newcommand{\markRevenueMedium}{5.04}
-\newcommand{\markRevenueProfessional}{11.76}
-\newcommand{\markWeightedAvgAnnual}{117.38803999999999}
-\newcommand{\markWeightedAvgMonthly}{9.782336666666666}
-\newcommand{\marketingBudgetYearOne}{80000}
-\newcommand{\marketingBudgetYearThree}{1000000}
-\newcommand{\marketingBudgetYearTwo}{120000}
-\newcommand{\marketplaceBuildEndMonth}{3}
-\newcommand{\marketplaceBuildStartMonth}{1}
-\newcommand{\marketplaceScaleEndMonth}{12}
-\newcommand{\marketplaceScaleStartMonth}{7}
-\newcommand{\merchAttachRate}{0}
-\newcommand{\merchAvgMargin}{48}
-\newcommand{\merchAvgPrice}{28}
-\newcommand{\merchAvgProfit}{13.44}
-\newcommand{\merchBackpackMargin}{45}
-\newcommand{\merchBackpackPrice}{35}
-\newcommand{\merchCapMargin}{45}
-\newcommand{\merchCapPrice}{20}
-\newcommand{\merchHoodieMargin}{40}
-\newcommand{\merchHoodiePrice}{45}
-\newcommand{\merchMugMargin}{55}
-\newcommand{\merchMugPrice}{15}
-\newcommand{\merchOffsetSubsCalc}{0}
-\newcommand{\merchStickerMargin}{70}
-\newcommand{\merchStickerPrice}{5}
-\newcommand{\merchTshirtMargin}{50}
-\newcommand{\merchTshirtPrice}{25}
-\newcommand{\monthlyBurnYearOne}{31257.601190476187}
-\newcommand{\monthlyBurnYearThree}{225164.74404761905}
-\newcommand{\monthlyBurnYearTwo}{70970.1875}
-\newcommand{\monthlyRevPerSub}{9.782336666666666}
-\newcommand{\newSubsYearOne}{3810}
+\newcommand{\computeHoursGolden}{168}
 
-\newcommand{\newSubsYearThree}{47619}
-\newcommand{\newSubsYearTwo}{5714}
-\newcommand{\optimisticARRMultiple}{4}
-\newcommand{\optimisticValHigh}{27}
-\newcommand{\optimisticValLow}{23}
-\newcommand{\patrickCostBasic}{0.35952}
-\newcommand{\patrickCostGolden}{30.199679999999997}
-\newcommand{\patrickCostMedium}{4.31424}
-\newcommand{\patrickCostProfessional}{8.62848}
-\newcommand{\patrickGrossBasic}{0.8988}
-\newcommand{\patrickGrossGolden}{150.99839999999998}
-\newcommand{\patrickGrossMedium}{12.94272}
-\newcommand{\patrickGrossProfessional}{30.19968}
+% --- Tier Mix (must sum to 100) ---
+\newcommand{\subBasicMix}{35}
+\newcommand{\subMediumMix}{40}
+\newcommand{\subProfessionalMix}{15}
+\newcommand{\subGoldenMix}{10}
+
+% --- Provider Markup Multipliers ---
 \newcommand{\patrickMarkupBasic}{2.5}
-\newcommand{\patrickMarkupGolden}{5}
 \newcommand{\patrickMarkupMedium}{3}
 \newcommand{\patrickMarkupProfessional}{3.5}
-\newcommand{\patrickProfitBasic}{0.53928}
-\newcommand{\patrickProfitGolden}{120.79871999999997}
-\newcommand{\patrickProfitMedium}{8.62848}
-\newcommand{\patrickProfitProfessional}{21.5712}
-\newcommand{\paymentCostsYearOne}{25091.214285714283}
-\newcommand{\paymentCostsYearThree}{421976.9285714285}
-\newcommand{\paymentCostsYearTwo}{81642.25}
+\newcommand{\patrickMarkupGolden}{5}
+
+% --- Platform Fee ---
+\newcommand{\markPlatformFeePercent}{28}
+
+% --- Churn Rates (annual %) ---
+\newcommand{\churnYearOne}{5}
+\newcommand{\churnYearTwo}{4.5}
+\newcommand{\churnYearThree}{4}
+
+% --- Gross Margin & LTV Parameters ---
+\newcommand{\subGrossMargin}{52}
+\newcommand{\ltvCapYears}{7}
+
+% --- Payment Processing ---
 \newcommand{\paymentProcessingFee}{2.9}
-\newcommand{\retainedSubsYearThree}{8914}
-\newcommand{\retainedSubsYearTwo}{3620}
-\newcommand{\ruleOfFortyScore}{600.6674523248341}
-\newcommand{\samPercentOfTam}{15}
-\newcommand{\samSubs}{1400000}
+
+% --- Revenue Timing (avg months new subs contribute in acquisition year) ---
+\newcommand{\avgRevenueMonthsYearOne}{6.5}
+
+% ============================================================================
+% SECTION 3: PROVIDER ECONOMICS (Derived from computation parameters)
+% ============================================================================
+
+% Provider electricity cost per run = (watts/1000) * hours * $/kWh * runs/month
+\newcommand{\patrickCostBasic}{\fpeval{\computePowerWatts/1000 * \computeHoursBasic * \electricityCostPerKwh * \weeklyRunsPerMonth}}
+\newcommand{\patrickCostMedium}{\fpeval{\computePowerWatts/1000 * \computeHoursMedium * \electricityCostPerKwh * \weeklyRunsPerMonth}}
+\newcommand{\patrickCostProfessional}{\fpeval{\computePowerWatts/1000 * \computeHoursProfessional * \electricityCostPerKwh * \weeklyRunsPerMonth}}
+\newcommand{\patrickCostGolden}{\fpeval{\computePowerWatts/1000 * \computeHoursGolden * \electricityCostPerKwh * \weeklyRunsPerMonth}}
+
+% Provider gross revenue = cost * markup
+\newcommand{\patrickGrossBasic}{\fpeval{\patrickCostBasic * \patrickMarkupBasic}}
+\newcommand{\patrickGrossMedium}{\fpeval{\patrickCostMedium * \patrickMarkupMedium}}
+\newcommand{\patrickGrossProfessional}{\fpeval{\patrickCostProfessional * \patrickMarkupProfessional}}
+\newcommand{\patrickGrossGolden}{\fpeval{\patrickCostGolden * \patrickMarkupGolden}}
+
+% Provider profit = gross - cost
+\newcommand{\patrickProfitBasic}{\fpeval{\patrickGrossBasic - \patrickCostBasic}}
+\newcommand{\patrickProfitMedium}{\fpeval{\patrickGrossMedium - \patrickCostMedium}}
+\newcommand{\patrickProfitProfessional}{\fpeval{\patrickGrossProfessional - \patrickCostProfessional}}
+\newcommand{\patrickProfitGolden}{\fpeval{\patrickGrossGolden - \patrickCostGolden}}
+
+% ============================================================================
+% SECTION 4: SUBSCRIPTION PRICING (Derived from provider economics + platform fee)
+% ============================================================================
+
+% Full subscription price = provider gross / (1 - platform fee)
+% This ensures: price * platformFee = markRevenue, and price - markRevenue = patrickGross
+\newcommand{\subBasicPrice}{\fpeval{\patrickGrossBasic / (1 - \markPlatformFeePercent/100)}}
+\newcommand{\subMediumPrice}{\fpeval{\patrickGrossMedium / (1 - \markPlatformFeePercent/100)}}
+\newcommand{\subProfessionalPrice}{\fpeval{\patrickGrossProfessional / (1 - \markPlatformFeePercent/100)}}
+\newcommand{\subGoldenPrice}{\fpeval{\patrickGrossGolden / (1 - \markPlatformFeePercent/100)}}
+
+% Mark's (platform) revenue per tier = price * platform fee
+\newcommand{\markRevenueBasic}{\fpeval{\subBasicPrice * \markPlatformFeePercent/100}}
+\newcommand{\markRevenueMedium}{\fpeval{\subMediumPrice * \markPlatformFeePercent/100}}
+\newcommand{\markRevenueProfessional}{\fpeval{\subProfessionalPrice * \markPlatformFeePercent/100}}
+\newcommand{\markRevenueGolden}{\fpeval{\subGoldenPrice * \markPlatformFeePercent/100}}
+
+% Weighted average prices (full price to customer)
+\newcommand{\subWeightedAvgPrice}{\fpeval{
+    \subBasicPrice * \subBasicMix/100 +
+    \subMediumPrice * \subMediumMix/100 +
+    \subProfessionalPrice * \subProfessionalMix/100 +
+    \subGoldenPrice * \subGoldenMix/100
+}}
+
+% Weighted average platform revenue (Mark's monthly revenue per subscriber)
+\newcommand{\markWeightedAvgMonthly}{\fpeval{
+    \markRevenueBasic * \subBasicMix/100 +
+    \markRevenueMedium * \subMediumMix/100 +
+    \markRevenueProfessional * \subProfessionalMix/100 +
+    \markRevenueGolden * \subGoldenMix/100
+}}
+
+% Annual platform revenue per subscriber
+\newcommand{\markWeightedAvgAnnual}{\fpeval{\markWeightedAvgMonthly * 12}}
+
+% Monthly revenue per sub (alias for clarity)
+\newcommand{\monthlyRevPerSub}{\markWeightedAvgMonthly}
+
+% ============================================================================
+% SECTION 5: CUSTOMER ACQUISITION COST (CAC)
+% ============================================================================
+
+% Base CAC before gift effect
+\newcommand{\cacDigitalWithoutFreeMerchan}{20}
+\newcommand{\cacContentWithoutFreeMerchan}{18}
+
+% Free gift parameters
+\newcommand{\freeMerchanCacReductionPercent}{20}
+\newcommand{\freeMerchanCost}{5}
+\newcommand{\freeMerchAttachRate}{75}
+
+% Effective CAC = (base CAC * (1 - reduction%)) + gift cost
+\newcommand{\cacDigital}{\fpeval{\cacDigitalWithoutFreeMerchan * (1 - \freeMerchanCacReductionPercent/100) + \freeMerchanCost}}
+\newcommand{\cacContent}{\fpeval{\cacContentWithoutFreeMerchan * (1 - \freeMerchanCacReductionPercent/100) + \freeMerchanCost}}
+
+% Budget allocation
+\newcommand{\budgetDigital}{60000}
+\newcommand{\budgetContent}{25000}
+
+% ============================================================================
+% SECTION 6: MARKETING BUDGETS & NEW SUBSCRIBER ACQUISITION
+% ============================================================================
+
+% Annual marketing budgets (base inputs)
+\newcommand{\marketingBudgetYearOne}{80000}
+\newcommand{\marketingBudgetYearTwo}{120000}
+\newcommand{\marketingBudgetYearThree}{1000000}
+
+% New subscribers acquired = marketing budget / CAC
+\newcommand{\baseNewSubsYearOne}{\fpeval{round(\marketingBudgetYearOne / \cacDigital, 0)}}
+\newcommand{\baseNewSubsYearTwo}{\fpeval{round(\marketingBudgetYearTwo / \cacDigital, 0)}}
+\newcommand{\baseNewSubsYearThree}{\fpeval{round(\marketingBudgetYearThree / \cacDigital, 0)}}
+
+% New subs (currently same as base; placeholder for future adjustments)
+\newcommand{\newSubsYearOne}{\baseNewSubsYearOne}
+\newcommand{\newSubsYearTwo}{\baseNewSubsYearTwo}
+\newcommand{\newSubsYearThree}{\baseNewSubsYearThree}
+
+% Average monthly acquisition rate (for reference)
+\newcommand{\subsPerMonth}{\fpeval{\newSubsYearOne / 12}}
+
+% ============================================================================
+% SECTION 7: CUSTOMER GROWTH WITH CHURN (Derived - ORDER MATTERS)
+% ============================================================================
+
+% Year 1: No prior customers, total = new subs acquired
+\newcommand{\totalSubsYearOne}{\newSubsYearOne}
+
+% Year 2: Retained from Y1 (after churn) + new Y2 subs
+\newcommand{\retainedSubsYearTwo}{\fpeval{round(\totalSubsYearOne * (1 - \churnYearTwo/100), 0)}}
+\newcommand{\totalSubsYearTwo}{\fpeval{\retainedSubsYearTwo + \newSubsYearTwo}}
+
+% Year 3: Retained from Y2 (after churn) + new Y3 subs
+\newcommand{\retainedSubsYearThree}{\fpeval{round(\totalSubsYearTwo * (1 - \churnYearThree/100), 0)}}
+\newcommand{\totalSubsYearThree}{\fpeval{\retainedSubsYearThree + \newSubsYearThree}}
+
+% ============================================================================
+% SECTION 8: REVENUE CALCULATIONS (Derived from subscriber counts)
+% ============================================================================
+
+% Exit ARR = year-end subscribers * monthly platform revenue * 12
+\newcommand{\subARRYearOne}{\fpeval{\totalSubsYearOne * \markWeightedAvgMonthly * 12}}
+\newcommand{\subARRYearTwo}{\fpeval{\totalSubsYearTwo * \markWeightedAvgMonthly * 12}}
+\newcommand{\subARRYearThree}{\fpeval{\totalSubsYearThree * \markWeightedAvgMonthly * 12}}
+
+% Actual revenue collected (accounts for when subs join)
+% Y1: New subs contribute avg months
+\newcommand{\actualSubRevenueYearOne}{\fpeval{\newSubsYearOne * \markWeightedAvgMonthly * \avgRevenueMonthsYearOne}}
+
+% Y2: Retained subs (full 12 months) + new subs (avg months)
+\newcommand{\actualSubRevenueYearTwo}{\fpeval{
+    \retainedSubsYearTwo * \markWeightedAvgMonthly * 12 +
+    \newSubsYearTwo * \markWeightedAvgMonthly * \avgRevenueMonthsYearOne
+}}
+
+% Y3: Retained subs (full 12 months) + new subs (avg months)
+\newcommand{\actualSubRevenueYearThree}{\fpeval{
+    \retainedSubsYearThree * \markWeightedAvgMonthly * 12 +
+    \newSubsYearThree * \markWeightedAvgMonthly * \avgRevenueMonthsYearOne
+}}
+
+% Aliases for backward compatibility
+\newcommand{\subRevenueYearOne}{\subARRYearOne}
+\newcommand{\subRevenueYearTwo}{\subARRYearTwo}
+\newcommand{\subRevenueYearThree}{\subARRYearThree}
+
+% Gross transaction volume (for payment processing - based on full price, not just platform fee)
+\newcommand{\grossVolumeYearOne}{\fpeval{\actualSubRevenueYearOne / (\markPlatformFeePercent/100)}}
+\newcommand{\grossVolumeYearTwo}{\fpeval{\actualSubRevenueYearTwo / (\markPlatformFeePercent/100)}}
+\newcommand{\grossVolumeYearThree}{\fpeval{\actualSubRevenueYearThree / (\markPlatformFeePercent/100)}}
+
+% ============================================================================
+% SECTION 9: OPERATING EXPENSES
+% ============================================================================
+
+% Team salaries (base inputs)
+\newcommand{\teamSalariesYearOne}{240000}
+\newcommand{\teamSalariesYearTwo}{600000}
+\newcommand{\teamSalariesYearThree}{1200000}
+
+% Infrastructure (base inputs)
+\newcommand{\infrastructureYearOne}{10000}
+\newcommand{\infrastructureYearTwo}{20000}
+\newcommand{\infrastructureYearThree}{40000}
+
+% Legal/Compliance (base inputs)
+\newcommand{\legalComplianceYearOne}{20000}
+\newcommand{\legalComplianceYearTwo}{30000}
+\newcommand{\legalComplianceYearThree}{40000}
+
+% Payment processing costs (derived from gross volume)
+\newcommand{\paymentCostsYearOne}{\fpeval{\grossVolumeYearOne * \paymentProcessingFee/100}}
+\newcommand{\paymentCostsYearTwo}{\fpeval{\grossVolumeYearTwo * \paymentProcessingFee/100}}
+\newcommand{\paymentCostsYearThree}{\fpeval{\grossVolumeYearThree * \paymentProcessingFee/100}}
+
+% Total OpEx (excluding marketing - matches table structure)
+\newcommand{\totalOpexYearOne}{\fpeval{
+    \teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \paymentCostsYearOne
+}}
+\newcommand{\totalOpexYearTwo}{\fpeval{
+    \teamSalariesYearTwo + \infrastructureYearTwo + \legalComplianceYearTwo + \paymentCostsYearTwo
+}}
+\newcommand{\totalOpexYearThree}{\fpeval{
+    \teamSalariesYearThree + \infrastructureYearThree + \legalComplianceYearThree + \paymentCostsYearThree
+}}
+
+% Monthly burn rate (total expenses including marketing / 12)
+\newcommand{\monthlyBurnYearOne}{\fpeval{(\totalOpexYearOne + \marketingBudgetYearOne) / 12}}
+\newcommand{\monthlyBurnYearTwo}{\fpeval{(\totalOpexYearTwo + \marketingBudgetYearTwo) / 12}}
+\newcommand{\monthlyBurnYearThree}{\fpeval{(\totalOpexYearThree + \marketingBudgetYearThree) / 12}}
+
+% Net income (loss)
+\newcommand{\actualNetIncomeYearOne}{\fpeval{\actualSubRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne}}
+\newcommand{\actualNetIncomeYearTwo}{\fpeval{\actualSubRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}}
+\newcommand{\actualNetIncomeYearThree}{\fpeval{\actualSubRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree}}
+
+% ============================================================================
+% SECTION 10: UNIT ECONOMICS & LTV
+% ============================================================================
+
+% Average annual churn (for LTV calculation)
+\newcommand{\avgAnnualChurn}{\fpeval{(\churnYearOne + \churnYearTwo + \churnYearThree) / 3 / 100}}
+
+% Theoretical customer lifetime = 1 / churn rate
+\newcommand{\theoreticalLifetimeYears}{\fpeval{1 / \avgAnnualChurn}}
+
+% Actual lifetime used (capped)
+\newcommand{\ltvYearsUsed}{\fpeval{min(\theoreticalLifetimeYears, \ltvCapYears)}}
+
+% Annual gross profit per subscriber
+\newcommand{\subAnnualGrossProfit}{\fpeval{\markWeightedAvgAnnual * \subGrossMargin/100}}
+
+% Monthly gross profit per subscriber
+\newcommand{\subMonthlyGrossProfit}{\fpeval{\markWeightedAvgMonthly * \subGrossMargin/100}}
+
+% Lifetime Value = annual gross profit * lifetime years
+\newcommand{\subLTV}{\fpeval{\subAnnualGrossProfit * \ltvYearsUsed}}
+
+% Payback period (months) = CAC / monthly gross profit
+\newcommand{\subPaybackMonths}{\fpeval{round(\cacDigital / \subMonthlyGrossProfit, 1)}}
+
+% CAC reduction percent (placeholder for future viral/referral effects)
+\newcommand{\cacReductionPercent}{0}
+
+% ============================================================================
+% SECTION 11: BREAKEVEN ANALYSIS
+% ============================================================================
+
+% Breakeven subscribers = monthly burn / monthly platform revenue per sub
+% Using Year 2 burn as target steady-state
+\newcommand{\breakevenSubscribersRaw}{\fpeval{\monthlyBurnYearTwo / \markWeightedAvgMonthly}}
+\newcommand{\breakevenSubscribers}{\fpeval{round(\breakevenSubscribersRaw, -1)}}
+
+% Breakeven month estimate (when cumulative subs reach breakeven level)
+% Approximate: subs grow from 0 to totalSubsYearOne in Y1, continue in Y2
+% Linear interpolation: month = 12 + (breakeven - totalSubsYearOne) / monthly_growth_Y2
+\newcommand{\monthlyGrowthYearTwo}{\fpeval{(\totalSubsYearTwo - \totalSubsYearOne) / 12}}
+\newcommand{\breakevenMonthRaw}{\fpeval{12 + (\breakevenSubscribers - \totalSubsYearOne) / \monthlyGrowthYearTwo}}
+\newcommand{\breakevenMonth}{\fpeval{round(\breakevenMonthRaw, 0)}}
+
+% ============================================================================
+% SECTION 12: FUNDING & RUNWAY
+% ============================================================================
+
+% Seed round
 \newcommand{\seedAmount}{600000}
 \newcommand{\seedEquity}{20}
+\newcommand{\seedValuation}{3000000}
 \newcommand{\seedPreMoneyNegotiated}{2400000}
-\newcommand{\seedRunwayMonths}{19}
-\newcommand{\seedRunway}{24}
 \newcommand{\seedTeamSize}{3}
+
+% Seed use allocation (for reference)
+\newcommand{\seedUseSubPlatform}{50000}
 \newcommand{\seedUseMarketing}{100000}
 \newcommand{\seedUseOperations}{30000}
-\newcommand{\seedUseSubPlatform}{50000}
 \newcommand{\seedUseWorkingCap}{20000}
-\newcommand{\seedValuation}{3000000}
+
+% Series A
 \newcommand{\seriesAAmount}{2000000}
 \newcommand{\seriesAEquity}{25}
 \newcommand{\seriesAValuation}{8000000}
-\newcommand{\seriesARunwayMonths}{\fpeval{\cashAfterSeriesA/\monthlyBurnYearTwo}}
-\newcommand{\subARRYearOne}{447248.43239999993}
-\newcommand{\subARRYearThree}{6636298.06532}
-\newcommand{\subARRYearTwo}{1095699.9653599998}
-\newcommand{\subAnnualGrossProfit}{111.518638}
-\newcommand{\subBasicMix}{35}
-\newcommand{\subBasicPrice}{1.2483333333333335}
-\newcommand{\subGoldenMix}{10}
-\newcommand{\subGoldenPrice}{210}
-\newcommand{\subGrossMargin}{52}
-\newcommand{\subLTV}{425.88}
-\newcommand{\subMediumMix}{40}
-\newcommand{\subMediumPrice}{18}
-\newcommand{\subMonthlyGrossProfit}{9.293219833333332}
-\newcommand{\subPaybackMonths}{2.3}
-\newcommand{\subProfessionalMix}{15}
-\newcommand{\subProfessionalPrice}{42}
-\newcommand{\subRevenueYearOne}{447248.43239999993}
-\newcommand{\subRevenueYearThree}{6636298.065319999}
-\newcommand{\subRevenueYearTwo}{1095699.9653599998}
-\newcommand{\subWeightedAvgPrice}{34.93691666666667}
-\newcommand{\subsPerMonth}{317.5}
+
+% Cash positions
+\newcommand{\cashAfterSeed}{\seedAmount}
+\newcommand{\cashAfterSeriesA}{\seriesAAmount}
+
+% Runway calculations (months)
+\newcommand{\seedRunwayMonths}{\fpeval{round(\cashAfterSeed / \monthlyBurnYearOne, 0)}}
+\newcommand{\seriesARunwayMonths}{\fpeval{round(\cashAfterSeriesA / \monthlyBurnYearTwo, 0)}}
+\newcommand{\seedRunway}{24}
+
+% ============================================================================
+% SECTION 13: GROWTH RATES & VALUATION
+% ============================================================================
+
+% ARR growth rates (%)
+\newcommand{\growthRateYearOneTwo}{\fpeval{(\subARRYearTwo - \subARRYearOne) / \subARRYearOne * 100}}
+\newcommand{\growthRateYearTwoThree}{\fpeval{(\subARRYearThree - \subARRYearTwo) / \subARRYearTwo * 100}}
+
+% Rule of 40 score (growth rate + profit margin proxy)
+\newcommand{\ruleOfFortyScore}{\fpeval{\growthRateYearTwoThree + \subGrossMargin}}
+
+% Valuation multiples
+\newcommand{\arrMultiple}{3}
+\newcommand{\targetARRMultiple}{2.5}
+\newcommand{\optimisticARRMultiple}{4}
+\newcommand{\yearTwoRevMultiple}{2.5}
+
+% Target valuations (Year 3, in millions)
+\newcommand{\targetValLow}{\fpeval{round(\subARRYearThree * \targetARRMultiple / 1000000, 0)}}
+\newcommand{\targetValHigh}{\fpeval{round(\subARRYearThree * \arrMultiple / 1000000, 0)}}
+\newcommand{\optimisticValLow}{\fpeval{round(\subARRYearThree * \arrMultiple / 1000000, 0)}}
+\newcommand{\optimisticValHigh}{\fpeval{round(\subARRYearThree * \optimisticARRMultiple / 1000000, 0)}}
+
+% ============================================================================
+% SECTION 14: MARKET SIZING (TAM/SAM)
+% ============================================================================
+
+% TAM components (number of potential users globally)
 \newcommand{\tamBitcoinUsers}{3000000}
 \newcommand{\tamPasswordMgrUsers}{4000000}
 \newcommand{\tamPhysicalVaultUsers}{500000}
 \newcommand{\tamPrivateSecUsers}{1500000}
-\newcommand{\tamSubsGlobal}{9000000}
-\newcommand{\targetARRMultiple}{2.5}
+
+% Total TAM
+\newcommand{\tamSubsGlobal}{\fpeval{\tamBitcoinUsers + \tamPasswordMgrUsers + \tamPhysicalVaultUsers + \tamPrivateSecUsers}}
+
+% SAM (Serviceable Available Market) as % of TAM
+\newcommand{\samPercentOfTam}{15}
+\newcommand{\samSubs}{\fpeval{round(\tamSubsGlobal * \samPercentOfTam / 100, 0)}}
+
+% Target market share
 \newcommand{\targetShareSubs}{15}
-\newcommand{\targetSubsCountk}{210}
-\newcommand{\targetValHigh}{20}
-\newcommand{\targetValLow}{17}
-\newcommand{\teamSalariesYearOne}{240000}
-\newcommand{\teamSalariesYearThree}{1200000}
-\newcommand{\teamSalariesYearTwo}{600000}
-\newcommand{\theoreticalLifetimeYears}{22.22222222222222}
-\newcommand{\totalOpexYearOne}{295091.21428571426}
-\newcommand{\totalOpexYearThree}{1701976.9285714286}
-\newcommand{\totalOpexYearTwo}{731642.25}
-\newcommand{\totalSubsYearOne}{3810}
-\newcommand{\totalSubsYearThree}{56533}
-\newcommand{\totalSubsYearTwo}{9334}
-\newcommand{\weeklyRunsPerMonth}{4.28}
-\newcommand{\yearTwoRevMultiple}{2.5}
-    
-    
+\newcommand{\targetSubsCountk}{\fpeval{round(\samSubs * \targetShareSubs / 100 / 1000, 0)}}
+
+% ============================================================================
+% SECTION 15: MERCHANDISE (Excluded from projections - community engagement only)
+% ============================================================================
+
+\newcommand{\merchAttachRate}{0}
+\newcommand{\merchAvgPrice}{28}
+\newcommand{\merchAvgMargin}{48}
+\newcommand{\merchAvgProfit}{\fpeval{\merchAvgPrice * \merchAvgMargin / 100}}
+\newcommand{\merchOffsetSubsCalc}{0}
+
+% Individual item pricing (for reference)
+\newcommand{\merchTshirtPrice}{25}
+\newcommand{\merchTshirtMargin}{50}
+\newcommand{\merchHoodiePrice}{45}
+\newcommand{\merchHoodieMargin}{40}
+\newcommand{\merchCapPrice}{20}
+\newcommand{\merchCapMargin}{45}
+\newcommand{\merchMugPrice}{15}
+\newcommand{\merchMugMargin}{55}
+\newcommand{\merchStickerPrice}{5}
+\newcommand{\merchStickerMargin}{70}
+\newcommand{\merchBackpackPrice}{35}
+\newcommand{\merchBackpackMargin}{45}
+
+% ============================================================================
+% SECTION 16: REFERENCE METRICS (For display/validation)
+% ============================================================================
+
+% Customers per thousand (for certain calculations)
+\newcommand{\custPerThousandYearOne}{50}
+\newcommand{\custPerThousandYearTwo}{50}
+\newcommand{\custPerThousandYearThree}{50}
+
+% ============================================================================
+% END OF SOFTCODED VARIABLES
+% ============================================================================

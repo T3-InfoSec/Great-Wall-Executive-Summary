@@ -1,0 +1,259 @@
+% 99-appendix-debug.tex - Debug dump of all softcoded variables
+% Location: content/99-appendix-debug.tex
+% Usage: Add \input{content/99-appendix-debug} before \end{document} in main.tex
+
+\newpage
+\appendix
+\section*{Appendix: Variable Debug Dump}
+\addcontentsline{toc}{section}{Appendix: Variable Debug Dump}
+
+\textit{This appendix displays all softcoded variables for verification and debugging. All derived values are computed at compile time from base inputs.}
+
+\subsection*{A1. Timeline \& Milestones}
+\begin{tabularx}{\linewidth}{l l X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+mvpDate & \mvpDate & MVP target date \\
+betaTenDate & \betaTenDate & First 10 beta clients \\
+betaEndDate & \betaEndDate & End of beta period \\
+scaleMktDate & \scaleMktDate & Scale marketing date \\
+kCustomersDate & \kCustomersDate & 1,000 customers target \\
+betaUsers & \num{\betaUsers} & Beta user target \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A2. Computation Economics (Base Inputs)}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+computePowerWatts & \num{\computePowerWatts} W & Power consumption \\
+electricityCostPerKwh & \$\num{\electricityCostPerKwh} & Electricity rate \\
+weeklyRunsPerMonth & \num{\weeklyRunsPerMonth} & Runs per month \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A3. Tier Configuration}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Tier} & \textbf{Hours} & \textbf{Mix (\%)} & \textbf{Markup} \\\midrule
+Basic & \num{\computeHoursBasic} & \num{\subBasicMix}\% & \num{\patrickMarkupBasic}x \\
+Medium & \num{\computeHoursMedium} & \num{\subMediumMix}\% & \num{\patrickMarkupMedium}x \\
+Professional & \num{\computeHoursProfessional} & \num{\subProfessionalMix}\% & \num{\patrickMarkupProfessional}x \\
+Golden & \num{\computeHoursGolden} & \num{\subGoldenMix}\% & \num{\patrickMarkupGolden}x \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A4. Provider Economics (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Tier} & \textbf{Cost (\$/mo)} & \textbf{Gross (\$/mo)} & \textbf{Profit (\$/mo)} \\\midrule
+Basic & \num{\patrickCostBasic} & \num{\patrickGrossBasic} & \num{\patrickProfitBasic} \\
+Medium & \num{\patrickCostMedium} & \num{\patrickGrossMedium} & \num{\patrickProfitMedium} \\
+Professional & \num{\patrickCostProfessional} & \num{\patrickGrossProfessional} & \num{\patrickProfitProfessional} \\
+Golden & \num{\patrickCostGolden} & \num{\patrickGrossGolden} & \num{\patrickProfitGolden} \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A5. Subscription Pricing (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y}
+\toprule
+\textbf{Tier} & \textbf{Price (\$/mo)} & \textbf{Platform Rev (\$/mo)} \\\midrule
+Basic & \num{\subBasicPrice} & \num{\markRevenueBasic} \\
+Medium & \num{\subMediumPrice} & \num{\markRevenueMedium} \\
+Professional & \num{\subProfessionalPrice} & \num{\markRevenueProfessional} \\
+Golden & \num{\subGoldenPrice} & \num{\markRevenueGolden} \\\midrule
+\textbf{Weighted Avg} & \num{\subWeightedAvgPrice} & \num{\markWeightedAvgMonthly} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+markPlatformFeePercent & \num{\markPlatformFeePercent}\% & Platform fee \\
+markWeightedAvgMonthly & \$\num{\markWeightedAvgMonthly} & Monthly platform rev/sub \\
+markWeightedAvgAnnual & \$\num{\markWeightedAvgAnnual} & Annual platform rev/sub \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A6. Customer Acquisition Cost}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+cacDigitalWithoutFreeMerchan & \$\num{\cacDigitalWithoutFreeMerchan} & Base digital CAC \\
+cacContentWithoutFreeMerchan & \$\num{\cacContentWithoutFreeMerchan} & Base content CAC \\
+freeMerchanCacReductionPercent & \num{\freeMerchanCacReductionPercent}\% & Gift reduction effect \\
+freeMerchanCost & \$\num{\freeMerchanCost} & Gift cost per user \\
+\textbf{cacDigital} & \textbf{\$\num{\cacDigital}} & \textbf{Effective digital CAC} \\
+\textbf{cacContent} & \textbf{\$\num{\cacContent}} & \textbf{Effective content CAC} \\
+budgetDigital & \$\numint{\budgetDigital} & Digital budget \\
+budgetContent & \$\numint{\budgetContent} & Content budget \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A7. Marketing Budgets \& New Subscribers}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+marketingBudget & \$\numint{\marketingBudgetYearOne} & \$\numint{\marketingBudgetYearTwo} & \$\numint{\marketingBudgetYearThree} \\
+baseNewSubs & \numint{\baseNewSubsYearOne} & \numint{\baseNewSubsYearTwo} & \numint{\baseNewSubsYearThree} \\
+newSubs & \numint{\newSubsYearOne} & \numint{\newSubsYearTwo} & \numint{\newSubsYearThree} \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A8. Customer Growth with Churn (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+churnRate & \num{\churnYearOne}\% & \num{\churnYearTwo}\% & \num{\churnYearThree}\% \\
+retainedSubs & --- & \numint{\retainedSubsYearTwo} & \numint{\retainedSubsYearThree} \\
+newSubs & \numint{\newSubsYearOne} & \numint{\newSubsYearTwo} & \numint{\newSubsYearThree} \\
+\textbf{totalSubs} & \textbf{\numint{\totalSubsYearOne}} & \textbf{\numint{\totalSubsYearTwo}} & \textbf{\numint{\totalSubsYearThree}} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Verification formula: totalSubsY2 = round(totalSubsY1 $\times$ (1 - churnY2/100)) + newSubsY2}\\
+\textit{Check Y2: round(\numint{\totalSubsYearOne} $\times$ \fpeval{1 - \churnYearTwo/100}) + \numint{\newSubsYearTwo} = \fpeval{round(\totalSubsYearOne * (1 - \churnYearTwo/100), 0)} + \numint{\newSubsYearTwo} = \numint{\totalSubsYearTwo}}
+
+\subsection*{A9. Revenue Calculations (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+subARR (Exit) & \$\numint{\subARRYearOne} & \$\numint{\subARRYearTwo} & \$\numint{\subARRYearThree} \\
+actualSubRevenue & \$\numint{\actualSubRevenueYearOne} & \$\numint{\actualSubRevenueYearTwo} & \$\numint{\actualSubRevenueYearThree} \\
+grossVolume & \$\numint{\grossVolumeYearOne} & \$\numint{\grossVolumeYearTwo} & \$\numint{\grossVolumeYearThree} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+avgRevenueMonthsYearOne & \num{\avgRevenueMonthsYearOne} & Avg months new subs contribute \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A10. Operating Expenses}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+teamSalaries & \$\numint{\teamSalariesYearOne} & \$\numint{\teamSalariesYearTwo} & \$\numint{\teamSalariesYearThree} \\
+infrastructure & \$\numint{\infrastructureYearOne} & \$\numint{\infrastructureYearTwo} & \$\numint{\infrastructureYearThree} \\
+legalCompliance & \$\numint{\legalComplianceYearOne} & \$\numint{\legalComplianceYearTwo} & \$\numint{\legalComplianceYearThree} \\
+paymentCosts & \$\numint{\paymentCostsYearOne} & \$\numint{\paymentCostsYearTwo} & \$\numint{\paymentCostsYearThree} \\
+\textbf{totalOpex} & \textbf{\$\numint{\totalOpexYearOne}} & \textbf{\$\numint{\totalOpexYearTwo}} & \textbf{\$\numint{\totalOpexYearThree}} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+paymentProcessingFee & \num{\paymentProcessingFee}\% & Payment processing rate \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A11. Monthly Burn \& Net Income (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+monthlyBurn & \$\numint{\monthlyBurnYearOne} & \$\numint{\monthlyBurnYearTwo} & \$\numint{\monthlyBurnYearThree} \\
+\textbf{actualNetIncome} & \textbf{\$\numint{\actualNetIncomeYearOne}} & \textbf{\$\numint{\actualNetIncomeYearTwo}} & \textbf{\$\numint{\actualNetIncomeYearThree}} \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A12. Unit Economics \& LTV (Derived)}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+subGrossMargin & \num{\subGrossMargin}\% & Gross margin \\
+avgAnnualChurn & \num{\avgAnnualChurn} & Avg churn (decimal) \\
+theoreticalLifetimeYears & \num{\theoreticalLifetimeYears} & 1/churn \\
+ltvCapYears & \num{\ltvCapYears} & LTV cap \\
+ltvYearsUsed & \num{\ltvYearsUsed} & Actual years used \\
+subAnnualGrossProfit & \$\num{\subAnnualGrossProfit} & Annual GP/sub \\
+subMonthlyGrossProfit & \$\num{\subMonthlyGrossProfit} & Monthly GP/sub \\
+\textbf{subLTV} & \textbf{\$\num{\subLTV}} & \textbf{Lifetime Value} \\
+subPaybackMonths & \num{\subPaybackMonths} mo & Payback period \\
+LTV:CAC Ratio & \numint{\subLTV/\cacDigital}:1 & Unit economics ratio \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A13. Breakeven Analysis (Derived)}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+breakevenSubscribersRaw & \num{\breakevenSubscribersRaw} & Raw calculation \\
+breakevenSubscribers & \numint{\breakevenSubscribers} & Rounded to 10s \\
+monthlyGrowthYearTwo & \num{\monthlyGrowthYearTwo} & Monthly sub growth Y2 \\
+breakevenMonthRaw & \num{\breakevenMonthRaw} & Raw month calc \\
+\textbf{breakevenMonth} & \textbf{Month \numint{\breakevenMonth}} & \textbf{Target breakeven} \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A14. Funding \& Runway}
+\begin{tabularx}{\linewidth}{l Y Y X}
+\toprule
+\textbf{Variable} & \textbf{Seed} & \textbf{Series A} & \textbf{Description} \\\midrule
+amount & \$\numint{\seedAmount} & \$\numint{\seriesAAmount} & Raise amount \\
+equity & \num{\seedEquity}\% & \num{\seriesAEquity}\% & Equity sold \\
+valuation & \$\numint{\seedValuation} & \$\numint{\seriesAValuation} & Post-money \\
+runwayMonths & \numint{\seedRunwayMonths} mo & \numint{\seriesARunwayMonths} mo & Runway \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A15. Growth Rates \& Valuation (Derived)}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+growthRateYearOneTwo & \num{\growthRateYearOneTwo}\% & Y1→Y2 ARR growth \\
+growthRateYearTwoThree & \num{\growthRateYearTwoThree}\% & Y2→Y3 ARR growth \\
+ruleOfFortyScore & \num{\ruleOfFortyScore} & Growth + margin \\
+arrMultiple & \num{\arrMultiple}x & Base ARR multiple \\
+targetARRMultiple & \num{\targetARRMultiple}x & Conservative multiple \\
+optimisticARRMultiple & \num{\optimisticARRMultiple}x & Optimistic multiple \\
+\textbf{targetValLow} & \textbf{\$\num{\targetValLow}M} & \textbf{Target low} \\
+\textbf{targetValHigh} & \textbf{\$\num{\targetValHigh}M} & \textbf{Target high} \\
+optimisticValLow & \$\num{\optimisticValLow}M & Optimistic low \\
+optimisticValHigh & \$\num{\optimisticValHigh}M & Optimistic high \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A16. Market Sizing (TAM/SAM)}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+tamBitcoinUsers & \numint{\tamBitcoinUsers} & Bitcoin user segment \\
+tamPasswordMgrUsers & \numint{\tamPasswordMgrUsers} & Password mgr segment \\
+tamPhysicalVaultUsers & \numint{\tamPhysicalVaultUsers} & Physical vault segment \\
+tamPrivateSecUsers & \numint{\tamPrivateSecUsers} & Private security segment \\
+\textbf{tamSubsGlobal} & \textbf{\numint{\tamSubsGlobal}} & \textbf{Total TAM} \\
+samPercentOfTam & \num{\samPercentOfTam}\% & SAM as \% of TAM \\
+\textbf{samSubs} & \textbf{\numint{\samSubs}} & \textbf{SAM (users)} \\
+targetShareSubs & \num{\targetShareSubs}\% & Target market share \\
+targetSubsCountk & \num{\targetSubsCountk}k & Target subscribers \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{A17. Merchandise (Reference Only)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Item} & \textbf{Price} & \textbf{Margin} & \textbf{Profit} \\\midrule
+T-shirt & \$\num{\merchTshirtPrice} & \num{\merchTshirtMargin}\% & \$\fpeval{\merchTshirtPrice * \merchTshirtMargin / 100} \\
+Hoodie & \$\num{\merchHoodiePrice} & \num{\merchHoodieMargin}\% & \$\fpeval{\merchHoodiePrice * \merchHoodieMargin / 100} \\
+Cap & \$\num{\merchCapPrice} & \num{\merchCapMargin}\% & \$\fpeval{\merchCapPrice * \merchCapMargin / 100} \\
+Mug & \$\num{\merchMugPrice} & \num{\merchMugMargin}\% & \$\fpeval{\merchMugPrice * \merchMugMargin / 100} \\
+Sticker & \$\num{\merchStickerPrice} & \num{\merchStickerMargin}\% & \$\fpeval{\merchStickerPrice * \merchStickerMargin / 100} \\
+Backpack & \$\num{\merchBackpackPrice} & \num{\merchBackpackMargin}\% & \$\fpeval{\merchBackpackPrice * \merchBackpackMargin / 100} \\\midrule
+\textbf{Weighted Avg} & \$\num{\merchAvgPrice} & \num{\merchAvgMargin}\% & \$\num{\merchAvgProfit} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Note: Merchandise is excluded from financial projections; shown for reference only.}
+
+\vfill
+\hrule
+\medskip
+\textit{Generated: \today{} --- All values computed via \texttt{xfp} package at compile time.}
