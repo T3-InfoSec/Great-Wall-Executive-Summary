@@ -77,7 +77,7 @@ Monthly Burn at Breakeven & \$\numint{\monthlyBurnYearTwo} \\
 \toprule
 Metric & Year 1 & Year 2 & Year 3 \\\midrule
 Subscription Revenue (actual) & \numint{\actualSubRevenueYearOne} & \numint{\actualSubRevenueYearTwo} & \numint{\actualSubRevenueYearThree} \\
-Gross Profit & \numint{\subRevenueYearOne * \markPlatformFeePercent / 100} & \numint{\subRevenueYearTwo * \markPlatformFeePercent / 100} & \numint{\subRevenueYearThree * \markPlatformFeePercent / 100} \\
+Gross Profit & \numint{\actualSubRevenueYearOne * \subGrossMargin / 100} & \numint{\actualSubRevenueYearTwo * \subGrossMargin / 100} & \numint{\actualSubRevenueYearThree * \subGrossMargin / 100} \\
 Active Subscribers (year-end) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
 Marketplace's Monthly Rev/User & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} \\
 \bottomrule
