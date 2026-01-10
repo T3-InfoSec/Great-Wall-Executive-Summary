@@ -70,13 +70,13 @@ Monthly Burn at Breakeven & \$\numint{\monthlyBurnYearTwo} \\
 \end{table}
 
 
-\subsection{ARR vs Revenue Clarification}
+	
 \begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 Metric & Year 1 & Year 2 & Year 3 \\\midrule
-Subscription Revenue (actual) & \numint{\actualSubRevenueYearOne} & \numint{\subRevenueYearTwo} & \numint{\subRevenueYearThree} \\
+Subscription Revenue (actual) & \numint{\actualSubRevenueYearOne} & \numint{\actualSubRevenueYearTwo} & \numint{\actualSubRevenueYearThree} \\
 Gross Profit & \numint{\subRevenueYearOne * \markPlatformFeePercent / 100} & \numint{\subRevenueYearTwo * \markPlatformFeePercent / 100} & \numint{\subRevenueYearThree * \markPlatformFeePercent / 100} \\
 Active Subscribers (year-end) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
 Marketplace's Monthly Rev/User & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} \\
