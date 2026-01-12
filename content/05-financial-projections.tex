@@ -13,11 +13,28 @@ Revenue Metric & Year 1 (USD) & Year 2 (USD) & Year 3 (USD) \\\midrule
 Subscription Exit ARR & \numint{\subARRYearOne} & \numint{\subARRYearTwo} & \numint{\subARRYearThree} \\
 Active Subs (year-end after churn) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\\midrule
 \multicolumn{4}{l}{\textbf{Actual Revenue Collected}} \\
-\textbf{Total Revenue (actual)*} & \textbf{\numint{\actualSubRevenueYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree}} \\
+\textbf{Total Revenue (actual)}* & \textbf{\numint{\actualSubRevenueYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree}} \\
 \bottomrule
 \end{tabularx}
 \end{table}
 \textit{*Actual revenue accounts for when subscribers join. New subscribers contribute average \num{\avgRevenueMonthsYearOne} months of revenue in their first year.}
+
+\subsection{Cost of Goods Sold (COGS)}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+COGS Component & Year 1 (USD) & Year 2 (USD) & Year 3 (USD) \\\midrule
+Payment Processing (\num{\cogsPaymentProcessingPercent}\%)* & \numint{\cogsPaymentYearOne} & \numint{\cogsPaymentYearTwo} & \numint{\cogsPaymentYearThree} \\
+Infrastructure (\num{\cogsInfraPercent}\%) & \numint{\cogsInfraYearOne} & \numint{\cogsInfraYearTwo} & \numint{\cogsInfraYearThree} \\
+Support/Disputes (\num{\cogsSupportPercent}\%) & \numint{\cogsSupportYearOne} & \numint{\cogsSupportYearTwo} & \numint{\cogsSupportYearThree} \\
+Trust \& Safety (\num{\cogsTrustSafetyPercent}\%) & \numint{\cogsTrustYearOne} & \numint{\cogsTrustYearTwo} & \numint{\cogsTrustYearThree} \\\midrule
+\textbf{Total COGS (\num{\totalCogsPercent}\%)} & \textbf{\numint{\totalCogsYearOne}} & \textbf{\numint{\totalCogsYearTwo}} & \textbf{\numint{\totalCogsYearThree}} \\
+\textbf{Gross Profit (\num{\subGrossMargin}\%)} & \textbf{\numint{\grossProfitYearOne}} & \textbf{\numint{\grossProfitYearTwo}} & \textbf{\numint{\grossProfitYearThree}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\textit{*Payment processing is \num{\paymentProcessingFeeGross}\% on gross transaction volume = \num{\cogsPaymentProcessingPercent}\% of net revenue. Infrastructure, support, and trust \& safety are bottom-up estimates benchmarked against marketplace industry data.}
 
 \subsection{Operating Expenses}
 \begin{table}[H]
@@ -26,15 +43,14 @@ Active Subs (year-end after churn) & \numint{\totalSubsYearOne} & \numint{\total
 \toprule
 Expense Category & Year 1 (USD) & Year 2 (USD) & Year 3 (USD) \\\midrule
 Team Salaries & \numint{\teamSalariesYearOne} & \numint{\teamSalariesYearTwo} & \numint{\teamSalariesYearThree} \\
-Infrastructure/Hosting & \numint{\infrastructureYearOne} & \numint{\infrastructureYearTwo} & \numint{\infrastructureYearThree} \\
-Payment Processing (2.9\%)* & \numint{\paymentCostsYearOne} & \numint{\paymentCostsYearTwo} & \numint{\paymentCostsYearThree} \\
+Infrastructure (non-production)* & \numint{\infrastructureYearOne} & \numint{\infrastructureYearTwo} & \numint{\infrastructureYearThree} \\
 Legal/Compliance/Insurance & \numint{\legalComplianceYearOne} & \numint{\legalComplianceYearTwo} & \numint{\legalComplianceYearThree} \\
 Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} & \numint{\marketingBudgetYearThree} \\\midrule
-\textbf{Total OpEx} & \textbf{\numint{\totalOpexYearOne + \marketingBudgetYearOne}} & \textbf{\numint{\totalOpexYearTwo + \marketingBudgetYearTwo}} & \textbf{\numint{\totalOpexYearThree + \marketingBudgetYearThree}} \\
+\textbf{Total OpEx} & \textbf{\numint{\totalOperatingCostsYearOne}} & \textbf{\numint{\totalOperatingCostsYearTwo}} & \textbf{\numint{\totalOperatingCostsYearThree}} \\
 \bottomrule
 \end{tabularx}
 \end{table}
-\textit{*Payment processing calculated on gross transaction volume. Note: We plan to incentivize Lightning Network adoption to reduce these fees.}
+\textit{*Production infrastructure (matching platform, hosting) is included in COGS above. This line covers office tools and non-production systems only.}
 
 \subsection{Monthly Burn Rate Analysis}
 \begin{table}[H]
@@ -42,9 +58,9 @@ Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} 
 \begin{tabularx}{\linewidth}{l Y Y Y Y}
 \toprule
 \multicolumn{2}{l}{\textbf{Monthly Burn Breakdown}} & Year 1 & Year 2 & Year 3 \\\midrule
+\multicolumn{2}{l}{COGS (variable)} & \$\numint{\totalCogsYearOne/12} & \$\numint{\totalCogsYearTwo/12} & \$\numint{\totalCogsYearThree/12} \\
 \multicolumn{2}{l}{Team Salaries} & \$\numint{\teamSalariesYearOne/12} & \$\numint{\teamSalariesYearTwo/12} & \$\numint{\teamSalariesYearThree/12} \\
-\multicolumn{2}{l}{Infrastructure} & \$\numint{\infrastructureYearOne/12} & \$\numint{\infrastructureYearTwo/12} & \$\numint{\infrastructureYearThree/12} \\
-\multicolumn{2}{l}{Payment Processing} & \$\numint{\paymentCostsYearOne/12} & \$\numint{\paymentCostsYearTwo/12} & \$\numint{\paymentCostsYearThree/12} \\
+\multicolumn{2}{l}{Infrastructure (non-prod)} & \$\numint{\infrastructureYearOne/12} & \$\numint{\infrastructureYearTwo/12} & \$\numint{\infrastructureYearThree/12} \\
 \multicolumn{2}{l}{Legal/Compliance} & \$\numint{\legalComplianceYearOne/12} & \$\numint{\legalComplianceYearTwo/12} & \$\numint{\legalComplianceYearThree/12} \\
 \multicolumn{2}{l}{Marketing} & \$\numint{\marketingBudgetYearOne/12} & \$\numint{\marketingBudgetYearTwo/12} & \$\numint{\marketingBudgetYearThree/12} \\\midrule
 \multicolumn{2}{l}{\textbf{Total Monthly Burn}} & \textbf{\$\numint{\monthlyBurnYearOne}} & \textbf{\$\numint{\monthlyBurnYearTwo}} & \textbf{\$\numint{\monthlyBurnYearThree}} \\\midrule
@@ -63,21 +79,20 @@ Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} 
 Metric & Value \\\midrule
 Target Breakeven & Month \numint{\breakevenMonth} \\
 Required Subscribers & \numint{\breakevenSubscribers} \\
-Monthly Revenue at Breakeven & \$\numint{\breakevenSubscribers * \markWeightedAvgMonthly} \\
-Monthly Burn at Breakeven & \$\numint{\monthlyBurnYearTwo} \\
+Monthly Gross Profit at Breakeven & \$\numint{\breakevenSubscribers * \subMonthlyGrossProfit} \\
+Monthly Fixed Costs at Breakeven & \$\numint{\monthlyFixedCostsYearTwo} \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-
-	
 \begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 Metric & Year 1 & Year 2 & Year 3 \\\midrule
-Subscription Revenue (actual) & \numint{\actualSubRevenueYearOne} & \numint{\actualSubRevenueYearTwo} & \numint{\actualSubRevenueYearThree} \\
-Gross Profit & \numint{\actualSubRevenueYearOne * \subGrossMargin / 100} & \numint{\actualSubRevenueYearTwo * \subGrossMargin / 100} & \numint{\actualSubRevenueYearThree * \subGrossMargin / 100} \\
+Net Revenue (actual) & \numint{\actualSubRevenueYearOne} & \numint{\actualSubRevenueYearTwo} & \numint{\actualSubRevenueYearThree} \\
+Gross Profit & \numint{\grossProfitYearOne} & \numint{\grossProfitYearTwo} & \numint{\grossProfitYearThree} \\
+Gross Margin & \num{\subGrossMargin}\% & \num{\subGrossMargin}\% & \num{\subGrossMargin}\% \\
 Active Subscribers (year-end) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
 Marketplace's Monthly Rev/User & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} & \$\numfpeval{\markWeightedAvgMonthly} \\
 \bottomrule
@@ -94,7 +109,7 @@ New Subscribers (Paid) & \numint{\newSubsYearOne} & \numint{\newSubsYearTwo} & \
 Cumulative Subs (w/churn) & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
 Annual Churn Rate & \num{\churnYearOne}\% & \num{\churnYearTwo}\% & \num{\churnYearThree}\% \\
 CAC & \$\numint{\cacDigital} & \$\numint{\cacDigital} & \$\numint{\cacDigital} \\
-LTV:CAC Ratio & \numint{\subLTV/(\cacDigital)}:\numint{1} & \numint{\subLTV/(\cacDigital)}:\numint{1} & \numint{\subLTV/(\cacDigital)}:\numint{1} \\
+LTV:CAC Ratio & \numint{\ltvCacRatio}:1 & \numint{\ltvCacRatio}:1 & \numint{\ltvCacRatio}:1 \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -123,15 +138,21 @@ Avg gift cost per user & \$\num{\freeMerchanCost} \\
 \toprule
 \textbf{(USD)} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
 \multicolumn{4}{l}{\textbf{Revenue}} \\
-\textbf{Total Revenue (actual)} & \textbf{\numint{\actualSubRevenueYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree}} \\\midrule
+Net Revenue (actual) & \numint{\actualSubRevenueYearOne} & \numint{\actualSubRevenueYearTwo} & \numint{\actualSubRevenueYearThree} \\\midrule
+\multicolumn{4}{l}{\textbf{Cost of Goods Sold}} \\
+Payment Processing & \numint{\cogsPaymentYearOne} & \numint{\cogsPaymentYearTwo} & \numint{\cogsPaymentYearThree} \\
+Infrastructure (production) & \numint{\cogsInfraYearOne} & \numint{\cogsInfraYearTwo} & \numint{\cogsInfraYearThree} \\
+Support/Disputes & \numint{\cogsSupportYearOne} & \numint{\cogsSupportYearTwo} & \numint{\cogsSupportYearThree} \\
+Trust \& Safety & \numint{\cogsTrustYearOne} & \numint{\cogsTrustYearTwo} & \numint{\cogsTrustYearThree} \\
+\textbf{Total COGS} & \textbf{\numint{\totalCogsYearOne}} & \textbf{\numint{\totalCogsYearTwo}} & \textbf{\numint{\totalCogsYearThree}} \\
+\textbf{Gross Profit} & \textbf{\numint{\grossProfitYearOne}} & \textbf{\numint{\grossProfitYearTwo}} & \textbf{\numint{\grossProfitYearThree}} \\\midrule
 \multicolumn{4}{l}{\textbf{Operating Expenses}} \\
 Team Salaries & \numint{\teamSalariesYearOne} & \numint{\teamSalariesYearTwo} & \numint{\teamSalariesYearThree} \\
 Marketing & \numint{\marketingBudgetYearOne} & \numint{\marketingBudgetYearTwo} & \numint{\marketingBudgetYearThree} \\
-Infrastructure & \numint{\infrastructureYearOne} & \numint{\infrastructureYearTwo} & \numint{\infrastructureYearThree} \\
-Payment Processing & \numint{\paymentCostsYearOne} & \numint{\paymentCostsYearTwo} & \numint{\paymentCostsYearThree} \\
+Infrastructure (non-production) & \numint{\infrastructureYearOne} & \numint{\infrastructureYearTwo} & \numint{\infrastructureYearThree} \\
 Legal/Compliance & \numint{\legalComplianceYearOne} & \numint{\legalComplianceYearTwo} & \numint{\legalComplianceYearThree} \\
-\textbf{Total OpEx} & \textbf{\numint{\totalOpexYearOne + \marketingBudgetYearOne}} & \textbf{\numint{\totalOpexYearTwo + \marketingBudgetYearTwo}} & \textbf{\numint{\totalOpexYearThree + \marketingBudgetYearThree}} \\\midrule
-\textbf{Net Income (Loss)} & \textbf{\numint{\actualSubRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne}} & \textbf{\numint{\actualSubRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}} & \textbf{\numint{\actualSubRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree}} \\
+\textbf{Total OpEx} & \textbf{\numint{\totalOperatingCostsYearOne}} & \textbf{\numint{\totalOperatingCostsYearTwo}} & \textbf{\numint{\totalOperatingCostsYearThree}} \\\midrule
+\textbf{Operating Income (Loss)} & \textbf{\numint{\operatingIncomeYearOne}} & \textbf{\numint{\operatingIncomeYearTwo}} & \textbf{\numint{\operatingIncomeYearThree}} \\
 \bottomrule
 \end{tabularx}
 \end{table}

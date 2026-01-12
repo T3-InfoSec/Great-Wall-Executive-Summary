@@ -55,12 +55,11 @@
 \newcommand{\churnYearTwo}{4.5}
 \newcommand{\churnYearThree}{4}
 
-% --- Gross Margin & LTV Parameters ---
-\newcommand{\subGrossMargin}{52}
-\newcommand{\ltvCapYears}{7}
+% --- Payment Processing (on gross transaction volume) ---
+\newcommand{\paymentProcessingFeeGross}{2.9}
 
-% --- Payment Processing ---
-\newcommand{\paymentProcessingFee}{2.9}
+% --- LTV Parameters ---
+\newcommand{\ltvCapYears}{7}
 
 % --- Revenue Timing (avg months new subs contribute in acquisition year) ---
 \newcommand{\avgRevenueMonthsYearOne}{6.5}
@@ -127,7 +126,47 @@
 \newcommand{\monthlyRevPerSub}{\markWeightedAvgMonthly}
 
 % ============================================================================
-% SECTION 5: CUSTOMER ACQUISITION COST (CAC)
+% SECTION 5: COST OF GOODS SOLD (COGS) - Bottom-Up Estimation
+% ============================================================================
+% COGS expressed as percentage of NET REVENUE (platform's take rate portion)
+% Sources: Accel/Mattermark marketplace benchmarks (60-80% gross margin range)
+%          OpenMetal SaaS infrastructure benchmarks (8-15% infra COGS)
+
+% --- Payment Processing (derived) ---
+% Payment processing charged on gross volume, expressed as % of net revenue
+% Formula: grossFee% / takeRate% = effective % of net revenue
+\newcommand{\cogsPaymentProcessingPercent}{\fpeval{\paymentProcessingFeeGross / (\markPlatformFeePercent/100)}}
+% = 2.9 / 0.28 = 10.36%
+
+% --- Infrastructure (matching platform, reputation system, hosting) ---
+% Benchmark: 8-15% for SaaS; using 10% as early-stage estimate
+% Includes: AWS/cloud compute, database, CDN, monitoring
+\newcommand{\cogsInfraPercent}{10}
+
+% --- Customer Support & Dispute Resolution ---
+% Marketplace-specific: arbitration, refund processing, user support
+% Estimate based on support cost as % of revenue for service marketplaces
+\newcommand{\cogsSupportPercent}{8}
+
+% --- Trust & Safety ---
+% Fraud prevention, identity verification, security audits, compliance
+% Critical for anonymous marketplace; conservative estimate
+\newcommand{\cogsTrustSafetyPercent}{5}
+
+% --- Total COGS (derived) ---
+\newcommand{\totalCogsPercent}{\fpeval{
+    \cogsPaymentProcessingPercent + 
+    \cogsInfraPercent + 
+    \cogsSupportPercent + 
+    \cogsTrustSafetyPercent
+}}
+
+% --- Gross Margin (derived) ---
+\newcommand{\subGrossMargin}{\fpeval{100 - \totalCogsPercent}}
+% Expected result: ~67% (within 60-80% marketplace benchmark range)
+
+% ============================================================================
+% SECTION 6: CUSTOMER ACQUISITION COST (CAC)
 % ============================================================================
 
 % Base CAC before gift effect
@@ -148,7 +187,7 @@
 \newcommand{\budgetContent}{25000}
 
 % ============================================================================
-% SECTION 6: MARKETING BUDGETS & NEW SUBSCRIBER ACQUISITION
+% SECTION 7: MARKETING BUDGETS & NEW SUBSCRIBER ACQUISITION
 % ============================================================================
 
 % Annual marketing budgets (base inputs)
@@ -170,7 +209,7 @@
 \newcommand{\subsPerMonth}{\fpeval{\newSubsYearOne / 12}}
 
 % ============================================================================
-% SECTION 7: CUSTOMER GROWTH WITH CHURN (Derived - ORDER MATTERS)
+% SECTION 8: CUSTOMER GROWTH WITH CHURN (Derived - ORDER MATTERS)
 % ============================================================================
 
 % Year 1: No prior customers, total = new subs acquired
@@ -185,7 +224,7 @@
 \newcommand{\totalSubsYearThree}{\fpeval{\retainedSubsYearThree + \newSubsYearThree}}
 
 % ============================================================================
-% SECTION 8: REVENUE CALCULATIONS (Derived from subscriber counts)
+% SECTION 9: REVENUE CALCULATIONS (Derived from subscriber counts)
 % ============================================================================
 
 % Exit ARR = year-end subscribers * monthly platform revenue * 12
@@ -214,13 +253,44 @@
 \newcommand{\subRevenueYearTwo}{\subARRYearTwo}
 \newcommand{\subRevenueYearThree}{\subARRYearThree}
 
-% Gross transaction volume (for payment processing - based on full price, not just platform fee)
+% Gross transaction volume (GMV - for reference and COGS calculation)
 \newcommand{\grossVolumeYearOne}{\fpeval{\actualSubRevenueYearOne / (\markPlatformFeePercent/100)}}
 \newcommand{\grossVolumeYearTwo}{\fpeval{\actualSubRevenueYearTwo / (\markPlatformFeePercent/100)}}
 \newcommand{\grossVolumeYearThree}{\fpeval{\actualSubRevenueYearThree / (\markPlatformFeePercent/100)}}
 
 % ============================================================================
-% SECTION 9: OPERATING EXPENSES
+% SECTION 10: COST OF GOODS SOLD - DOLLAR AMOUNTS (Derived)
+% ============================================================================
+
+% Total COGS in dollars = net revenue * COGS%
+\newcommand{\totalCogsYearOne}{\fpeval{\actualSubRevenueYearOne * \totalCogsPercent/100}}
+\newcommand{\totalCogsYearTwo}{\fpeval{\actualSubRevenueYearTwo * \totalCogsPercent/100}}
+\newcommand{\totalCogsYearThree}{\fpeval{\actualSubRevenueYearThree * \totalCogsPercent/100}}
+
+% Gross Profit in dollars
+\newcommand{\grossProfitYearOne}{\fpeval{\actualSubRevenueYearOne - \totalCogsYearOne}}
+\newcommand{\grossProfitYearTwo}{\fpeval{\actualSubRevenueYearTwo - \totalCogsYearTwo}}
+\newcommand{\grossProfitYearThree}{\fpeval{\actualSubRevenueYearThree - \totalCogsYearThree}}
+
+% COGS breakdown by component (for detailed reporting)
+\newcommand{\cogsPaymentYearOne}{\fpeval{\actualSubRevenueYearOne * \cogsPaymentProcessingPercent/100}}
+\newcommand{\cogsPaymentYearTwo}{\fpeval{\actualSubRevenueYearTwo * \cogsPaymentProcessingPercent/100}}
+\newcommand{\cogsPaymentYearThree}{\fpeval{\actualSubRevenueYearThree * \cogsPaymentProcessingPercent/100}}
+
+\newcommand{\cogsInfraYearOne}{\fpeval{\actualSubRevenueYearOne * \cogsInfraPercent/100}}
+\newcommand{\cogsInfraYearTwo}{\fpeval{\actualSubRevenueYearTwo * \cogsInfraPercent/100}}
+\newcommand{\cogsInfraYearThree}{\fpeval{\actualSubRevenueYearThree * \cogsInfraPercent/100}}
+
+\newcommand{\cogsSupportYearOne}{\fpeval{\actualSubRevenueYearOne * \cogsSupportPercent/100}}
+\newcommand{\cogsSupportYearTwo}{\fpeval{\actualSubRevenueYearTwo * \cogsSupportPercent/100}}
+\newcommand{\cogsSupportYearThree}{\fpeval{\actualSubRevenueYearThree * \cogsSupportPercent/100}}
+
+\newcommand{\cogsTrustYearOne}{\fpeval{\actualSubRevenueYearOne * \cogsTrustSafetyPercent/100}}
+\newcommand{\cogsTrustYearTwo}{\fpeval{\actualSubRevenueYearTwo * \cogsTrustSafetyPercent/100}}
+\newcommand{\cogsTrustYearThree}{\fpeval{\actualSubRevenueYearThree * \cogsTrustSafetyPercent/100}}
+
+% ============================================================================
+% SECTION 11: OPERATING EXPENSES (Excludes COGS - now separate)
 % ============================================================================
 
 % Team salaries (base inputs)
@@ -228,7 +298,8 @@
 \newcommand{\teamSalariesYearTwo}{600000}
 \newcommand{\teamSalariesYearThree}{1200000}
 
-% Infrastructure (base inputs)
+% Infrastructure - ADDITIONAL beyond COGS (office, non-production tools)
+% Note: Production infrastructure is now in COGS
 \newcommand{\infrastructureYearOne}{10000}
 \newcommand{\infrastructureYearTwo}{20000}
 \newcommand{\infrastructureYearThree}{40000}
@@ -238,34 +309,42 @@
 \newcommand{\legalComplianceYearTwo}{30000}
 \newcommand{\legalComplianceYearThree}{40000}
 
-% Payment processing costs (derived from gross volume)
-\newcommand{\paymentCostsYearOne}{\fpeval{\grossVolumeYearOne * \paymentProcessingFee/100}}
-\newcommand{\paymentCostsYearTwo}{\fpeval{\grossVolumeYearTwo * \paymentProcessingFee/100}}
-\newcommand{\paymentCostsYearThree}{\fpeval{\grossVolumeYearThree * \paymentProcessingFee/100}}
-
-% Total OpEx (excluding marketing - matches table structure)
+% Total OpEx (excluding COGS and marketing)
 \newcommand{\totalOpexYearOne}{\fpeval{
-    \teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \paymentCostsYearOne
+    \teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne
 }}
 \newcommand{\totalOpexYearTwo}{\fpeval{
-    \teamSalariesYearTwo + \infrastructureYearTwo + \legalComplianceYearTwo + \paymentCostsYearTwo
+    \teamSalariesYearTwo + \infrastructureYearTwo + \legalComplianceYearTwo
 }}
 \newcommand{\totalOpexYearThree}{\fpeval{
-    \teamSalariesYearThree + \infrastructureYearThree + \legalComplianceYearThree + \paymentCostsYearThree
+    \teamSalariesYearThree + \infrastructureYearThree + \legalComplianceYearThree
 }}
 
-% Monthly burn rate (total expenses including marketing / 12)
-\newcommand{\monthlyBurnYearOne}{\fpeval{(\totalOpexYearOne + \marketingBudgetYearOne) / 12}}
-\newcommand{\monthlyBurnYearTwo}{\fpeval{(\totalOpexYearTwo + \marketingBudgetYearTwo) / 12}}
-\newcommand{\monthlyBurnYearThree}{\fpeval{(\totalOpexYearThree + \marketingBudgetYearThree) / 12}}
+% Total Operating Costs (OpEx + Marketing, excludes COGS)
+\newcommand{\totalOperatingCostsYearOne}{\fpeval{\totalOpexYearOne + \marketingBudgetYearOne}}
+\newcommand{\totalOperatingCostsYearTwo}{\fpeval{\totalOpexYearTwo + \marketingBudgetYearTwo}}
+\newcommand{\totalOperatingCostsYearThree}{\fpeval{\totalOpexYearThree + \marketingBudgetYearThree}}
 
-% Net income (loss)
-\newcommand{\actualNetIncomeYearOne}{\fpeval{\actualSubRevenueYearOne - \totalOpexYearOne - \marketingBudgetYearOne}}
-\newcommand{\actualNetIncomeYearTwo}{\fpeval{\actualSubRevenueYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}}
-\newcommand{\actualNetIncomeYearThree}{\fpeval{\actualSubRevenueYearThree - \totalOpexYearThree - \marketingBudgetYearThree}}
+% Monthly burn rate (COGS + OpEx + Marketing / 12)
+\newcommand{\monthlyBurnYearOne}{\fpeval{(\totalCogsYearOne + \totalOpexYearOne + \marketingBudgetYearOne) / 12}}
+\newcommand{\monthlyBurnYearTwo}{\fpeval{(\totalCogsYearTwo + \totalOpexYearTwo + \marketingBudgetYearTwo) / 12}}
+\newcommand{\monthlyBurnYearThree}{\fpeval{(\totalCogsYearThree + \totalOpexYearThree + \marketingBudgetYearThree) / 12}}
+
+% Net income (loss) = Revenue - COGS - OpEx - Marketing
+\newcommand{\actualNetIncomeYearOne}{\fpeval{\actualSubRevenueYearOne - \totalCogsYearOne - \totalOpexYearOne - \marketingBudgetYearOne}}
+\newcommand{\actualNetIncomeYearTwo}{\fpeval{\actualSubRevenueYearTwo - \totalCogsYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}}
+\newcommand{\actualNetIncomeYearThree}{\fpeval{\actualSubRevenueYearThree - \totalCogsYearThree - \totalOpexYearThree - \marketingBudgetYearThree}}
+
+% Operating Income (EBIT) = Gross Profit - OpEx - Marketing
+\newcommand{\operatingIncomeYearOne}{\fpeval{\grossProfitYearOne - \totalOpexYearOne - \marketingBudgetYearOne}}
+\newcommand{\operatingIncomeYearTwo}{\fpeval{\grossProfitYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}}
+\newcommand{\operatingIncomeYearThree}{\fpeval{\grossProfitYearThree - \totalOpexYearThree - \marketingBudgetYearThree}}
+
+% Operating Margin (for Rule of 40)
+\newcommand{\operatingMarginYearThree}{\fpeval{\operatingIncomeYearThree / \actualSubRevenueYearThree * 100}}
 
 % ============================================================================
-% SECTION 10: UNIT ECONOMICS & LTV
+% SECTION 12: UNIT ECONOMICS & LTV
 % ============================================================================
 
 % Average annual churn (for LTV calculation)
@@ -277,7 +356,7 @@
 % Actual lifetime used (capped)
 \newcommand{\ltvYearsUsed}{\fpeval{min(\theoreticalLifetimeYears, \ltvCapYears)}}
 
-% Annual gross profit per subscriber
+% Annual gross profit per subscriber (uses derived gross margin)
 \newcommand{\subAnnualGrossProfit}{\fpeval{\markWeightedAvgAnnual * \subGrossMargin/100}}
 
 % Monthly gross profit per subscriber
@@ -289,16 +368,21 @@
 % Payback period (months) = CAC / monthly gross profit
 \newcommand{\subPaybackMonths}{\fpeval{round(\cacDigital / \subMonthlyGrossProfit, 1)}}
 
+% LTV:CAC ratio
+\newcommand{\ltvCacRatio}{\fpeval{round(\subLTV / \cacDigital, 0)}}
+
 % CAC reduction percent (placeholder for future viral/referral effects)
 \newcommand{\cacReductionPercent}{0}
 
 % ============================================================================
-% SECTION 11: BREAKEVEN ANALYSIS
+% SECTION 13: BREAKEVEN ANALYSIS
 % ============================================================================
 
-% Breakeven subscribers = monthly burn / monthly platform revenue per sub
-% Using Year 2 burn as target steady-state
-\newcommand{\breakevenSubscribersRaw}{\fpeval{\monthlyBurnYearTwo / \markWeightedAvgMonthly}}
+% Monthly fixed costs (OpEx + Marketing at Year 2 steady-state)
+\newcommand{\monthlyFixedCostsYearTwo}{\fpeval{(\totalOpexYearTwo + \marketingBudgetYearTwo) / 12}}
+
+% Breakeven subscribers = monthly fixed costs / monthly gross profit per sub
+\newcommand{\breakevenSubscribersRaw}{\fpeval{\monthlyFixedCostsYearTwo / \subMonthlyGrossProfit}}
 \newcommand{\breakevenSubscribers}{\fpeval{round(\breakevenSubscribersRaw, -1)}}
 
 % Breakeven month estimate (when cumulative subs reach breakeven level)
@@ -309,7 +393,7 @@
 \newcommand{\breakevenMonth}{\fpeval{round(\breakevenMonthRaw, 0)}}
 
 % ============================================================================
-% SECTION 12: FUNDING & RUNWAY
+% SECTION 14: FUNDING & RUNWAY
 % ============================================================================
 
 % Seed round
@@ -337,18 +421,18 @@
 % Runway calculations (months)
 \newcommand{\seedRunwayMonths}{\fpeval{round(\cashAfterSeed / \monthlyBurnYearOne, 0)}}
 \newcommand{\seriesARunwayMonths}{\fpeval{round(\cashAfterSeriesA / \monthlyBurnYearTwo, 0)}}
-\newcommand{\seedRunway}{24}
 
 % ============================================================================
-% SECTION 13: GROWTH RATES & VALUATION
+% SECTION 15: GROWTH RATES & VALUATION
 % ============================================================================
 
 % ARR growth rates (%)
 \newcommand{\growthRateYearOneTwo}{\fpeval{(\subARRYearTwo - \subARRYearOne) / \subARRYearOne * 100}}
 \newcommand{\growthRateYearTwoThree}{\fpeval{(\subARRYearThree - \subARRYearTwo) / \subARRYearTwo * 100}}
 
-% Rule of 40 score (growth rate + profit margin proxy)
-\newcommand{\ruleOfFortyScore}{\fpeval{\growthRateYearTwoThree + \subGrossMargin}}
+% Rule of 40 score (growth rate + operating margin)
+% Now uses actual operating margin instead of gross margin
+\newcommand{\ruleOfFortyScore}{\fpeval{\growthRateYearTwoThree + \operatingMarginYearThree}}
 
 % Valuation multiples
 \newcommand{\arrMultiple}{3}
@@ -363,7 +447,7 @@
 \newcommand{\optimisticValHigh}{\fpeval{round(\subARRYearThree * \optimisticARRMultiple / 1000000, 0)}}
 
 % ============================================================================
-% SECTION 14: MARKET SIZING (TAM/SAM)
+% SECTION 16: MARKET SIZING (TAM/SAM)
 % ============================================================================
 
 % TAM components (number of potential users globally)
@@ -384,7 +468,7 @@
 \newcommand{\targetSubsCountk}{\fpeval{round(\samSubs * \targetShareSubs / 100 / 1000, 0)}}
 
 % ============================================================================
-% SECTION 15: MERCHANDISE (Excluded from projections - community engagement only)
+% SECTION 17: MERCHANDISE (Excluded from projections - community engagement only)
 % ============================================================================
 
 \newcommand{\merchAttachRate}{0}
@@ -408,13 +492,16 @@
 \newcommand{\merchBackpackMargin}{45}
 
 % ============================================================================
-% SECTION 16: REFERENCE METRICS (For display/validation)
+% SECTION 18: REFERENCE METRICS (For display/validation)
 % ============================================================================
 
 % Customers per thousand (for certain calculations)
 \newcommand{\custPerThousandYearOne}{50}
 \newcommand{\custPerThousandYearTwo}{50}
 \newcommand{\custPerThousandYearThree}{50}
+
+% Legacy compatibility - paymentProcessingFee alias
+\newcommand{\paymentProcessingFee}{\paymentProcessingFeeGross}
 
 % ============================================================================
 % END OF SOFTCODED VARIABLES
