@@ -18,7 +18,7 @@ betaTenDate & \betaTenDate & First 10 beta clients \\
 betaEndDate & \betaEndDate & End of beta period \\
 scaleMktDate & \scaleMktDate & Scale marketing date \\
 kCustomersDate & \kCustomersDate & 1,000 customers target \\
-betaUsers & \num{\betaUsers} & Beta user target \\
+betaUsers & \numint{\betaUsers} & Beta user target \\
 \bottomrule
 \end{tabularx}
 
@@ -70,11 +70,49 @@ Golden & \num{\subGoldenPrice} & \num{\markRevenueGolden} \\\midrule
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
-markPlatformFeePercent & \num{\markPlatformFeePercent}\% & Platform fee \\
+markPlatformFeePercent & \num{\markPlatformFeePercent}\% & Platform fee (take rate) \\
 markWeightedAvgMonthly & \$\num{\markWeightedAvgMonthly} & Monthly platform rev/sub \\
 markWeightedAvgAnnual & \$\num{\markWeightedAvgAnnual} & Annual platform rev/sub \\
 \bottomrule
 \end{tabularx}
+
+\subsection*{A5b. Cost of Goods Sold - Components}
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{COGS Component} & \textbf{Value} & \textbf{Basis} \\\midrule
+\multicolumn{3}{l}{\textit{Payment Processing (Derived from gross fee)}} \\
+paymentProcessingFeeGross & \num{\paymentProcessingFeeGross}\% & Fee charged on GMV \\
+cogsPaymentProcessingPercent & \num{\cogsPaymentProcessingPercent}\% & = \num{\paymentProcessingFeeGross}\% $\div$ \num{\markPlatformFeePercent}\% take rate \\\midrule
+\multicolumn{3}{l}{\textit{Operating COGS (Bottom-up estimates)}} \\
+cogsInfraPercent & \num{\cogsInfraPercent}\% & Matching platform, hosting (8-15\% benchmark) \\
+cogsSupportPercent & \num{\cogsSupportPercent}\% & Dispute resolution, customer support \\
+cogsTrustSafetyPercent & \num{\cogsTrustSafetyPercent}\% & Fraud prevention, security, compliance \\\midrule
+\textbf{totalCogsPercent} & \textbf{\num{\totalCogsPercent}\%} & \textbf{Sum of all components} \\
+\textbf{subGrossMargin} & \textbf{\num{\subGrossMargin}\%} & \textbf{= 100\% $-$ COGS\%} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Verification: \num{\cogsPaymentProcessingPercent} + \num{\cogsInfraPercent} + \num{\cogsSupportPercent} + \num{\cogsTrustSafetyPercent} = \num{\totalCogsPercent}\% $\rightarrow$ Gross Margin = \num{\subGrossMargin}\%}
+
+\medskip
+\textit{Benchmark: Marketplace gross margins typically 60--80\% (Accel/Mattermark). Our \num{\subGrossMargin}\% is conservative within range.}
+
+\subsection*{A5c. Cost of Goods Sold - Dollar Amounts (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{COGS Component} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+Payment Processing & \$\numint{\cogsPaymentYearOne} & \$\numint{\cogsPaymentYearTwo} & \$\numint{\cogsPaymentYearThree} \\
+Infrastructure & \$\numint{\cogsInfraYearOne} & \$\numint{\cogsInfraYearTwo} & \$\numint{\cogsInfraYearThree} \\
+Support/Disputes & \$\numint{\cogsSupportYearOne} & \$\numint{\cogsSupportYearTwo} & \$\numint{\cogsSupportYearThree} \\
+Trust \& Safety & \$\numint{\cogsTrustYearOne} & \$\numint{\cogsTrustYearTwo} & \$\numint{\cogsTrustYearThree} \\\midrule
+\textbf{Total COGS} & \textbf{\$\numint{\totalCogsYearOne}} & \textbf{\$\numint{\totalCogsYearTwo}} & \textbf{\$\numint{\totalCogsYearThree}} \\
+\textbf{Gross Profit} & \textbf{\$\numint{\grossProfitYearOne}} & \textbf{\$\numint{\grossProfitYearTwo}} & \textbf{\$\numint{\grossProfitYearThree}} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Gross Profit = Net Revenue $-$ COGS. Verification Y1: \$\numint{\actualSubRevenueYearOne} $-$ \$\numint{\totalCogsYearOne} = \$\numint{\grossProfitYearOne}}
 
 \subsection*{A6. Customer Acquisition Cost}
 \begin{tabularx}{\linewidth}{l Y X}
@@ -122,7 +160,7 @@ newSubs & \numint{\newSubsYearOne} & \numint{\newSubsYearTwo} & \numint{\newSubs
 \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
 subARR (Exit) & \$\numint{\subARRYearOne} & \$\numint{\subARRYearTwo} & \$\numint{\subARRYearThree} \\
 actualSubRevenue & \$\numint{\actualSubRevenueYearOne} & \$\numint{\actualSubRevenueYearTwo} & \$\numint{\actualSubRevenueYearThree} \\
-grossVolume & \$\numint{\grossVolumeYearOne} & \$\numint{\grossVolumeYearTwo} & \$\numint{\grossVolumeYearThree} \\
+grossVolume (GMV) & \$\numint{\grossVolumeYearOne} & \$\numint{\grossVolumeYearTwo} & \$\numint{\grossVolumeYearThree} \\
 \bottomrule
 \end{tabularx}
 
@@ -134,40 +172,43 @@ avgRevenueMonthsYearOne & \num{\avgRevenueMonthsYearOne} & Avg months new subs c
 \bottomrule
 \end{tabularx}
 
-% \subsection*{A10. Operating Expenses}
-% \begin{tabularx}{\linewidth}{l Y Y Y}
-% \toprule
-% \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
-% teamSalaries & \$\numint{\teamSalariesYearOne} & \$\numint{\teamSalariesYearTwo} & \$\numint{\teamSalariesYearThree} \\
-% infrastructure & \$\numint{\infrastructureYearOne} & \$\numint{\infrastructureYearTwo} & \$\numint{\infrastructureYearThree} \\
-% legalCompliance & \$\numint{\legalComplianceYearOne} & \$\numint{\legalComplianceYearTwo} & \$\numint{\legalComplianceYearThree} \\
-% paymentCosts & \$\numint{\paymentCostsYearOne} & \$\numint{\paymentCostsYearTwo} & \$\numint{\paymentCostsYearThree} \\
-% \textbf{totalOpex} & \textbf{\$\numint{\totalOpexYearOne}} & \textbf{\$\numint{\totalOpexYearTwo}} & \textbf{\$\numint{\totalOpexYearThree}} \\
-% \bottomrule
-% \end{tabularx}
-
-\medskip
-\begin{tabularx}{\linewidth}{l Y X}
-\toprule
-\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
-paymentProcessingFee & \num{\paymentProcessingFee}\% & Payment processing rate \\
-\bottomrule
-\end{tabularx}
-
-\subsection*{A11. Monthly Burn \& Net Income (Derived)}
+\subsection*{A10. Operating Expenses (Excludes COGS)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
-monthlyBurn & \$\numint{\monthlyBurnYearOne} & \$\numint{\monthlyBurnYearTwo} & \$\numint{\monthlyBurnYearThree} \\
-\textbf{actualNetIncome} & \textbf{\$\numint{\actualNetIncomeYearOne}} & \textbf{\$\numint{\actualNetIncomeYearTwo}} & \textbf{\$\numint{\actualNetIncomeYearThree}} \\
+teamSalaries & \$\numint{\teamSalariesYearOne} & \$\numint{\teamSalariesYearTwo} & \$\numint{\teamSalariesYearThree} \\
+infrastructure (non-COGS) & \$\numint{\infrastructureYearOne} & \$\numint{\infrastructureYearTwo} & \$\numint{\infrastructureYearThree} \\
+legalCompliance & \$\numint{\legalComplianceYearOne} & \$\numint{\legalComplianceYearTwo} & \$\numint{\legalComplianceYearThree} \\
+marketing & \$\numint{\marketingBudgetYearOne} & \$\numint{\marketingBudgetYearTwo} & \$\numint{\marketingBudgetYearThree} \\\midrule
+\textbf{totalOperatingCosts} & \textbf{\$\numint{\totalOperatingCostsYearOne}} & \textbf{\$\numint{\totalOperatingCostsYearTwo}} & \textbf{\$\numint{\totalOperatingCostsYearThree}} \\
 \bottomrule
 \end{tabularx}
+
+\medskip
+\textit{Note: Payment processing moved to COGS. Production infrastructure in COGS; this line is office/non-production tools.}
+
+\subsection*{A11. Profit \& Loss Flow (Derived)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Line Item} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
+Net Revenue & \$\numint{\actualSubRevenueYearOne} & \$\numint{\actualSubRevenueYearTwo} & \$\numint{\actualSubRevenueYearThree} \\
+$-$ COGS & (\$\numint{\totalCogsYearOne}) & (\$\numint{\totalCogsYearTwo}) & (\$\numint{\totalCogsYearThree}) \\
+\textbf{= Gross Profit} & \textbf{\$\numint{\grossProfitYearOne}} & \textbf{\$\numint{\grossProfitYearTwo}} & \textbf{\$\numint{\grossProfitYearThree}} \\
+$-$ OpEx (excl. mktg) & (\$\numint{\totalOpexYearOne}) & (\$\numint{\totalOpexYearTwo}) & (\$\numint{\totalOpexYearThree}) \\
+$-$ Marketing & (\$\numint{\marketingBudgetYearOne}) & (\$\numint{\marketingBudgetYearTwo}) & (\$\numint{\marketingBudgetYearThree}) \\
+\textbf{= Operating Income} & \textbf{\$\numint{\operatingIncomeYearOne}} & \textbf{\$\numint{\operatingIncomeYearTwo}} & \textbf{\$\numint{\operatingIncomeYearThree}} \\\midrule
+monthlyBurn & \$\numint{\monthlyBurnYearOne} & \$\numint{\monthlyBurnYearTwo} & \$\numint{\monthlyBurnYearThree} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Operating Income = Net Income (no interest/taxes at this stage). Monthly burn = (COGS + OpEx + Marketing) / 12.}
 
 \subsection*{A12. Unit Economics \& LTV (Derived)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
-subGrossMargin & \num{\subGrossMargin}\% & Gross margin \\
+subGrossMargin & \num{\subGrossMargin}\% & Derived from COGS (100\% $-$ \num{\totalCogsPercent}\%) \\
 avgAnnualChurn & \num{\avgAnnualChurn} & Avg churn (decimal) \\
 theoreticalLifetimeYears & \num{\theoreticalLifetimeYears} & 1/churn \\
 ltvCapYears & \num{\ltvCapYears} & LTV cap \\
@@ -176,14 +217,19 @@ subAnnualGrossProfit & \$\num{\subAnnualGrossProfit} & Annual GP/sub \\
 subMonthlyGrossProfit & \$\num{\subMonthlyGrossProfit} & Monthly GP/sub \\
 \textbf{subLTV} & \textbf{\$\num{\subLTV}} & \textbf{Lifetime Value} \\
 subPaybackMonths & \num{\subPaybackMonths} mo & Payback period \\
-LTV:CAC Ratio & \numint{\subLTV/\cacDigital}:1 & Unit economics ratio \\
+\textbf{ltvCacRatio} & \textbf{\num{\ltvCacRatio}:1} & \textbf{LTV:CAC ratio} \\
 \bottomrule
 \end{tabularx}
+
+\medskip
+\textit{LTV calculation: \$\num{\markWeightedAvgAnnual}/yr $\times$ \num{\subGrossMargin}\% margin $\times$ \num{\ltvYearsUsed} years = \$\num{\subLTV}}
 
 \subsection*{A13. Breakeven Analysis (Derived)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+monthlyFixedCostsYearTwo & \$\numint{\monthlyFixedCostsYearTwo} & Monthly OpEx + Marketing \\
+subMonthlyGrossProfit & \$\num{\subMonthlyGrossProfit} & Contribution per sub \\
 breakevenSubscribersRaw & \num{\breakevenSubscribersRaw} & Raw calculation \\
 breakevenSubscribers & \numint{\breakevenSubscribers} & Rounded to 10s \\
 monthlyGrowthYearTwo & \num{\monthlyGrowthYearTwo} & Monthly sub growth Y2 \\
@@ -191,6 +237,9 @@ breakevenMonthRaw & \num{\breakevenMonthRaw} & Raw month calc \\
 \textbf{breakevenMonth} & \textbf{Month \numint{\breakevenMonth}} & \textbf{Target breakeven} \\
 \bottomrule
 \end{tabularx}
+
+\medskip
+\textit{Breakeven = Fixed Costs / Gross Profit per Sub = \$\numint{\monthlyFixedCostsYearTwo} / \$\num{\subMonthlyGrossProfit} = \numint{\breakevenSubscribers} subs}
 
 \subsection*{A14. Funding \& Runway}
 \begin{tabularx}{\linewidth}{l Y Y X}
@@ -207,9 +256,10 @@ runwayMonths & \numint{\seedRunwayMonths} mo & \numint{\seriesARunwayMonths} mo 
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
-growthRateYearOneTwo & \num{\growthRateYearOneTwo}\% & Y1→Y2 ARR growth \\
-growthRateYearTwoThree & \num{\growthRateYearTwoThree}\% & Y2→Y3 ARR growth \\
-ruleOfFortyScore & \num{\ruleOfFortyScore} & Growth + margin \\
+growthRateYearOneTwo & \num{\growthRateYearOneTwo}\% & Y1$\rightarrow$Y2 ARR growth \\
+growthRateYearTwoThree & \num{\growthRateYearTwoThree}\% & Y2$\rightarrow$Y3 ARR growth \\
+operatingMarginYearThree & \num{\operatingMarginYearThree}\% & Y3 operating margin \\
+\textbf{ruleOfFortyScore} & \textbf{\num{\ruleOfFortyScore}} & \textbf{Growth + Op. Margin} \\
 arrMultiple & \num{\arrMultiple}x & Base ARR multiple \\
 targetARRMultiple & \num{\targetARRMultiple}x & Conservative multiple \\
 optimisticARRMultiple & \num{\optimisticARRMultiple}x & Optimistic multiple \\
@@ -219,6 +269,9 @@ optimisticValLow & \$\num{\optimisticValLow}M & Optimistic low \\
 optimisticValHigh & \$\num{\optimisticValHigh}M & Optimistic high \\
 \bottomrule
 \end{tabularx}
+
+\medskip
+\textit{Rule of 40: Y2$\rightarrow$Y3 growth (\numfpeval{round(\growthRateYearTwoThree,0)}\%) + Y3 operating margin (\numfpeval{round(\operatingMarginYearThree,0)}\%) = \numfpeval{round(\ruleOfFortyScore,0)}}
 
 \subsection*{A16. Market Sizing (TAM/SAM)}
 \begin{tabularx}{\linewidth}{l Y X}

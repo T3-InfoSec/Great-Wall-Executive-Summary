@@ -41,13 +41,23 @@ The Series A valuation is supported by a combination of capital efficiency, de-r
 
 \subsection{Growth \& Unit Economics Supporting Valuation}
 \begin{itemize}
-    \item \textbf{Accelerating ARR Growth:} Proven scaling from \numfpeval{round(\growthRateYearOneTwo, 1)}\% (Y1-Y2) to \numfpeval{round(\growthRateYearTwoThree, 1)}\% (Y2-Y3).
+    \item \textbf{Accelerating ARR Growth:} Projected scaling from \numfpeval{round(\growthRateYearOneTwo, 1)}\% (Y1-Y2) to \numfpeval{round(\growthRateYearTwoThree, 1)}\% (Y2-Y3).
     
-    \item \textbf{Exceptional Unit Economics:} A powerful \numint{\subLTV/(\cacDigital)}:1 LTV:CAC ratio enables our aggressive growth strategy.
+    \item \textbf{Exceptional Unit Economics:} A powerful \numint{\ltvCacRatio}:1 LTV:CAC ratio enables our aggressive growth strategy.
     
-    \item \textbf{Aggressive, Data-Driven Acquisition:} Scaling marketing from \$\numint{\marketingBudgetYearOne} (Y1) to \$\numint{\marketingBudgetYearThree} (Y3). This investment is fueled by our proven \numint{\subLTV/(\cacDigital)}:1 LTV:CAC.
+    \item \textbf{Aggressive, Data-Driven Acquisition:} Scaling marketing from \$\numint{\marketingBudgetYearOne} (Y1) to \$\numint{\marketingBudgetYearThree} (Y3). This investment is fueled by our proven \numint{\ltvCacRatio}:1 LTV:CAC.
     
     \item \textbf{Provider Growth Flywheel:} Organic alignment, amplified by targeted referral and rev-share programs, to rapidly scale network density.
     
     \item \textbf{Strategic Market Position:} Competitive \markPlatformFeePercent\% take rate with a clear strategy to capture \num{\targetShareSubs}\% market share.
+    
+    \item \textbf{Rule of 40 Performance:} Year 3 projects \numfpeval{round(\growthRateYearTwoThree, 0)}\% ARR growth + \numfpeval{round(\operatingMarginYearThree, 0)}\% operating margin = \numfpeval{round(\ruleOfFortyScore, 0)} score, significantly exceeding the 40\% threshold that signals sustainable, efficient growth\cite{openview2023}.
+\end{itemize}
+
+\subsection{Gross Margin Context}
+Our \num{\subGrossMargin}\% gross margin positions us within industry benchmarks:
+\begin{itemize}
+    \item \textbf{Marketplace benchmark:} 60--80\% gross margin typical for tech-enabled marketplaces\cite{andreessen2020}
+    \item \textbf{SaaS benchmark:} 70--85\% for subscription software\cite{openview2023}
+    \item \textbf{Our position:} \num{\subGrossMargin}\% reflects conservative COGS assumptions including \num{\cogsPaymentProcessingPercent}\% payment processing (on net revenue basis), with room for improvement via Lightning Network adoption
 \end{itemize}
