@@ -1,13 +1,14 @@
-% 99-appendix-debug.tex - Debug dump of all softcoded variables
-% Location: content/99-appendix-debug.tex
-% Usage: Add \input{content/99-appendix-debug} before \end{document} in main.tex
+% 99-appendix-debug.tex - Debug dump with automatic validation
+% Location: content/99-appendix-debug-variables.tex
 
 \newpage
 \appendix
 \section*{Appendix: Variable Debug Dump}
 \addcontentsline{toc}{section}{Appendix: Variable Debug Dump}
 
-\textit{This appendix displays all softcoded variables for verification and debugging. All derived values are computed at compile time from base inputs.}
+\textit{This appendix displays all softcoded variables with automatic validation. Computed values are checked against hardcoded expectations at compile time.}
+
+\validationlegend
 
 \subsection*{A1. Timeline \& Milestones}
 \begin{tabularx}{\linewidth}{l l X}
@@ -43,26 +44,26 @@ Golden & \num{\computeHoursGolden} & \num{\subGoldenMix}\% & \num{\patrickMarkup
 \bottomrule
 \end{tabularx}
 
-\subsection*{A4. Provider Economics (Derived)}
+\subsection*{A4. Provider Economics (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Tier} & \textbf{Cost (\$/mo)} & \textbf{Gross (\$/mo)} & \textbf{Profit (\$/mo)} \\\midrule
-Basic & \num{\patrickCostBasic} & \num{\patrickGrossBasic} & \num{\patrickProfitBasic} \\
-Medium & \num{\patrickCostMedium} & \num{\patrickGrossMedium} & \num{\patrickProfitMedium} \\
-Professional & \num{\patrickCostProfessional} & \num{\patrickGrossProfessional} & \num{\patrickProfitProfessional} \\
-Golden & \num{\patrickCostGolden} & \num{\patrickGrossGolden} & \num{\patrickProfitGolden} \\
+Basic & \validate{\patrickCostBasic}{\HCpatrickCostBasic} & \validate{\patrickGrossBasic}{\HCpatrickGrossBasic} & \validate{\patrickProfitBasic}{\HCpatrickProfitBasic} \\
+Medium & \validate{\patrickCostMedium}{\HCpatrickCostMedium} & \validate{\patrickGrossMedium}{\HCpatrickGrossMedium} & \validate{\patrickProfitMedium}{\HCpatrickProfitMedium} \\
+Professional & \validate{\patrickCostProfessional}{\HCpatrickCostProfessional} & \validate{\patrickGrossProfessional}{\HCpatrickGrossProfessional} & \validate{\patrickProfitProfessional}{\HCpatrickProfitProfessional} \\
+Golden & \validate{\patrickCostGolden}{\HCpatrickCostGolden} & \validate{\patrickGrossGolden}{\HCpatrickGrossGolden} & \validate{\patrickProfitGolden}{\HCpatrickProfitGolden} \\
 \bottomrule
 \end{tabularx}
 
-\subsection*{A5. Subscription Pricing (Derived)}
+\subsection*{A5. Subscription Pricing (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y}
 \toprule
 \textbf{Tier} & \textbf{Price (\$/mo)} & \textbf{Platform Rev (\$/mo)} \\\midrule
-Basic & \num{\subBasicPrice} & \num{\markRevenueBasic} \\
-Medium & \num{\subMediumPrice} & \num{\markRevenueMedium} \\
-Professional & \num{\subProfessionalPrice} & \num{\markRevenueProfessional} \\
-Golden & \num{\subGoldenPrice} & \num{\markRevenueGolden} \\\midrule
-\textbf{Weighted Avg} & \num{\subWeightedAvgPrice} & \num{\markWeightedAvgMonthly} \\
+Basic & \validate{\subBasicPrice}{\HCsubBasicPrice} & \validate{\markRevenueBasic}{\HCmarkRevenueBasic} \\
+Medium & \validate{\subMediumPrice}{\HCsubMediumPrice} & \validate{\markRevenueMedium}{\HCmarkRevenueMedium} \\
+Professional & \validate{\subProfessionalPrice}{\HCsubProfessionalPrice} & \validate{\markRevenueProfessional}{\HCmarkRevenueProfessional} \\
+Golden & \validate{\subGoldenPrice}{\HCsubGoldenPrice} & \validate{\markRevenueGolden}{\HCmarkRevenueGolden} \\\midrule
+\textbf{Weighted Avg} & \validate{\subWeightedAvgPrice}{\HCsubWeightedAvgPrice} & \validate{\markWeightedAvgMonthly}{\HCmarkWeightedAvgMonthly} \\
 \bottomrule
 \end{tabularx}
 
@@ -71,8 +72,8 @@ Golden & \num{\subGoldenPrice} & \num{\markRevenueGolden} \\\midrule
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
 markPlatformFeePercent & \num{\markPlatformFeePercent}\% & Platform fee (take rate) \\
-markWeightedAvgMonthly & \$\num{\markWeightedAvgMonthly} & Monthly platform rev/sub \\
-markWeightedAvgAnnual & \$\num{\markWeightedAvgAnnual} & Annual platform rev/sub \\
+markWeightedAvgMonthly & \validate{\markWeightedAvgMonthly}{\HCmarkWeightedAvgMonthly} & Monthly platform rev/sub \\
+markWeightedAvgAnnual & \validate{\markWeightedAvgAnnual}{\HCmarkWeightedAvgAnnual} & Annual platform rev/sub \\
 \bottomrule
 \end{tabularx}
 
@@ -95,26 +96,16 @@ cogsTrustSafetyPercent & \num{\cogsTrustSafetyPercent}\% & Fraud prevention, sec
 \medskip
 \textit{Verification: \num{\cogsPaymentProcessingPercent} + \num{\cogsInfraPercent} + \num{\cogsSupportPercent} + \num{\cogsTrustSafetyPercent} = \num{\totalCogsPercent}\% $\rightarrow$ Gross Margin = \num{\subGrossMargin}\%}
 
-\medskip
-\textit{Benchmark: Marketplace gross margins typically 60--80\% (Accel/Mattermark). Our \num{\subGrossMargin}\% is conservative within range.}
-
-\subsection*{A5c. Cost of Goods Sold - Dollar Amounts (Derived)}
+\subsection*{A5c. Cost of Goods Sold - Dollar Amounts (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{COGS Component} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
-Payment Processing & \$\numint{\cogsPaymentYearOne} & \$\numint{\cogsPaymentYearTwo} & \$\numint{\cogsPaymentYearThree} \\
-Infrastructure & \$\numint{\cogsInfraYearOne} & \$\numint{\cogsInfraYearTwo} & \$\numint{\cogsInfraYearThree} \\
-Support/Disputes & \$\numint{\cogsSupportYearOne} & \$\numint{\cogsSupportYearTwo} & \$\numint{\cogsSupportYearThree} \\
-Trust \& Safety & \$\numint{\cogsTrustYearOne} & \$\numint{\cogsTrustYearTwo} & \$\numint{\cogsTrustYearThree} \\\midrule
-\textbf{Total COGS} & \textbf{\$\numint{\totalCogsYearOne}} & \textbf{\$\numint{\totalCogsYearTwo}} & \textbf{\$\numint{\totalCogsYearThree}} \\
-\textbf{Gross Profit} & \textbf{\$\numint{\grossProfitYearOne}} & \textbf{\$\numint{\grossProfitYearTwo}} & \textbf{\$\numint{\grossProfitYearThree}} \\
+Total COGS & \validatemoney{\totalCogsYearOne}{\HCtotalCogsYearOne} & \validatemoney{\totalCogsYearTwo}{\HCtotalCogsYearTwo} & \validatemoney{\totalCogsYearThree}{\HCtotalCogsYearThree} \\
+Gross Profit & \validatemoney{\grossProfitYearOne}{\HCgrossProfitYearOne} & \validatemoney{\grossProfitYearTwo}{\HCgrossProfitYearTwo} & \validatemoney{\grossProfitYearThree}{\HCgrossProfitYearThree} \\
 \bottomrule
 \end{tabularx}
 
-\medskip
-\textit{Gross Profit = Net Revenue $-$ COGS. Verification Y1: \$\numint{\actualSubRevenueYearOne} $-$ \$\numint{\totalCogsYearOne} = \$\numint{\grossProfitYearOne}}
-
-\subsection*{A6. Customer Acquisition Cost}
+\subsection*{A6. Customer Acquisition Cost (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
@@ -122,45 +113,44 @@ cacDigitalWithoutFreeMerchan & \$\num{\cacDigitalWithoutFreeMerchan} & Base digi
 cacContentWithoutFreeMerchan & \$\num{\cacContentWithoutFreeMerchan} & Base content CAC \\
 freeMerchanCacReductionPercent & \num{\freeMerchanCacReductionPercent}\% & Gift reduction effect \\
 freeMerchanCost & \$\num{\freeMerchanCost} & Gift cost per user \\
-\textbf{cacDigital} & \textbf{\$\num{\cacDigital}} & \textbf{Effective digital CAC} \\
-\textbf{cacContent} & \textbf{\$\num{\cacContent}} & \textbf{Effective content CAC} \\
+\textbf{cacDigital} & \validate{\cacDigital}{\HCcacDigital} & \textbf{Effective digital CAC} \\
+\textbf{cacContent} & \validate{\cacContent}{\HCcacContent} & \textbf{Effective content CAC} \\
 budgetDigital & \$\numint{\budgetDigital} & Digital budget \\
 budgetContent & \$\numint{\budgetContent} & Content budget \\
 \bottomrule
 \end{tabularx}
 
-\subsection*{A7. Marketing Budgets \& New Subscribers}
+\subsection*{A7. Marketing Budgets \& New Subscribers (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
 marketingBudget & \$\numint{\marketingBudgetYearOne} & \$\numint{\marketingBudgetYearTwo} & \$\numint{\marketingBudgetYearThree} \\
-baseNewSubs & \numint{\baseNewSubsYearOne} & \numint{\baseNewSubsYearTwo} & \numint{\baseNewSubsYearThree} \\
-newSubs & \numint{\newSubsYearOne} & \numint{\newSubsYearTwo} & \numint{\newSubsYearThree} \\
+baseNewSubs & \validateint{\baseNewSubsYearOne}{\HCbaseNewSubsYearOne} & \validateint{\baseNewSubsYearTwo}{\HCbaseNewSubsYearTwo} & \validateint{\baseNewSubsYearThree}{\HCbaseNewSubsYearThree} \\
+newSubs & \validateint{\newSubsYearOne}{\HCbaseNewSubsYearOne} & \validateint{\newSubsYearTwo}{\HCbaseNewSubsYearTwo} & \validateint{\newSubsYearThree}{\HCbaseNewSubsYearThree} \\
 \bottomrule
 \end{tabularx}
 
-\subsection*{A8. Customer Growth with Churn (Derived)}
+\subsection*{A8. Customer Growth with Churn (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
 churnRate & \num{\churnYearOne}\% & \num{\churnYearTwo}\% & \num{\churnYearThree}\% \\
-retainedSubs & --- & \numint{\retainedSubsYearTwo} & \numint{\retainedSubsYearThree} \\
-newSubs & \numint{\newSubsYearOne} & \numint{\newSubsYearTwo} & \numint{\newSubsYearThree} \\
-\textbf{totalSubs} & \textbf{\numint{\totalSubsYearOne}} & \textbf{\numint{\totalSubsYearTwo}} & \textbf{\numint{\totalSubsYearThree}} \\
+retainedSubs & --- & \validateint{\retainedSubsYearTwo}{\HCretainedSubsYearTwo} & \validateint{\retainedSubsYearThree}{\HCretainedSubsYearThree} \\
+newSubs & \validateint{\newSubsYearOne}{\HCbaseNewSubsYearOne} & \validateint{\newSubsYearTwo}{\HCbaseNewSubsYearTwo} & \validateint{\newSubsYearThree}{\HCbaseNewSubsYearThree} \\
+\textbf{totalSubs} & \validateint{\totalSubsYearOne}{\HCtotalSubsYearOne} & \validateint{\totalSubsYearTwo}{\HCtotalSubsYearTwo} & \validateint{\totalSubsYearThree}{\HCtotalSubsYearThree} \\
 \bottomrule
 \end{tabularx}
 
 \medskip
-\textit{Verification formula: totalSubsY2 = round(totalSubsY1 $\times$ (1 - churnY2/100)) + newSubsY2}\\
-\textit{Check Y2: round(\numint{\totalSubsYearOne} $\times$ \fpeval{1 - \churnYearTwo/100}) + \numint{\newSubsYearTwo} = \fpeval{round(\totalSubsYearOne * (1 - \churnYearTwo/100), 0)} + \numint{\newSubsYearTwo} = \numint{\totalSubsYearTwo}}
+\textit{Verification formula: totalSubsY2 = round(totalSubsY1 $\times$ (1 - churnY2/100)) + newSubsY2}
 
-\subsection*{A9. Revenue Calculations (Derived)}
+\subsection*{A9. Revenue Calculations (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
-subARR (Exit) & \$\numint{\subARRYearOne} & \$\numint{\subARRYearTwo} & \$\numint{\subARRYearThree} \\
-actualSubRevenue & \$\numint{\actualSubRevenueYearOne} & \$\numint{\actualSubRevenueYearTwo} & \$\numint{\actualSubRevenueYearThree} \\
-grossVolume (GMV) & \$\numint{\grossVolumeYearOne} & \$\numint{\grossVolumeYearTwo} & \$\numint{\grossVolumeYearThree} \\
+subARR (Exit) & \validatemoney{\subARRYearOne}{\HCsubARRYearOne} & \validatemoney{\subARRYearTwo}{\HCsubARRYearTwo} & \validatemoney{\subARRYearThree}{\HCsubARRYearThree} \\
+actualSubRevenue & \validatemoney{\actualSubRevenueYearOne}{\HCactualSubRevenueYearOne} & \validatemoney{\actualSubRevenueYearTwo}{\HCactualSubRevenueYearTwo} & \validatemoney{\actualSubRevenueYearThree}{\HCactualSubRevenueYearThree} \\
+grossVolume (GMV) & \validatemoney{\grossVolumeYearOne}{\HCgrossVolumeYearOne} & \validatemoney{\grossVolumeYearTwo}{\HCgrossVolumeYearTwo} & \validatemoney{\grossVolumeYearThree}{\HCgrossVolumeYearThree} \\
 \bottomrule
 \end{tabularx}
 
@@ -172,7 +162,7 @@ avgRevenueMonthsYearOne & \num{\avgRevenueMonthsYearOne} & Avg months new subs c
 \bottomrule
 \end{tabularx}
 
-\subsection*{A10. Operating Expenses (Excludes COGS)}
+\subsection*{A10. Operating Expenses (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Variable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
@@ -180,93 +170,86 @@ teamSalaries & \$\numint{\teamSalariesYearOne} & \$\numint{\teamSalariesYearTwo}
 infrastructure (non-COGS) & \$\numint{\infrastructureYearOne} & \$\numint{\infrastructureYearTwo} & \$\numint{\infrastructureYearThree} \\
 legalCompliance & \$\numint{\legalComplianceYearOne} & \$\numint{\legalComplianceYearTwo} & \$\numint{\legalComplianceYearThree} \\
 marketing & \$\numint{\marketingBudgetYearOne} & \$\numint{\marketingBudgetYearTwo} & \$\numint{\marketingBudgetYearThree} \\\midrule
-\textbf{totalOperatingCosts} & \textbf{\$\numint{\totalOperatingCostsYearOne}} & \textbf{\$\numint{\totalOperatingCostsYearTwo}} & \textbf{\$\numint{\totalOperatingCostsYearThree}} \\
+\textbf{totalOpex} & \validatemoney{\totalOpexYearOne}{\HCtotalOpexYearOne} & \validatemoney{\totalOpexYearTwo}{\HCtotalOpexYearTwo} & \validatemoney{\totalOpexYearThree}{\HCtotalOpexYearThree} \\
+\textbf{totalOperatingCosts} & \validatemoney{\totalOperatingCostsYearOne}{\HCtotalOperatingCostsYearOne} & \validatemoney{\totalOperatingCostsYearTwo}{\HCtotalOperatingCostsYearTwo} & \validatemoney{\totalOperatingCostsYearThree}{\HCtotalOperatingCostsYearThree} \\
 \bottomrule
 \end{tabularx}
 
-\medskip
-\textit{Note: Payment processing moved to COGS. Production infrastructure in COGS; this line is office/non-production tools.}
-
-\subsection*{A11. Profit \& Loss Flow (Derived)}
+\subsection*{A11. Profit \& Loss Flow (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y Y}
 \toprule
 \textbf{Line Item} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\\midrule
-Net Revenue & \$\numint{\actualSubRevenueYearOne} & \$\numint{\actualSubRevenueYearTwo} & \$\numint{\actualSubRevenueYearThree} \\
-$-$ COGS & (\$\numint{\totalCogsYearOne}) & (\$\numint{\totalCogsYearTwo}) & (\$\numint{\totalCogsYearThree}) \\
-\textbf{= Gross Profit} & \textbf{\$\numint{\grossProfitYearOne}} & \textbf{\$\numint{\grossProfitYearTwo}} & \textbf{\$\numint{\grossProfitYearThree}} \\
-$-$ OpEx (excl. mktg) & (\$\numint{\totalOpexYearOne}) & (\$\numint{\totalOpexYearTwo}) & (\$\numint{\totalOpexYearThree}) \\
+Net Revenue & \validatemoney{\actualSubRevenueYearOne}{\HCactualSubRevenueYearOne} & \validatemoney{\actualSubRevenueYearTwo}{\HCactualSubRevenueYearTwo} & \validatemoney{\actualSubRevenueYearThree}{\HCactualSubRevenueYearThree} \\
+$-$ COGS & (\validatemoney{\totalCogsYearOne}{\HCtotalCogsYearOne}) & (\validatemoney{\totalCogsYearTwo}{\HCtotalCogsYearTwo}) & (\validatemoney{\totalCogsYearThree}{\HCtotalCogsYearThree}) \\
+\textbf{= Gross Profit} & \validatemoney{\grossProfitYearOne}{\HCgrossProfitYearOne} & \validatemoney{\grossProfitYearTwo}{\HCgrossProfitYearTwo} & \validatemoney{\grossProfitYearThree}{\HCgrossProfitYearThree} \\
+$-$ OpEx (excl. mktg) & (\validatemoney{\totalOpexYearOne}{\HCtotalOpexYearOne}) & (\validatemoney{\totalOpexYearTwo}{\HCtotalOpexYearTwo}) & (\validatemoney{\totalOpexYearThree}{\HCtotalOpexYearThree}) \\
 $-$ Marketing & (\$\numint{\marketingBudgetYearOne}) & (\$\numint{\marketingBudgetYearTwo}) & (\$\numint{\marketingBudgetYearThree}) \\
-\textbf{= Operating Income} & \textbf{\$\numint{\operatingIncomeYearOne}} & \textbf{\$\numint{\operatingIncomeYearTwo}} & \textbf{\$\numint{\operatingIncomeYearThree}} \\\midrule
-monthlyBurn & \$\numint{\monthlyBurnYearOne} & \$\numint{\monthlyBurnYearTwo} & \$\numint{\monthlyBurnYearThree} \\
+\textbf{= Operating Income} & \validatemoney{\operatingIncomeYearOne}{\HCoperatingIncomeYearOne} & \validatemoney{\operatingIncomeYearTwo}{\HCoperatingIncomeYearTwo} & \validatemoney{\operatingIncomeYearThree}{\HCoperatingIncomeYearThree} \\\midrule
+monthlyBurn & \validatemoney{\monthlyBurnYearOne}{\HCmonthlyBurnYearOne} & \validatemoney{\monthlyBurnYearTwo}{\HCmonthlyBurnYearTwo} & \validatemoney{\monthlyBurnYearThree}{\HCmonthlyBurnYearThree} \\
 \bottomrule
 \end{tabularx}
 
-\medskip
-\textit{Operating Income = Net Income (no interest/taxes at this stage). Monthly burn = (COGS + OpEx + Marketing) / 12.}
-
-\subsection*{A12. Unit Economics \& LTV (Derived)}
+\subsection*{A12. Unit Economics \& LTV (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
 subGrossMargin & \num{\subGrossMargin}\% & Derived from COGS (100\% $-$ \num{\totalCogsPercent}\%) \\
-avgAnnualChurn & \num{\avgAnnualChurn} & Avg churn (decimal) \\
-theoreticalLifetimeYears & \num{\theoreticalLifetimeYears} & 1/churn \\
+avgAnnualChurn & \validate{\avgAnnualChurn}{\HCavgAnnualChurn} & Avg churn (decimal) \\
+theoreticalLifetimeYears & \validate{\theoreticalLifetimeYears}{\HCtheoreticalLifetimeYears} & 1/churn \\
 ltvCapYears & \num{\ltvCapYears} & LTV cap \\
-ltvYearsUsed & \num{\ltvYearsUsed} & Actual years used \\
-subAnnualGrossProfit & \$\num{\subAnnualGrossProfit} & Annual GP/sub \\
-subMonthlyGrossProfit & \$\num{\subMonthlyGrossProfit} & Monthly GP/sub \\
-\textbf{subLTV} & \textbf{\$\num{\subLTV}} & \textbf{Lifetime Value} \\
-subPaybackMonths & \num{\subPaybackMonths} mo & Payback period \\
-\textbf{ltvCacRatio} & \textbf{\num{\ltvCacRatio}:1} & \textbf{LTV:CAC ratio} \\
+ltvYearsUsed & \validate{\ltvYearsUsed}{\HCltvYearsUsed} & Actual years used \\
+subAnnualGrossProfit & \validate{\subAnnualGrossProfit}{\HCsubAnnualGrossProfit} & Annual GP/sub \\
+subMonthlyGrossProfit & \validate{\subMonthlyGrossProfit}{\HCsubMonthlyGrossProfit} & Monthly GP/sub \\
+\textbf{subLTV} & \validate{\subLTV}{\HCsubLTV} & \textbf{Lifetime Value} \\
+subPaybackMonths & \validatemonths{\subPaybackMonths}{\HCsubPaybackMonths} & Payback period \\
+\textbf{ltvCacRatio} & \validateratio{\ltvCacRatio}{\HCltvCacRatio} & \textbf{LTV:CAC ratio} \\
 \bottomrule
 \end{tabularx}
 
 \medskip
 \textit{LTV calculation: \$\num{\markWeightedAvgAnnual}/yr $\times$ \num{\subGrossMargin}\% margin $\times$ \num{\ltvYearsUsed} years = \$\num{\subLTV}}
 
-\subsection*{A13. Breakeven Analysis (Derived)}
+\subsection*{A13. Breakeven Analysis (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
-monthlyFixedCostsYearTwo & \$\numint{\monthlyFixedCostsYearTwo} & Monthly OpEx + Marketing \\
-subMonthlyGrossProfit & \$\num{\subMonthlyGrossProfit} & Contribution per sub \\
-breakevenSubscribersRaw & \num{\breakevenSubscribersRaw} & Raw calculation \\
-breakevenSubscribers & \numint{\breakevenSubscribers} & Rounded to 10s \\
-monthlyGrowthYearTwo & \num{\monthlyGrowthYearTwo} & Monthly sub growth Y2 \\
-breakevenMonthRaw & \num{\breakevenMonthRaw} & Raw month calc \\
-\textbf{breakevenMonth} & \textbf{Month \numint{\breakevenMonth}} & \textbf{Target breakeven} \\
+monthlyFixedCostsYearTwo & \validatemoney{\monthlyFixedCostsYearTwo}{\HCmonthlyFixedCostsYearTwo} & Monthly OpEx + Marketing \\
+subMonthlyGrossProfit & \validate{\subMonthlyGrossProfit}{\HCsubMonthlyGrossProfit} & Contribution per sub \\
+breakevenSubscribers & \validateint{\breakevenSubscribers}{\HCbreakevenSubscribers} & Rounded to 10s \\
+monthlyGrowthYearTwo & \validate{\monthlyGrowthYearTwo}{\HCmonthlyGrowthYearTwo} & Monthly sub growth Y2 \\
+\textbf{breakevenMonth} & \textbf{Month \validateint{\breakevenMonth}{\HCbreakevenMonth}} & \textbf{Target breakeven} \\
 \bottomrule
 \end{tabularx}
 
 \medskip
 \textit{Breakeven = Fixed Costs / Gross Profit per Sub = \$\numint{\monthlyFixedCostsYearTwo} / \$\num{\subMonthlyGrossProfit} = \numint{\breakevenSubscribers} subs}
 
-\subsection*{A14. Funding \& Runway}
+\subsection*{A14. Funding \& Runway (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y Y X}
 \toprule
 \textbf{Variable} & \textbf{Seed} & \textbf{Series A} & \textbf{Description} \\\midrule
 amount & \$\numint{\seedAmount} & \$\numint{\seriesAAmount} & Raise amount \\
 equity & \num{\seedEquity}\% & \num{\seriesAEquity}\% & Equity sold \\
 valuation & \$\numint{\seedValuation} & \$\numint{\seriesAValuation} & Post-money \\
-runwayMonths & \numint{\seedRunwayMonths} mo & \numint{\seriesARunwayMonths} mo & Runway \\
+runwayMonths & \validatemonths{\seedRunwayMonths}{\HCseedRunwayMonths} & \validatemonths{\seriesARunwayMonths}{\HCseriesARunwayMonths} & Runway \\
 \bottomrule
 \end{tabularx}
 
-\subsection*{A15. Growth Rates \& Valuation (Derived)}
+\subsection*{A15. Growth Rates \& Valuation (Derived --- Validated)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
-growthRateYearOneTwo & \num{\growthRateYearOneTwo}\% & Y1$\rightarrow$Y2 ARR growth \\
-growthRateYearTwoThree & \num{\growthRateYearTwoThree}\% & Y2$\rightarrow$Y3 ARR growth \\
-operatingMarginYearThree & \num{\operatingMarginYearThree}\% & Y3 operating margin \\
-\textbf{ruleOfFortyScore} & \textbf{\num{\ruleOfFortyScore}} & \textbf{Growth + Op. Margin} \\
+growthRateYearOneTwo & \validatepct{\growthRateYearOneTwo}{\HCgrowthRateYearOneTwo} & Y1$\rightarrow$Y2 ARR growth \\
+growthRateYearTwoThree & \validatepct{\growthRateYearTwoThree}{\HCgrowthRateYearTwoThree} & Y2$\rightarrow$Y3 ARR growth \\
+operatingMarginYearThree & \validatepct{\operatingMarginYearThree}{\HCoperatingMarginYearThree} & Y3 operating margin \\
+\textbf{ruleOfFortyScore} & \validate{\ruleOfFortyScore}{\HCruleOfFortyScore} & \textbf{Growth + Op. Margin} \\
 arrMultiple & \num{\arrMultiple}x & Base ARR multiple \\
 targetARRMultiple & \num{\targetARRMultiple}x & Conservative multiple \\
 optimisticARRMultiple & \num{\optimisticARRMultiple}x & Optimistic multiple \\
-\textbf{targetValLow} & \textbf{\$\num{\targetValLow}M} & \textbf{Target low} \\
-\textbf{targetValHigh} & \textbf{\$\num{\targetValHigh}M} & \textbf{Target high} \\
-optimisticValLow & \$\num{\optimisticValLow}M & Optimistic low \\
-optimisticValHigh & \$\num{\optimisticValHigh}M & Optimistic high \\
+\textbf{targetValLow} & \textbf{\$\validateint{\targetValLow}{\HCtargetValLow}M} & \textbf{Target low} \\
+\textbf{targetValHigh} & \textbf{\$\validateint{\targetValHigh}{\HCtargetValHigh}M} & \textbf{Target high} \\
+optimisticValLow & \$\validateint{\optimisticValLow}{\HCoptimisticValLow}M & Optimistic low \\
+optimisticValHigh & \$\validateint{\optimisticValHigh}{\HCoptimisticValHigh}M & Optimistic high \\
 \bottomrule
 \end{tabularx}
 
@@ -305,6 +288,11 @@ Backpack & \$\num{\merchBackpackPrice} & \num{\merchBackpackMargin}\% & \$\fpeva
 
 \medskip
 \textit{Note: Merchandise is excluded from financial projections; shown for reference only.}
+
+% ============================================================================
+% FINAL VALIDATION STATUS
+% ============================================================================
+\validationstatus
 
 \vfill
 \hrule
