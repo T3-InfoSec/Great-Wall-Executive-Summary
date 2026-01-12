@@ -40,6 +40,9 @@
 % highlight in green (match) or red (mismatch) for easy visual verification.
 % On mismatch, they also set the global flag to false.
 %
+% FIX: All validation macros now use \mbox{} to prevent line breaks inside
+% table cells, and use \relax to properly terminate \ifnum number scanning.
+%
 % Usage pattern:
 %   \validate{computed_variable}{expected_value}
 %   \validatepct{computed_variable}{expected_value}    % adds % symbol
@@ -55,86 +58,87 @@
 \newcommand{\checkvalid}[2]{\fpeval{abs((#1) - (#2)) < \validationtolerance}}
 
 % --- Main validation macros ---
+% KEY FIX: \mbox{} prevents line breaks; \relax terminates number scan
 
 % \validate{computed}{expected} - Generic numeric validation
-\newcommand{\validate}[2]{%
-  \ifnum\checkvalid{#1}{#2}=1%
+\newcommand{\validate}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
     {\color{green!60!black}\textbf{\num{#1}}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\num{#1}}}~{\scriptsize\color{gray}[exp:\num{#2}]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validatepct{computed}{expected} - Percentage validation (appends %)
-\newcommand{\validatepct}[2]{%
-  \ifnum\checkvalid{#1}{#2}=1%
+\newcommand{\validatepct}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
     {\color{green!60!black}\textbf{\num{#1}\%}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\num{#1}\%}}~{\scriptsize\color{gray}[exp:\num{#2}\%]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validateint{computed}{expected} - Integer validation (rounds display)
-\newcommand{\validateint}[2]{%
-  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1%
+\newcommand{\validateint}[2]{\mbox{%
+  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1\relax
     {\color{green!60!black}\textbf{\numint{#1}}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\numint{#1}}}~{\scriptsize\color{gray}[exp:\numint{#2}]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validatemoney{computed}{expected} - Currency validation ($ prefix, integer)
-\newcommand{\validatemoney}[2]{%
-  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1%
+\newcommand{\validatemoney}[2]{\mbox{%
+  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1\relax
     {\color{green!60!black}\textbf{\$\numint{#1}}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\$\numint{#1}}}~{\scriptsize\color{gray}[exp:\$\numint{#2}]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validateratio{computed}{expected} - Ratio validation (appends :1)
-\newcommand{\validateratio}[2]{%
-  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1%
+\newcommand{\validateratio}[2]{\mbox{%
+  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1\relax
     {\color{green!60!black}\textbf{\numint{#1}:1}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\numint{#1}:1}}~{\scriptsize\color{gray}[exp:\numint{#2}:1]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validatemonths{computed}{expected} - Duration validation (appends "mo")
-\newcommand{\validatemonths}[2]{%
-  \ifnum\checkvalid{#1}{#2}=1%
+\newcommand{\validatemonths}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
     {\color{green!60!black}\textbf{\num{#1}~mo}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\num{#1}~mo}}~{\scriptsize\color{gray}[exp:\num{#2}~mo]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validateyears{computed}{expected} - Years validation
-\newcommand{\validateyears}[2]{%
-  \ifnum\checkvalid{#1}{#2}=1%
+\newcommand{\validateyears}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
     {\color{green!60!black}\textbf{\num{#1}~years}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\num{#1}~years}}~{\scriptsize\color{gray}[exp:\num{#2}]}%
-  \fi%
-}
+  \fi
+}}
 
 % \validatemultiple{computed}{expected} - Multiplier validation (appends x)
-\newcommand{\validatemultiple}[2]{%
-  \ifnum\checkvalid{#1}{#2}=1%
+\newcommand{\validatemultiple}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
     {\color{green!60!black}\textbf{\num{#1}x}}%
-  \else%
-    \global\allvalidationspassedfalse%
+  \else
+    \global\allvalidationspassedfalse
     {\color{red}\textbf{\num{#1}x}}~{\scriptsize\color{gray}[exp:\num{#2}x]}%
-  \fi%
-}
+  \fi
+}}
 
 % --- Validation legend (for appendix header) ---
 \newcommand{\validationlegend}{%
