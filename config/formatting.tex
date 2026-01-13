@@ -16,10 +16,7 @@
 \renewcommand{\headrulewidth}{0pt} % Remove header line
 \renewcommand{\footrulewidth}{0.4pt} % Add footer line
 
-% Table formatting helpers (can add more as needed)
-% Example: \newcommand{\tablehead}[1]{\textbf{#1}}
-
-
+% Emoji cell helpers
 \newcommand{\emojicell}[1]{{\begin{minipage}{0.8cm}\includegraphics[height=0.8cm]{#1}\end{minipage}}}
 
 \newcommand{\emojicheck}{\emojicell{./config/emojis/green-check-emoji.png}}
@@ -27,3 +24,142 @@
 \newcommand{\emojiwarning}{\emojicell{./config/emojis/warning-sign-emoji.png}}
 \newcommand{\emojiskull}{\emojicell{./config/emojis/skull-danger-emoji.png}}
 \newcommand{\emojiredskull}{\emojicell{./config/emojis/red-skull-danger-emoji.png}}
+
+% ============================================================================
+% GLOBAL VALIDATION FLAG
+% ============================================================================
+% This boolean tracks whether ALL validations have passed.
+% Starts true; any mismatch sets it false.
+\newif\ifallvalidationspassed
+\allvalidationspassedtrue
+
+% ============================================================================
+% VALIDATION MACROS FOR DEBUG APPENDIX
+% ============================================================================
+% These macros compare a computed value against an expected value and
+% highlight in green (match) or red (mismatch) for easy visual verification.
+% On mismatch, they also set the global flag to false.
+%
+% FIX: All validation macros now use \mbox{} to prevent line breaks inside
+% table cells, and use \relax to properly terminate \ifnum number scanning.
+%
+% Usage pattern:
+%   \validate{computed_variable}{expected_value}
+%   \validatepct{computed_variable}{expected_value}    % adds % symbol
+%   \validateint{computed_variable}{expected_value}    % integer formatting
+%   \validatemoney{computed_variable}{expected_value}  % adds $ and commas
+% ============================================================================
+
+% Tolerance for floating-point comparison (0.01 = 1% relative or absolute)
+\newcommand{\validationtolerance}{0.01}
+
+% Core validation logic (internal)
+% Returns 1 if values match within tolerance, 0 otherwise
+\newcommand{\checkvalid}[2]{\fpeval{abs((#1) - (#2)) < \validationtolerance}}
+
+% --- Main validation macros ---
+% KEY FIX: \mbox{} prevents line breaks; \relax terminates number scan
+
+% \validate{computed}{expected} - Generic numeric validation
+\newcommand{\validate}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
+    {\color{green!60!black}\textbf{\num{#1}}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\num{#1}}}~{\scriptsize\color{gray}[exp:\num{#2}]}%
+  \fi
+}}
+
+% \validatepct{computed}{expected} - Percentage validation (appends %)
+\newcommand{\validatepct}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
+    {\color{green!60!black}\textbf{\num{#1}\%}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\num{#1}\%}}~{\scriptsize\color{gray}[exp:\num{#2}\%]}%
+  \fi
+}}
+
+% \validateint{computed}{expected} - Integer validation (rounds display)
+\newcommand{\validateint}[2]{\mbox{%
+  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1\relax
+    {\color{green!60!black}\textbf{\numint{#1}}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\numint{#1}}}~{\scriptsize\color{gray}[exp:\numint{#2}]}%
+  \fi
+}}
+
+% \validatemoney{computed}{expected} - Currency validation ($ prefix, integer)
+\newcommand{\validatemoney}[2]{\mbox{%
+  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1\relax
+    {\color{green!60!black}\textbf{\$\numint{#1}}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\$\numint{#1}}}~{\scriptsize\color{gray}[exp:\$\numint{#2}]}%
+  \fi
+}}
+
+% \validateratio{computed}{expected} - Ratio validation (appends :1)
+\newcommand{\validateratio}[2]{\mbox{%
+  \ifnum\fpeval{abs((#1) - (#2)) < 1}=1\relax
+    {\color{green!60!black}\textbf{\numint{#1}:1}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\numint{#1}:1}}~{\scriptsize\color{gray}[exp:\numint{#2}:1]}%
+  \fi
+}}
+
+% \validatemonths{computed}{expected} - Duration validation (appends "mo")
+\newcommand{\validatemonths}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
+    {\color{green!60!black}\textbf{\num{#1}~mo}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\num{#1}~mo}}~{\scriptsize\color{gray}[exp:\num{#2}~mo]}%
+  \fi
+}}
+
+% \validateyears{computed}{expected} - Years validation
+\newcommand{\validateyears}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
+    {\color{green!60!black}\textbf{\num{#1}~years}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\num{#1}~years}}~{\scriptsize\color{gray}[exp:\num{#2}]}%
+  \fi
+}}
+
+% \validatemultiple{computed}{expected} - Multiplier validation (appends x)
+\newcommand{\validatemultiple}[2]{\mbox{%
+  \ifnum\checkvalid{#1}{#2}=1\relax
+    {\color{green!60!black}\textbf{\num{#1}x}}%
+  \else
+    \global\allvalidationspassedfalse
+    {\color{red}\textbf{\num{#1}x}}~{\scriptsize\color{gray}[exp:\num{#2}x]}%
+  \fi
+}}
+
+% --- Validation legend (for appendix header) ---
+\newcommand{\validationlegend}{%
+  \noindent\fbox{\parbox{0.97\linewidth}{%
+    \textbf{Validation Legend:}~%
+    {\color{green!60!black}\textbf{Green}} = computed matches expected~~~%
+    {\color{red}\textbf{Red}} = mismatch (expected value shown in gray)%
+  }}%
+  \medskip%
+}
+
+% --- Final validation status message ---
+\newcommand{\validationstatus}{%
+  \bigskip\hrule\medskip%
+  \ifallvalidationspassed%
+    \noindent\fbox{\parbox{0.97\linewidth}{%
+      {\color{green!60!black}\textbf{STATUS: ALL VALIDATIONS PASSED.} All computed values match their expected hardcoded values.}%
+    }}%
+  \else%
+    \noindent\fbox{\parbox{0.97\linewidth}{%
+      {\color{red}\textbf{STATUS: VALIDATION FAILURES DETECTED.} One or more computed values do not match expectations. Review red entries above.}%
+    }}%
+  \fi%
+}

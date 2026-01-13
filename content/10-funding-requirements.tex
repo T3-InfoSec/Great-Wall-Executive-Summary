@@ -8,11 +8,11 @@
 \begin{tabularx}{\linewidth}{l r L}
 \toprule
 Category & Amount (USD) & Purpose \\\midrule
-Team (lean, 19-month plan) & \numint{round(\seedAmount * \teamSalariesYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Phased hiring to sustain a lean 19-month runway \\
-Infrastructure (lean, 19-month plan) & \numint{round(\seedAmount * \infrastructureYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Hosting, tooling, and security scaled to match usage growth \\
-Legal / Compliance (19-month coverage) & \numint{round(\seedAmount * \legalComplianceYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Legal, compliance, and insurance for regulated operations \\
-Marketing (phased over 19 months) & \numint{round(\seedAmount * \marketingBudgetYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Customer acquisition paced to demand and liquidity \\
-\textbf{Total Seed Round} & \textbf{\numint{\seedAmount}} & \textbf{\num{\seedRunwayMonths}-month runway} \\
+Team (lean, \numint{\seedRunwayMonths}-month plan) & \numint{round(\seedAmount * \teamSalariesYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Phased hiring to sustain a lean \numint{\seedRunwayMonths}-month runway \\
+Infrastructure (lean, \numint{\seedRunwayMonths}-month plan) & \numint{round(\seedAmount * \infrastructureYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Hosting, tooling, and security scaled to match usage growth \\
+Legal / Compliance (\numint{\seedRunwayMonths}-month coverage) & \numint{round(\seedAmount * \legalComplianceYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Legal, compliance, and insurance for regulated operations \\
+Marketing (phased over \numint{\seedRunwayMonths} months) & \numint{round(\seedAmount * \marketingBudgetYearOne / (\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne)/1000,0)}k & Customer acquisition paced to demand and liquidity \\
+\textbf{Total Seed Round} & \textbf{\numint{\seedAmount}} & \textbf{\numint{\seedRunwayMonths}-month runway} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -37,10 +37,10 @@ Platform Scaling & \numint{\seriesAAmount} & Team growth, ecosystem integrations
 \toprule
 Milestone & Target Date & Goal \\\midrule
 MVP Ready & \mvpDate & MVP feature-complete; internal QA complete \\
-First 10 Beta Clients & \betaTenDate & Onboard design partners; collect feedback \\
-End of Beta (50 Clients) & \betaEndDate & Close beta; finalize pricing and onboarding \\
+First \numint{\betaFirstClients} Beta Clients & \betaTenDate & Onboard design partners; collect feedback \\
+End of Beta (\numint{\betaEndClients} Clients) & \betaEndDate & Close beta; finalize pricing and onboarding \\
 Scale Marketing / Hire CMO & \scaleMktDate & Launch paid + referral programs; leadership hire \\
-1,000 Customers & \kCustomersDate & Scale supply/demand; readiness for broader launch \\
+\numint{\betaUsers} Customers & \kCustomersDate & Scale supply/demand; readiness for broader launch \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -49,23 +49,23 @@ Scale Marketing / Hire CMO & \scaleMktDate & Launch paid + referral programs; le
 
 \textbf{Year 1 (Months 0--12): Build + Validate Marketplace}
 \begin{itemize}
-  \item Month 0: Raise \$\numint{round(\seedAmount/1000,0)}K Seed (\num{\seedEquity}\% equity), \$\numfpeval{round(\seedValuation/1000000,1)}M post-money valuation (\num{\seedRunwayMonths}-month runway)
+  \item Month 0: Raise \$\numint{round(\seedAmount/1000,0)}K Seed (\num{\seedEquity}\% equity), \$\numfpeval{round(\seedValuation/1000000,1)}M post-money valuation (\numint{\seedRunwayMonths}-month runway)
   \item Months \num{\marketplaceBuildStartMonth}--\num{\marketplaceBuildEndMonth}: Build anonymous matchmaking infrastructure and reputation system
-  \item Months \num{\betaLaunchStartMonth}--\num{\betaLaunchEndMonth}: Launch beta, acquire first \numint{\betaUsers} users
+  \item Months \num{\betaLaunchStartMonth}--\num{\betaLaunchEndMonth}: Launch beta with \numint{\betaEndClients} design partners, scale toward \numint{\betaUsers} users
   \item Months \num{\marketplaceScaleStartMonth}--\num{\marketplaceScaleEndMonth}: Scale marketplace and validate unit economics
-  \item End of Year 1: \numint{\totalSubsYearOne} subscribers; Exit ARR \$\numfpeval{round(\subARRYearOne/1000000,1)}M
+  \item End of Year 1: \numint{\totalSubsYearOne} subscribers; Exit ARR \$\numfpeval{round(\subARRYearOne/1000000,2)}M
 \end{itemize}
 
 \textbf{Year 2 (Months 13--24): Scale + Series A}
 \begin{itemize}
   \item Months 13--18: Continue scaling supply/demand, deepen provider network, and expand integrations
   \item Month 18: Series A \$\numint{\seriesAAmount/1000000}M (\num{\seriesAEquity}\% equity), \$\numfpeval{round(\seriesAValuation/1000000,1)}M post-money valuation
-  \item End of Year 2: \numint{\totalSubsYearTwo} subscribers; Exit ARR \$\numfpeval{round(\subARRYearTwo/1000000,1)}M
+  \item End of Year 2: \numint{\totalSubsYearTwo} subscribers; Exit ARR \$\numfpeval{round(\subARRYearTwo/1000000,2)}M
 \end{itemize}
 
 \textbf{Year 3 (Months 25--36): Accelerated Growth to Target Valuation}
 \begin{itemize}
-  \item End of Year 3: \numint{\totalSubsYearThree} subscribers; Exit ARR \$\numfpeval{round(\subARRYearThree/1000000,1)}M
+  \item End of Year 3: \numint{\totalSubsYearThree} subscribers; Exit ARR \$\numfpeval{round(\subARRYearThree/1000000,2)}M
   \item Valuation (Target): \$\num{\targetValLow}--\num{\targetValHigh}M
   \item Valuation (Optimistic): \$\num{\optimisticValLow}--\num{\optimisticValHigh}M
 \end{itemize}
