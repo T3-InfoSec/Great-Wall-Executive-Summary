@@ -23,6 +23,19 @@ betaUsers & \numint{\betaUsers} & Beta user target \\
 \bottomrule
 \end{tabularx}
 
+\subsection*{A1b. Beta \& Referral Program Parameters}
+\begin{tabularx}{\linewidth}{l l X}
+\toprule
+\textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
+betaFirstClients & \numint{\betaFirstClients} & First beta milestone \\
+betaEndClients & \numint{\betaEndClients} & End of beta milestone \\
+providerCommissionPercent & \num{\providerCommissionPercent}\% & Provider referral commission \\
+referralProgramEndCustomers & \numint{\referralProgramEndCustomers} & Referral program threshold \\
+providerMonthlyProfitMin & \$\validateint{\providerMonthlyProfitMin}{\HCproviderMonthlyProfitMin} & Provider profit (Basic tier) \\
+providerMonthlyProfitMax & \$\validateint{\providerMonthlyProfitMax}{\HCproviderMonthlyProfitMax} & Provider profit (Golden tier) \\
+\bottomrule
+\end{tabularx}
+
 \subsection*{A2. Computation Economics (Base Inputs)}
 \begin{tabularx}{\linewidth}{l Y X}
 \toprule

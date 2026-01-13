@@ -18,7 +18,15 @@
 \newcommand{\betaLaunchEndMonth}{6}
 \newcommand{\marketplaceScaleStartMonth}{7}
 \newcommand{\marketplaceScaleEndMonth}{12}
+
+% Beta milestones
+\newcommand{\betaFirstClients}{10}
+\newcommand{\betaEndClients}{50}
 \newcommand{\betaUsers}{1000}
+
+% Provider referral program parameters
+\newcommand{\providerCommissionPercent}{20}
+\newcommand{\referralProgramEndCustomers}{20000}
 
 % ============================================================================
 % SECTION 2: CORE BUSINESS PARAMETERS (Base inputs)
@@ -100,6 +108,11 @@
 \newcommand{\HCpatrickProfitMedium}{8.64}
 \newcommand{\HCpatrickProfitProfessional}{21.60}
 \newcommand{\HCpatrickProfitGolden}{120.96}
+
+% Provider monthly profit per client (min/max across tiers)
+% Used in unit economics to show provider incentive range
+\newcommand{\providerMonthlyProfitMin}{\fpeval{round(\patrickProfitBasic, 0)}}
+\newcommand{\providerMonthlyProfitMax}{\fpeval{round(\patrickProfitGolden, 0)}}
 
 % ============================================================================
 % SECTION 4: SUBSCRIPTION PRICING (Derived from provider economics + platform fee)
@@ -303,7 +316,6 @@
 \newcommand{\grossVolumeYearThree}{\fpeval{\actualSubRevenueYearThree / (\markPlatformFeePercent/100)}}
 \newcommand{\HCgrossVolumeYearOne}{865227}
 \newcommand{\HCgrossVolumeYearTwo}{2823264}
-% CORRECTED: was 14578421
 \newcommand{\HCgrossVolumeYearThree}{14578423}
 
 % ============================================================================
@@ -314,7 +326,6 @@
 \newcommand{\totalCogsYearOne}{\fpeval{\actualSubRevenueYearOne * \totalCogsPercent/100}}
 \newcommand{\totalCogsYearTwo}{\fpeval{\actualSubRevenueYearTwo * \totalCogsPercent/100}}
 \newcommand{\totalCogsYearThree}{\fpeval{\actualSubRevenueYearThree * \totalCogsPercent/100}}
-% CORRECTED: was 80804, 263695, 1361522
 \newcommand{\HCtotalCogsYearOne}{80812}
 \newcommand{\HCtotalCogsYearTwo}{263693}
 \newcommand{\HCtotalCogsYearThree}{1361625}
@@ -323,7 +334,6 @@
 \newcommand{\grossProfitYearOne}{\fpeval{\actualSubRevenueYearOne - \totalCogsYearOne}}
 \newcommand{\grossProfitYearTwo}{\fpeval{\actualSubRevenueYearTwo - \totalCogsYearTwo}}
 \newcommand{\grossProfitYearThree}{\fpeval{\actualSubRevenueYearThree - \totalCogsYearThree}}
-% CORRECTED: was 161460, 526819, 2720436
 \newcommand{\HCgrossProfitYearOne}{161451}
 \newcommand{\HCgrossProfitYearTwo}{526821}
 \newcommand{\HCgrossProfitYearThree}{2720334}
@@ -391,7 +401,6 @@
 \newcommand{\monthlyBurnYearOne}{\fpeval{(\totalCogsYearOne + \totalOpexYearOne + \marketingBudgetYearOne) / 12}}
 \newcommand{\monthlyBurnYearTwo}{\fpeval{(\totalCogsYearTwo + \totalOpexYearTwo + \marketingBudgetYearTwo) / 12}}
 \newcommand{\monthlyBurnYearThree}{\fpeval{(\totalCogsYearThree + \totalOpexYearThree + \marketingBudgetYearThree) / 12}}
-% CORRECTED: was 35900, 86141, 303460
 \newcommand{\HCmonthlyBurnYearOne}{35901}
 \newcommand{\HCmonthlyBurnYearTwo}{86141}
 \newcommand{\HCmonthlyBurnYearThree}{303469}
@@ -405,7 +414,6 @@
 \newcommand{\operatingIncomeYearOne}{\fpeval{\grossProfitYearOne - \totalOpexYearOne - \marketingBudgetYearOne}}
 \newcommand{\operatingIncomeYearTwo}{\fpeval{\grossProfitYearTwo - \totalOpexYearTwo - \marketingBudgetYearTwo}}
 \newcommand{\operatingIncomeYearThree}{\fpeval{\grossProfitYearThree - \totalOpexYearThree - \marketingBudgetYearThree}}
-% CORRECTED: was -188540, -243181, 440436
 \newcommand{\HCoperatingIncomeYearOne}{-188549}
 \newcommand{\HCoperatingIncomeYearTwo}{-243179}
 \newcommand{\HCoperatingIncomeYearThree}{440334}
@@ -440,7 +448,6 @@
 
 % Lifetime Value = annual gross profit * lifetime years
 \newcommand{\subLTV}{\fpeval{\subAnnualGrossProfit * \ltvYearsUsed}}
-% CORRECTED: was 547.61
 \newcommand{\HCsubLTV}{547.62}
 
 % Payback period (months) = CAC / monthly gross profit
@@ -473,7 +480,6 @@
 \newcommand{\monthlyGrowthYearTwo}{\fpeval{(\totalSubsYearTwo - \totalSubsYearOne) / 12}}
 \newcommand{\breakevenMonthRaw}{\fpeval{12 + (\breakevenSubscribers - \totalSubsYearOne) / \monthlyGrowthYearTwo}}
 \newcommand{\breakevenMonth}{\fpeval{round(\breakevenMonthRaw, 0)}}
-% CORRECTED: was 462
 \newcommand{\HCmonthlyGrowthYearTwo}{461.92}
 \newcommand{\HCbreakevenMonth}{25}
 
@@ -596,6 +602,17 @@
 
 % Legacy compatibility - paymentProcessingFee alias
 \newcommand{\paymentProcessingFee}{\paymentProcessingFeeGross}
+
+% ============================================================================
+% SECTION 19: VALIDATION HARDCODES FOR NEW VARIABLES
+% ============================================================================
+
+% Beta milestones (no HC needed - base inputs)
+% Provider referral program (no HC needed - base inputs)
+
+% Provider monthly profit range (derived)
+\newcommand{\HCproviderMonthlyProfitMin}{1}
+\newcommand{\HCproviderMonthlyProfitMax}{121}
 
 % ============================================================================
 % END OF SOFTCODED VARIABLES
