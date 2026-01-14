@@ -302,6 +302,76 @@ Backpack & \$\num{\merchBackpackPrice} & \num{\merchBackpackMargin}\% & \$\fpeva
 \medskip
 \textit{Note: Merchandise is excluded from financial projections; shown for reference only.}
 
+% Add this section to content/99-appendix-debug-variables.tex
+% Place before \validationstatus (at the end, before the final status box)
+
+\subsection*{A18. Sensitivity Analysis (Derived --- Validated)}
+
+\textit{All sensitivity scenarios use $\pm$\num{\sensitivityDelta}\% input variations.}
+
+\medskip
+\begin{tabularx}{\linewidth}{l Y X}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\\midrule
+sensitivityDelta & \num{\sensitivityDelta}\% & Variation tested \\
+\bottomrule
+\end{tabularx}
+
+\subsubsection*{A18a. CAC Sensitivity}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Low ($-$20\%)} & \textbf{Base} & \textbf{High (+20\%)} \\\midrule
+CAC & \$\validate{\sensCAClow}{\HCsensCAClow} & \$\num{\cacDigital} & \$\validate{\sensCAChigh}{\HCsensCAChigh} \\
+LTV:CAC & \validateratio{\ltvCacLowCAC}{\HCltvCacLowCAC} & \numint{\ltvCacRatio}:1 & \validateratio{\ltvCacHighCAC}{\HCltvCacHighCAC} \\
+Payback & \validatemonths{\paybackLowCAC}{\HCpaybackLowCAC} & \num{\subPaybackMonths}~mo & \validatemonths{\paybackHighCAC}{\HCpaybackHighCAC} \\
+\bottomrule
+\end{tabularx}
+
+\subsubsection*{A18b. Churn Sensitivity}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Low ($-$20\%)} & \textbf{Base} & \textbf{High (+20\%)} \\\midrule
+Churn (\%/yr) & \validatepct{\sensChurnLowPercent}{\HCsensChurnLowPercent} & \num{\avgAnnualChurnPercent}\% & \validatepct{\sensChurnHighPercent}{\HCsensChurnHighPercent} \\
+Theor. Lifetime & \validateyears{\lifetimeLowChurn}{\HClifetimeLowChurn} & \num{\theoreticalLifetimeYears}~yrs & \validateyears{\lifetimeHighChurn}{\HClifetimeHighChurn} \\
+Capped Lifetime & \validate{\cappedLifetimeLowChurn}{\HCcappedLifetimeLowChurn} & \num{\ltvYearsUsed} & \validate{\cappedLifetimeHighChurn}{\HCcappedLifetimeHighChurn} \\
+LTV & \$\validate{\ltvLowChurn}{\HCltvLowChurn} & \$\num{\subLTV} & \$\validate{\ltvHighChurn}{\HCltvHighChurn} \\
+LTV:CAC & \validateratio{\ltvCacLowChurn}{\HCltvCacLowChurn} & \numint{\ltvCacRatio}:1 & \validateratio{\ltvCacHighChurn}{\HCltvCacHighChurn} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Note: Churn sensitivity has no LTV impact due to \num{\ltvCapYears}-year cap. Theoretical lifetime exceeds cap in all scenarios.}
+
+\subsubsection*{A18c. Gross Margin Sensitivity}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Low ($-$20\%)} & \textbf{Base} & \textbf{High (+20\%)} \\\midrule
+Gross Margin & \validatepct{\sensGrossMarginLow}{\HCsensGrossMarginLow} & \num{\subGrossMargin}\% & \validatepct{\sensGrossMarginHigh}{\HCsensGrossMarginHigh} \\
+Annual GP/Sub & \$\validate{\annualGPLowMargin}{\HCannualGPLowMargin} & \$\num{\subAnnualGrossProfit} & \$\validate{\annualGPHighMargin}{\HCannualGPHighMargin} \\
+LTV & \$\validate{\ltvLowMargin}{\HCltvLowMargin} & \$\num{\subLTV} & \$\validate{\ltvHighMargin}{\HCltvHighMargin} \\
+LTV:CAC & \validateratio{\ltvCacLowMargin}{\HCltvCacLowMargin} & \numint{\ltvCacRatio}:1 & \validateratio{\ltvCacHighMargin}{\HCltvCacHighMargin} \\
+Payback & \validatemonths{\paybackLowMargin}{\HCpaybackLowMargin} & \num{\subPaybackMonths}~mo & \validatemonths{\paybackHighMargin}{\HCpaybackHighMargin} \\
+\bottomrule
+\end{tabularx}
+
+\subsubsection*{A18d. Combined Scenarios}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+\textbf{Variable} & \textbf{Stress Test} & \textbf{Base} & \textbf{Upside} \\\midrule
+\multicolumn{4}{l}{\textit{Input Assumptions}} \\
+CAC & \$\num{\sensCAChigh} (+20\%) & \$\num{\cacDigital} & \$\num{\sensCAClow} ($-$20\%) \\
+Churn & \num{\sensChurnHighPercent}\% (+20\%) & \num{\avgAnnualChurnPercent}\% & \num{\sensChurnLowPercent}\% ($-$20\%) \\
+Gross Margin & \num{\sensGrossMarginLow}\% ($-$20\%) & \num{\subGrossMargin}\% & \num{\sensGrossMarginHigh}\% (+20\%) \\\midrule
+\multicolumn{4}{l}{\textit{Derived Outputs (Validated)}} \\
+LTV & \$\validate{\stressLTV}{\HCstressLTV} & \$\num{\subLTV} & \$\validate{\upsideLTV}{\HCupsideLTV} \\
+LTV:CAC & \validateratio{\stressLtvCac}{\HCstressLtvCac} & \numint{\ltvCacRatio}:1 & \validateratio{\upsideLtvCac}{\HCupsideLtvCac} \\
+Payback & \validatemonths{\stressPayback}{\HCstressPayback} & \num{\subPaybackMonths}~mo & \validatemonths{\upsidePayback}{\HCupsidePayback} \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textit{Stress test: all inputs move adversely. Upside: all inputs move favorably. Even under stress, LTV:CAC of \numint{\stressLtvCac}:1 exceeds 3:1 threshold.}
+
 % ============================================================================
 % FINAL VALIDATION STATUS
 % ============================================================================

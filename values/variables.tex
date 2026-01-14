@@ -619,5 +619,169 @@
 \newcommand{\HCproviderMonthlyProfitMax}{121}
 
 % ============================================================================
+% SECTION 20: SENSITIVITY ANALYSIS
+% ============================================================================
+% Models impact of ±20% changes in key input assumptions on unit economics
+% All derived values follow the same calculation patterns as base case
+
+% --- Sensitivity Parameters ---
+\newcommand{\sensitivityDelta}{20}  % Percentage change to test (±20%)
+
+% ============================================================================
+% SCENARIO A: CAC SENSITIVITY
+% ============================================================================
+
+% CAC +20% scenario
+\newcommand{\sensCAChigh}{\fpeval{\cacDigital * (1 + \sensitivityDelta/100)}}
+\newcommand{\HCsensCAChigh}{25.20}
+
+% CAC -20% scenario
+\newcommand{\sensCAClow}{\fpeval{\cacDigital * (1 - \sensitivityDelta/100)}}
+\newcommand{\HCsensCAClow}{16.80}
+
+% LTV:CAC with high CAC (LTV unchanged, CAC increases)
+\newcommand{\ltvCacHighCAC}{\fpeval{round(\subLTV / \sensCAChigh, 0)}}
+\newcommand{\HCltvCacHighCAC}{22}
+
+% LTV:CAC with low CAC (LTV unchanged, CAC decreases)
+\newcommand{\ltvCacLowCAC}{\fpeval{round(\subLTV / \sensCAClow, 0)}}
+\newcommand{\HCltvCacLowCAC}{33}
+
+% Payback with high CAC
+\newcommand{\paybackHighCAC}{\fpeval{round(\sensCAChigh / \subMonthlyGrossProfit, 1)}}
+\newcommand{\HCpaybackHighCAC}{3.9}
+
+% Payback with low CAC
+\newcommand{\paybackLowCAC}{\fpeval{round(\sensCAClow / \subMonthlyGrossProfit, 1)}}
+\newcommand{\HCpaybackLowCAC}{2.6}
+
+% ============================================================================
+% SCENARIO B: CHURN SENSITIVITY
+% ============================================================================
+
+% Churn +20% scenario (as percentage, e.g., 4.5% -> 5.4%)
+\newcommand{\sensChurnHighPercent}{\fpeval{\avgAnnualChurnPercent * (1 + \sensitivityDelta/100)}}
+\newcommand{\HCsensChurnHighPercent}{5.4}
+
+% Churn -20% scenario (as percentage, e.g., 4.5% -> 3.6%)
+\newcommand{\sensChurnLowPercent}{\fpeval{\avgAnnualChurnPercent * (1 - \sensitivityDelta/100)}}
+\newcommand{\HCsensChurnLowPercent}{3.6}
+
+% Theoretical lifetime with high churn
+\newcommand{\lifetimeHighChurn}{\fpeval{100 / \sensChurnHighPercent}}
+\newcommand{\HClifetimeHighChurn}{18.52}
+
+% Theoretical lifetime with low churn
+\newcommand{\lifetimeLowChurn}{\fpeval{100 / \sensChurnLowPercent}}
+\newcommand{\HClifetimeLowChurn}{27.78}
+
+% Capped lifetime with high churn (still hits cap)
+\newcommand{\cappedLifetimeHighChurn}{\fpeval{min(\lifetimeHighChurn, \ltvCapYears)}}
+\newcommand{\HCcappedLifetimeHighChurn}{7.00}
+
+% Capped lifetime with low churn (still hits cap)
+\newcommand{\cappedLifetimeLowChurn}{\fpeval{min(\lifetimeLowChurn, \ltvCapYears)}}
+\newcommand{\HCcappedLifetimeLowChurn}{7.00}
+
+% LTV with high churn (uses capped lifetime)
+\newcommand{\ltvHighChurn}{\fpeval{\subAnnualGrossProfit * \cappedLifetimeHighChurn}}
+\newcommand{\HCltvHighChurn}{547.62}
+
+% LTV with low churn (uses capped lifetime)
+\newcommand{\ltvLowChurn}{\fpeval{\subAnnualGrossProfit * \cappedLifetimeLowChurn}}
+\newcommand{\HCltvLowChurn}{547.62}
+
+% LTV:CAC with high churn
+\newcommand{\ltvCacHighChurn}{\fpeval{round(\ltvHighChurn / \cacDigital, 0)}}
+\newcommand{\HCltvCacHighChurn}{26}
+
+% LTV:CAC with low churn
+\newcommand{\ltvCacLowChurn}{\fpeval{round(\ltvLowChurn / \cacDigital, 0)}}
+\newcommand{\HCltvCacLowChurn}{26}
+
+% ============================================================================
+% SCENARIO C: GROSS MARGIN SENSITIVITY
+% ============================================================================
+
+% Gross margin +20% scenario (capped at 100%)
+\newcommand{\sensGrossMarginHigh}{\fpeval{min(\subGrossMargin * (1 + \sensitivityDelta/100), 100)}}
+\newcommand{\HCsensGrossMarginHigh}{79.97}
+
+% Gross margin -20% scenario
+\newcommand{\sensGrossMarginLow}{\fpeval{\subGrossMargin * (1 - \sensitivityDelta/100)}}
+\newcommand{\HCsensGrossMarginLow}{53.31}
+
+% Annual GP/sub with high margin
+\newcommand{\annualGPHighMargin}{\fpeval{\markWeightedAvgAnnual * \sensGrossMarginHigh/100}}
+\newcommand{\HCannualGPHighMargin}{93.88}
+
+% Annual GP/sub with low margin
+\newcommand{\annualGPLowMargin}{\fpeval{\markWeightedAvgAnnual * \sensGrossMarginLow/100}}
+\newcommand{\HCannualGPLowMargin}{62.59}
+
+% LTV with high margin
+\newcommand{\ltvHighMargin}{\fpeval{\annualGPHighMargin * \ltvYearsUsed}}
+\newcommand{\HCltvHighMargin}{657.14}
+
+% LTV with low margin
+\newcommand{\ltvLowMargin}{\fpeval{\annualGPLowMargin * \ltvYearsUsed}}
+\newcommand{\HCltvLowMargin}{438.10}
+
+% LTV:CAC with high margin
+\newcommand{\ltvCacHighMargin}{\fpeval{round(\ltvHighMargin / \cacDigital, 0)}}
+\newcommand{\HCltvCacHighMargin}{31}
+
+% LTV:CAC with low margin
+\newcommand{\ltvCacLowMargin}{\fpeval{round(\ltvLowMargin / \cacDigital, 0)}}
+\newcommand{\HCltvCacLowMargin}{21}
+
+% Payback with high margin
+\newcommand{\paybackHighMargin}{\fpeval{round(\cacDigital / (\markWeightedAvgMonthly * \sensGrossMarginHigh/100), 1)}}
+\newcommand{\HCpaybackHighMargin}{2.7}
+
+% Payback with low margin
+\newcommand{\paybackLowMargin}{\fpeval{round(\cacDigital / (\markWeightedAvgMonthly * \sensGrossMarginLow/100), 1)}}
+\newcommand{\HCpaybackLowMargin}{4.0}
+
+% ============================================================================
+% SCENARIO D: COMBINED STRESS TEST (Pessimistic)
+% ============================================================================
+% CAC +20%, Churn +20%, Margin -20% simultaneously
+
+\newcommand{\stressLTV}{\fpeval{\annualGPLowMargin * \cappedLifetimeHighChurn}}
+\newcommand{\HCstressLTV}{438.10}
+
+\newcommand{\stressLtvCac}{\fpeval{round(\stressLTV / \sensCAChigh, 0)}}
+\newcommand{\HCstressLtvCac}{17}
+
+\newcommand{\stressPayback}{\fpeval{round(\sensCAChigh / (\markWeightedAvgMonthly * \sensGrossMarginLow/100), 1)}}
+\newcommand{\HCstressPayback}{4.8}
+
+% ============================================================================
+% SCENARIO E: COMBINED UPSIDE (Optimistic)
+% ============================================================================
+% CAC -20%, Churn -20%, Margin +20% simultaneously
+
+\newcommand{\upsideLTV}{\fpeval{\annualGPHighMargin * \cappedLifetimeLowChurn}}
+\newcommand{\HCupsideLTV}{657.14}
+
+\newcommand{\upsideLtvCac}{\fpeval{round(\upsideLTV / \sensCAClow, 0)}}
+\newcommand{\HCupsideLtvCac}{39}
+
+\newcommand{\upsidePayback}{\fpeval{round(\sensCAClow / (\markWeightedAvgMonthly * \sensGrossMarginHigh/100), 1)}}
+\newcommand{\HCupsidePayback}{2.1}
+
+% ============================================================================
+% PERCENTAGE CHANGES VS BASE CASE (for display)
+% ============================================================================
+
+\newcommand{\pctChangeHighCAC}{\fpeval{round((\ltvCacHighCAC - \ltvCacRatio) / \ltvCacRatio * 100, 0)}}
+\newcommand{\pctChangeLowCAC}{\fpeval{round((\ltvCacLowCAC - \ltvCacRatio) / \ltvCacRatio * 100, 0)}}
+\newcommand{\pctChangeHighMargin}{\fpeval{round((\ltvCacHighMargin - \ltvCacRatio) / \ltvCacRatio * 100, 0)}}
+\newcommand{\pctChangeLowMargin}{\fpeval{round((\ltvCacLowMargin - \ltvCacRatio) / \ltvCacRatio * 100, 0)}}
+\newcommand{\pctChangeStress}{\fpeval{round((\stressLtvCac - \ltvCacRatio) / \ltvCacRatio * 100, 0)}}
+\newcommand{\pctChangeUpside}{\fpeval{round((\upsideLtvCac - \ltvCacRatio) / \ltvCacRatio * 100, 0)}}
+
+% ============================================================================
 % END OF SOFTCODED VARIABLES
 % ============================================================================

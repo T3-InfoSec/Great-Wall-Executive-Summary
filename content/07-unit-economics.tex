@@ -68,3 +68,55 @@ Customer Lifetime & \num{\ltvYearsUsed} years & min(1/churn, \num{\ltvCapYears} 
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\subsection{Sensitivity Analysis}
+
+Unit economics remain robust across a range of input assumptions. The following analysis tests $\pm$\num{\sensitivityDelta}\% variations in key drivers.
+
+\begin{table}[H]
+\centering
+\caption{LTV:CAC Sensitivity to Individual Input Changes}
+\begin{tabularx}{\linewidth}{l Y Y Y Y}
+\toprule
+\textbf{Scenario} & \textbf{Input Change} & \textbf{LTV:CAC} & \textbf{Payback} & \textbf{vs. Base} \\\midrule
+\textbf{Base Case} & --- & \numint{\ltvCacRatio}:1 & \num{\subPaybackMonths}~mo & --- \\\midrule
+\multicolumn{5}{l}{\textit{CAC Sensitivity}} \\
+CAC +\num{\sensitivityDelta}\% & \$\num{\sensCAChigh} & \numint{\ltvCacHighCAC}:1 & \num{\paybackHighCAC}~mo & \num{\pctChangeHighCAC}\% \\
+CAC $-$\num{\sensitivityDelta}\% & \$\num{\sensCAClow} & \numint{\ltvCacLowCAC}:1 & \num{\paybackLowCAC}~mo & +\num{\pctChangeLowCAC}\% \\\midrule
+\multicolumn{5}{l}{\textit{Churn Sensitivity (LTV capped at \num{\ltvCapYears} years)}} \\
+Churn +\num{\sensitivityDelta}\% & \num{\sensChurnHighPercent}\%/yr & \numint{\ltvCacHighChurn}:1 & \num{\subPaybackMonths}~mo & 0\%* \\
+Churn $-$\num{\sensitivityDelta}\% & \num{\sensChurnLowPercent}\%/yr & \numint{\ltvCacLowChurn}:1 & \num{\subPaybackMonths}~mo & 0\%* \\\midrule
+\multicolumn{5}{l}{\textit{Gross Margin Sensitivity}} \\
+Margin +\num{\sensitivityDelta}\% & \num{\sensGrossMarginHigh}\% & \numint{\ltvCacHighMargin}:1 & \num{\paybackHighMargin}~mo & +\num{\pctChangeHighMargin}\% \\
+Margin $-$\num{\sensitivityDelta}\% & \num{\sensGrossMarginLow}\% & \numint{\ltvCacLowMargin}:1 & \num{\paybackLowMargin}~mo & \num{\pctChangeLowMargin}\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\textit{*Churn changes have no LTV impact because theoretical lifetime (\num{\theoreticalLifetimeYears} years) exceeds the \num{\ltvCapYears}-year cap in all scenarios.}
+
+\subsubsection{Combined Scenario Analysis}
+
+\begin{table}[H]
+\centering
+\caption{Stress Test and Upside Scenarios}
+\begin{tabularx}{\linewidth}{l X Y Y Y}
+\toprule
+\textbf{Scenario} & \textbf{Assumptions} & \textbf{LTV:CAC} & \textbf{Payback} & \textbf{vs. Base} \\\midrule
+\textbf{Base Case} & Current projections & \numint{\ltvCacRatio}:1 & \num{\subPaybackMonths}~mo & --- \\
+\textbf{Stress Test} & CAC +\num{\sensitivityDelta}\%, Churn +\num{\sensitivityDelta}\%, Margin $-$\num{\sensitivityDelta}\% & \numint{\stressLtvCac}:1 & \num{\stressPayback}~mo & \num{\pctChangeStress}\% \\
+\textbf{Upside} & CAC $-$\num{\sensitivityDelta}\%, Churn $-$\num{\sensitivityDelta}\%, Margin +\num{\sensitivityDelta}\% & \numint{\upsideLtvCac}:1 & \num{\upsidePayback}~mo & +\num{\pctChangeUpside}\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Key Takeaways}
+
+\begin{itemize}
+    \item \textbf{Downside Protection:} Even under stress test conditions (all inputs move adversely by \num{\sensitivityDelta}\%), LTV:CAC remains \numint{\stressLtvCac}:1---well above the 3:1 threshold for healthy unit economics.
+    
+    \item \textbf{CAC is the Primary Driver:} A \num{\sensitivityDelta}\% CAC increase reduces LTV:CAC by \num{\pctChangeHighCAC}\%, making customer acquisition efficiency our most sensitive lever.
+    
+    \item \textbf{Churn Impact is Capped:} Due to our conservative \num{\ltvCapYears}-year LTV cap, churn variations within $\pm$\num{\sensitivityDelta}\% have no impact on calculated LTV. This cap provides natural downside protection.
+    
+    \item \textbf{Margin Resilience:} Even with \num{\sensitivityDelta}\% gross margin compression, LTV:CAC of \numint{\ltvCacLowMargin}:1 supports aggressive growth investment.
+\end{itemize}
