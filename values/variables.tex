@@ -425,13 +425,17 @@
 % ============================================================================
 % SECTION 12: UNIT ECONOMICS & LTV
 % ============================================================================
+% NOTE: Churn values stored as percentages (e.g., 4.5 = 4.5%) not decimals
+%       This avoids display rounding issues with values like 0.045
 
-% Average annual churn (for LTV calculation)
-\newcommand{\avgAnnualChurn}{\fpeval{(\churnYearOne + \churnYearTwo + \churnYearThree) / 3 / 100}}
-\newcommand{\HCavgAnnualChurn}{0.045}
+% Average annual churn as PERCENTAGE (for clean display)
+% Formula: (5 + 4.5 + 4) / 3 = 4.5%
+\newcommand{\avgAnnualChurnPercent}{\fpeval{(\churnYearOne + \churnYearTwo + \churnYearThree) / 3}}
+\newcommand{\HCavgAnnualChurnPercent}{4.5}
 
-% Theoretical customer lifetime = 1 / churn rate
-\newcommand{\theoreticalLifetimeYears}{\fpeval{1 / \avgAnnualChurn}}
+% Theoretical customer lifetime = 100 / churn% (since churn is stored as percentage)
+% Formula: 100 / 4.5 = 22.22 years
+\newcommand{\theoreticalLifetimeYears}{\fpeval{100 / \avgAnnualChurnPercent}}
 \newcommand{\HCtheoreticalLifetimeYears}{22.22}
 
 % Actual lifetime used (capped)

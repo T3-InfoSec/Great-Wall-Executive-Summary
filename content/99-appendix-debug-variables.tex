@@ -207,8 +207,8 @@ monthlyBurn & \validatemoney{\monthlyBurnYearOne}{\HCmonthlyBurnYearOne} & \vali
 \toprule
 \textbf{Variable} & \textbf{Value} & \textbf{Description} \\\midrule
 subGrossMargin & \num{\subGrossMargin}\% & Derived from COGS (100\% $-$ \num{\totalCogsPercent}\%) \\
-avgAnnualChurn & \validate{\avgAnnualChurn}{\HCavgAnnualChurn} & Avg churn (decimal) \\
-theoreticalLifetimeYears & \validate{\theoreticalLifetimeYears}{\HCtheoreticalLifetimeYears} & 1/churn \\
+avgAnnualChurnPercent & \validatepct{\avgAnnualChurnPercent}{\HCavgAnnualChurnPercent} & Avg churn (as \%) \\
+theoreticalLifetimeYears & \validate{\theoreticalLifetimeYears}{\HCtheoreticalLifetimeYears} & 100/churn\% \\
 ltvCapYears & \num{\ltvCapYears} & LTV cap \\
 ltvYearsUsed & \validate{\ltvYearsUsed}{\HCltvYearsUsed} & Actual years used \\
 subAnnualGrossProfit & \validate{\subAnnualGrossProfit}{\HCsubAnnualGrossProfit} & Annual GP/sub \\
