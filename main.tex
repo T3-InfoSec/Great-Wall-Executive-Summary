@@ -29,9 +29,12 @@
 \input{content/11-risk-factors}
 \input{content/12-future-expansion}
 
-% Debug appendix (comment out for final version)
-\input{content/99-appendix-debug-variables}
-
 \printbibliography
+\label{MainDocLastPage}
+
+% Appendix: separate numbering (arabic, restarting at 1)
+% To drop appendix from final version, delete the three lines below
+\clearpage
+\input{content/99-appendix-debug-variables}
 
 \end{document}
