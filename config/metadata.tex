@@ -5,10 +5,14 @@
 \author{\href{https://linktr.ee/yurisvb}{Yuri S Villas Boas}}
 \date{\today}
 
+% Git version (pdfLaTeX-compatible via shell-escape)
+\immediate\write18{git rev-parse --short HEAD > .gitversion}
+\CatchFileDef{\gitshorthash}{.gitversion}{\endlinechar=-1}
+
 % Footer configuration
 \fancyfoot[L]{\href{https://loudproudandfree.com}{T3 Information Security}}
 \fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
-\fancyfoot[R]{Draft -- \today}
+\fancyfoot[R]{Draft -- \today\ -- \texttt{\gitshorthash}}
 
 
 % Bibliography configuration
