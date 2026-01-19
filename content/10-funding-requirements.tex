@@ -3,6 +3,31 @@
 \section{Funding Requirements and Use of Proceeds}
 
 \subsection{Seed Round (Current)}
+
+% Calculate allocation percentages for pie chart
+\newcommand{\seedTotalBase}{\fpeval{\teamSalariesYearOne + \infrastructureYearOne + \legalComplianceYearOne + \marketingBudgetYearOne}}
+\newcommand{\seedTeamPct}{\fpeval{round(\teamSalariesYearOne / \seedTotalBase * 100, 0)}}
+\newcommand{\seedInfraPct}{\fpeval{round(\infrastructureYearOne / \seedTotalBase * 100, 0)}}
+\newcommand{\seedLegalPct}{\fpeval{round(\legalComplianceYearOne / \seedTotalBase * 100, 0)}}
+\newcommand{\seedMktPct}{\fpeval{round(\marketingBudgetYearOne / \seedTotalBase * 100, 0)}}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\pie[
+    radius=2.5,
+    text=legend,
+    color={blue!60, orange!60, green!50, purple!50},
+    explode={0.05, 0, 0, 0}
+]{
+    \seedTeamPct/Team (\seedTeamPct\%),
+    \seedMktPct/Marketing (\seedMktPct\%),
+    \seedLegalPct/Legal (\seedLegalPct\%),
+    \seedInfraPct/Infrastructure (\seedInfraPct\%)
+}
+\end{tikzpicture}
+\caption{Seed Round Use of Funds (\$\numint{\seedAmount/1000}K)}
+\end{figure}
 \begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{l r L}
