@@ -11,3 +11,106 @@ These opportunities are not part of the near-term plan or financial model. They 
   \item \textbf{Password Manager Applications:} Protocol-backed secrets management with verifiability, auditability, and recovery features.
   \item \textbf{Investigative Journalism Workflows:} Source protection and verifiable access controls for sensitive investigations and disclosures.
 \end{itemize}
+
+\subsection{Premium Attention Real Estate: Ad-Supported Revenue}
+
+The protocol's weekly memory consolidation requirement creates a unique advertising opportunity: \textbf{mandatory, non-skippable engagement} with a high-value, wealth-segmented demographic.
+
+\subsubsection{The Asset: Mandatory Weekly Engagement}
+
+Unlike optional app engagement, TKBA users \textit{must} complete weekly security runs to maintain protocol integrity. Skipping sessions risks catastrophic forgetting---permanent loss of access to protected assets. This creates approximately \numfpeval{\weeklyRunsPerMonth} \textbf{captive-attention sessions} per month, or $\sim$52 high-quality touchpoints annually per user.
+
+This mandatory engagement differs fundamentally from typical digital advertising inventory:
+
+\begin{itemize}
+  \item \textbf{Zero Skip Rate:} Users cannot abandon sessions without risking asset loss---attention is guaranteed, not hoped for
+  \item \textbf{Active Cognitive State:} Memory consolidation tasks require focus; users are mentally engaged, not passively scrolling
+  \item \textbf{Predictable Cadence:} Weekly schedule enables precise ad timing, frequency capping, and campaign planning
+  \item \textbf{Habit Stacking Opportunity:} Users already in ``learning mode'' are psychologically primed for adjacent self-improvement products \cite{clear2018}
+\end{itemize}
+
+\subsubsection{The Audience: Wealth-Segmented Security Demographic}
+
+Physical violence threatens cryptocurrency holders across all economic strata---wrench attacks documented by Lopp \cite{lopp2024} target victims from everyday holders to high-profile individuals. Our tiered pricing naturally segments users by wealth:
+
+\begin{itemize}
+  \item \textbf{Implicit Wealth Signaling:} Users self-select into tiers based on assets worth protecting; higher tiers correlate with greater holdings
+  \item \textbf{No Polling Required:} Tier selection reveals willingness-to-pay without invasive surveys---Golden tier (\$\num{\subGoldenPrice}/mo) users demonstrably value security more than Basic tier (\$\num{\subBasicPrice}/mo) users
+  \item \textbf{Directed Advertising:} Tier data enables precise ad targeting---premium financial services to high-tier users, mass-market security tools to entry tiers
+\end{itemize}
+
+\noindent Our user base self-selects for characteristics that command premium CPMs:
+
+\begin{itemize}
+  \item \textbf{Verified Security Investment:} Already paying for protection (not freebie-seekers)
+  \item \textbf{Tech-Savvy Early Adopters:} High lifetime value for SaaS, fintech, and premium digital services
+  \item \textbf{Privacy-Conscious:} Responsive to products emphasizing security, encryption, and data protection
+  \item \textbf{Risk-Aware:} Proactively managing threats---ideal for insurance, legal, and advisory services
+\end{itemize}
+
+\subsubsection{Natural Advertising Verticals}
+
+Three categories of advertisers align naturally with our user context and tier segmentation:
+
+\textbf{Mass-Market Security} (All Tiers, CPM $\sim$\$15--30):
+\begin{itemize}
+  \item VPN and privacy services (NordVPN, ExpressVPN, Mullvad)
+  \item Password managers (1Password, Bitwarden, Dashlane)
+  \item Hardware wallets and cold storage solutions
+  \item Encrypted communication tools (Signal, ProtonMail)
+  \item Identity theft protection services
+\end{itemize}
+
+\textbf{Wellness \& Habit-Building} (All Tiers, CPM $\sim$\$15--25):
+\begin{itemize}
+  \item Meditation and mindfulness apps (Headspace, Calm, Waking Up)
+  \item Language learning platforms (Duolingo, Babbel)
+  \item Productivity and focus tools (Notion, Obsidian, Todoist)
+  \item Online learning platforms (Masterclass, Coursera, Brilliant)
+  \item Fitness tracking and health optimization
+\end{itemize}
+
+\textbf{Premium Services for High-Tier Users} (Professional/Golden Tiers, CPM $\sim$\$50--150):
+\begin{itemize}
+  \item \textit{Wealth Management:} Private banking, family office services, tax optimization advisors
+  \item \textit{Legal \& Estate:} Asset protection attorneys, estate planning, crypto-specialized counsel
+  \item \textit{Premium Insurance:} High-value asset coverage, kidnap \& ransom policies, cyber liability
+  \item \textit{Executive Security:} Personal protection services, secure travel coordination, threat assessment
+  \item \textit{Luxury Security Hardware:} Premium safes (Casoro, Brown Safe), secure communication devices, armored vehicles
+  \item \textit{Real Estate:} Gated communities, security-focused property developments
+\end{itemize}
+
+The wellness vertical leverages ``habit stacking''---users already committed to weekly security discipline convert at above-average rates for adjacent self-improvement products \cite{clear2018}. The premium tier enables \textit{hyper-targeted} placement of high-value services to users who have demonstrably signaled wealth through their subscription choice.
+
+\subsubsection{Illustrative Revenue Potential}
+
+At scale, this represents meaningful incremental revenue without cannibalizing core subscription economics:
+
+\begin{table}[H]
+\centering
+\caption{Illustrative Ad Revenue at Scale (Year 3 Subscriber Base)}
+\begin{tabularx}{\linewidth}{l Y Y Y}
+\toprule
+Metric & Conservative & Base & Optimistic \\\midrule
+Monthly Active Users & \numint{\totalSubsYearThree} & \numint{\totalSubsYearThree} & \numint{\totalSubsYearThree} \\
+Sessions/User/Month & \numfpeval{round(\weeklyRunsPerMonth,1)} & \numfpeval{round(\weeklyRunsPerMonth,1)} & \numfpeval{round(\weeklyRunsPerMonth,1)} \\
+Ads Shown/Session & 1 & 2 & 3 \\
+Effective CPM & \$15 & \$25 & \$40 \\
+\textbf{Annual Ad Revenue} & \textbf{\$\numint{round(\totalSubsYearThree * \weeklyRunsPerMonth * 12 * 1 * 15 / 1000, 0)}} & \textbf{\$\numint{round(\totalSubsYearThree * \weeklyRunsPerMonth * 12 * 2 * 25 / 1000, 0)}} & \textbf{\$\numint{round(\totalSubsYearThree * \weeklyRunsPerMonth * 12 * 3 * 40 / 1000, 0)}} \\
+\% of Subscription ARR & \numfpeval{round(\totalSubsYearThree * \weeklyRunsPerMonth * 12 * 1 * 15 / 1000 / \subARRYearThree * 100, 1)}\% & \numfpeval{round(\totalSubsYearThree * \weeklyRunsPerMonth * 12 * 2 * 25 / 1000 / \subARRYearThree * 100, 1)}\% & \numfpeval{round(\totalSubsYearThree * \weeklyRunsPerMonth * 12 * 3 * 40 / 1000 / \subARRYearThree * 100, 1)}\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Valuation Implications}
+
+Ad-supported revenue diversification strengthens the investment thesis:
+
+\begin{itemize}
+  \item \textbf{Multiple Revenue Streams:} Reduces single-source risk, potentially justifying higher valuation multiples
+  \item \textbf{High-Margin Incremental Revenue:} Advertising typically carries 70--85\% gross margins, improving blended unit economics
+  \item \textbf{Strategic Optionality:} Creates partnership opportunities with security and wellness brands seeking our demographic
+  \item \textbf{Retention Reinforcement:} Curated, relevant ads (wellness/security tools) may actually enhance user experience rather than degrade it
+\end{itemize}
+
+\noindent\textit{Note: Ad revenue is excluded from primary financial projections. Implementation would require careful UX design to avoid disrupting the security ritual or undermining brand trust. Premium, opt-in sponsorship models (``This security run is sponsored by...'') may prove more effective than traditional interstitial ads.}
