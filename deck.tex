@@ -1,0 +1,206 @@
+% deck.tex - Investor Presentation Deck for Great Wall
+% Simplified beamer presentation
+
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{default}
+\usecolortheme{whale}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xfp}
+\usepackage{siunitx}
+
+\sisetup{group-separator={,}, round-mode=places, round-precision=2}
+
+% Helper commands
+\newcommand{\numfpeval}[1]{\num{\fpeval{#1}}}
+\newcommand{\numint}[1]{\num[round-precision=0]{\fpeval{#1}}}
+
+\input{values/variables}
+
+\title{Great Wall}
+\subtitle{Making Self-Custody Safe for the Mainstream}
+\author{Investment Opportunity}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{The Problem: The \$5 Wrench Attack}
+\begin{itemize}
+    \item ``Not your keys, not your coins'' creates a paradox
+    \item Self-custody users vulnerable to \textbf{physical coercion}
+    \item \textbf{2025:} Record surge in wrench attacks
+    \item Obscurity-based defenses can \textbf{backfire catastrophically}
+    \item Attackers incentivized toward \textbf{greater violence}
+\end{itemize}
+\vfill
+\centering
+\textit{Hardware wallets, seed phrases, and exchanges all fail under coercion.}
+\end{frame}
+
+\begin{frame}{Our Solution: Tacit Knowledge-Based Authentication (TKBA)}
+\textbf{The first and only system} delivering all four properties:
+\vspace{1em}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{block}{Deviceless}
+No hardware, seed phrase, or object to steal
+\end{block}
+\begin{block}{Individual Custody}
+True self-custody---no third-party reliance
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{Anti-Obscure}
+Security increases as attackers learn the protocol
+\end{block}
+\begin{block}{Coercion-Resistant}
+Requires time + tacit knowledge, neutralizing wrench attacks
+\end{block}
+\end{columns}
+\vfill
+\centering
+\textit{From hiding in fear to loud, proud confidence.}
+\end{frame}
+
+\begin{frame}{Competitive Differentiation}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Deviceless} & \textbf{Individual} & \textbf{Anti-Obscure} & \textbf{Coercion Res.} \\
+\midrule
+\textbf{TKBA (Great Wall)} & Yes & Yes & Yes & Yes \\
+Physical (vaults) & No & Yes & Yes & Yes \\
+Exchanges & Yes & No & Yes & Yes \\
+Obscurity (decoys) & Yes & Yes & No & No \\
+Ledger, etc. & Yes & Yes & Yes & No \\
+\bottomrule
+\end{tabular}
+\vfill
+\textbf{Great Wall is the only solution satisfying all four properties.}
+\end{frame}
+
+\begin{frame}{Business Model: Subscription Marketplace}
+\textbf{Two-Sided Marketplace:}
+\begin{itemize}
+    \item \textbf{Clients:} Users needing anonymous, memory-intensive computation
+    \item \textbf{Providers:} PC owners monetizing idle capacity
+    \item Platform fee: \textbf{\markPlatformFeePercent\%} of transactions
+\end{itemize}
+\vspace{1em}
+\textbf{Provider-Driven Growth Engine:}
+\begin{itemize}
+    \item \providerCommissionPercent\% referral commission
+    \item Zero-base-cost sales force
+    \item Viral growth, dramatically lower CAC
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Key Metrics}
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+LTV:CAC Ratio & \numint{\ltvCacRatio}:1 \\
+Gross Margin & \numint{\subGrossMargin}\% \\
+CAC Payback & \numint{\subPaybackMonths} months \\
+Platform Fee & \markPlatformFeePercent\% \\
+Breakeven & Month \numint{\breakevenMonth} \\
+Year 3 Exit ARR & \$\numfpeval{round(\subARRYearThree/1000000,1)}M \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Revenue Growth Trajectory}
+\centering
+\begin{tabular}{lccc}
+\toprule
+& \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\
+\midrule
+Exit ARR & \$\numfpeval{round(\subARRYearOne/1000000,2)}M & \$\numfpeval{round(\subARRYearTwo/1000000,1)}M & \$\numfpeval{round(\subARRYearThree/1000000,1)}M \\
+Subscribers & \numint{\totalSubsYearOne} & \numint{\totalSubsYearTwo} & \numint{\totalSubsYearThree} \\
+\bottomrule
+\end{tabular}
+\vfill
+Growth: \textbf{\numfpeval{round(\growthRateYearOneTwo,0)}\%} (Y1 to Y2) and \textbf{\numfpeval{round(\growthRateYearTwoThree,0)}\%} (Y2 to Y3)
+\end{frame}
+
+\begin{frame}{Path to Profitability}
+\centering
+\begin{tabular}{lccc}
+\toprule
+& \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} \\
+\midrule
+Operating Income & \$\numfpeval{round(\operatingIncomeYearOne/1000,0)}K & \$\numfpeval{round(\operatingIncomeYearTwo/1000,0)}K & \$\numfpeval{round(\operatingIncomeYearThree/1000,0)}K \\
+\bottomrule
+\end{tabular}
+\vfill
+\textbf{Cash flow positive in Month \numint{\breakevenMonth}} at \numint{\breakevenSubscribers} active subscribers
+\end{frame}
+
+\begin{frame}{Seed Round: Use of Funds}
+\textbf{Seed Round: \$\numint{\seedAmount/1000}K}
+\vspace{1em}
+\begin{itemize}
+    \item \textbf{Team:} Phased hiring for lean runway
+    \item \textbf{Marketing:} Customer acquisition
+    \item \textbf{Legal:} Compliance and insurance
+    \item \textbf{Infrastructure:} Hosting and security
+\end{itemize}
+\vfill
+\textbf{Runway: \numint{\seedRunwayMonths} months}
+\end{frame}
+
+\begin{frame}{Investment Opportunity}
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Round} & \textbf{Amount} & \textbf{Valuation} \\
+\midrule
+Seed (Now) & \$\numint{\seedAmount/1000}K & \$\numfpeval{round(\seedValuation/1000000,1)}M post-money \\
+Series A (M18) & \$\numint{\seriesAAmount/1000000}M & \$\numfpeval{round(\seriesAValuation/1000000,1)}M post-money \\
+Year 3 Target & --- & \$\targetValLow--\targetValHigh M \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Near-Term Timeline}
+\begin{tabular}{ll}
+\toprule
+\textbf{Milestone} & \textbf{Date} \\
+\midrule
+MVP Ready & \mvpDate \\
+\numint{\betaFirstClients} Beta Clients & \betaTenDate \\
+Beta End & \betaEndDate \\
+Scale Marketplace & \scaleMktDate \\
+\numint{\betaUsers} Users & \kCustomersDate \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Why Now}
+\begin{enumerate}
+    \item \textbf{Market Timing:} Record wrench attacks in 2025 creating urgent demand
+    \item \textbf{First-Mover Advantage:} Only anonymous computation marketplace for security
+    \item \textbf{Capital Efficiency:} Provider-driven growth with strong unit economics
+    \item \textbf{Technology Ready:} TKBA protocol proven and ready to deploy
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{}
+\centering
+\vspace{2em}
+{\Huge \textbf{Great Wall}}\\[1em]
+{\Large Making Self-Custody Safe for the Mainstream}\\[2em]
+{\large \textit{From hiding in fear to loud, proud confidence.}}\\[2em]
+\textbf{Seeking \$\numint{\seedAmount/1000}K Seed Round}
+\end{frame}
+
+\end{document}
